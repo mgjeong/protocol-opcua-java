@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Start edge opcua build"
 edge_opcua_home=$(pwd)
-cd ../../mapper/mavenProjects
+cd ../util/mapper/mavenProjects
 mapper_home=$(pwd)
 cd $edge_opcua_home
 
