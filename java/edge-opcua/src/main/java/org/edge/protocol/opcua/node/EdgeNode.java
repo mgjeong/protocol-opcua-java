@@ -263,7 +263,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), item.getForward() ? false : true));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
 
     nodeManager.put(node.getNodeId(), node);
 
