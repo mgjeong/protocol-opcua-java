@@ -26,7 +26,7 @@
 
 2. Run ./build.sh in command line in *protocol-opcua/java/edge-opcua*
 
-   ![build_stack](../documents/readme_images/build_1.png)
+   ![build_stack](../documents/readme_images/build_stack.png)
 <br></br>
 ## How to build OPC-UA library with Eclipse
 
