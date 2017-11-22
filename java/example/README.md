@@ -12,7 +12,7 @@
 
 2. In *protocol-opcua/java/example*, run `./build.sh` in command line
 
-   ![build_exam](../documents/readme_images/build_3_1.png)
+   ![build_exam](../documents/readme_images/build_exam.png)
 
 3. You can execute opcua-client/opcua-server sample with
    
@@ -20,7 +20,7 @@
    
    `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` in each command window
 
-   ![example_jars](../documents/readme_images/build_3_2.png)
+   ![example_jars](../documents/readme_images/example_jars.png)
 
 ### How to build sample application with Eclipse
 
