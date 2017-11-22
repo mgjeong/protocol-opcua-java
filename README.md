@@ -30,7 +30,7 @@ tar xzvf apache-maven-3.5.2-bin.tar.gz
 Add the bin directory of the created directory apache-maven-3.5.2 to the PATH environment variable
 <br></br>
 
-#### How to build OPC-UA library [here](./edge-opcua/README.md)
+#### How to build OPC-UA library [here](./java/edge-opcua/README.md)
 
-#### Test OPC-UA sample application [here](./example/README.md)
+#### Test OPC-UA sample application [here](./java/example/README.md)
 
