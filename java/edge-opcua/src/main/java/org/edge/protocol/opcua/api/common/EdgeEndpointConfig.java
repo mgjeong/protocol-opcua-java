@@ -38,7 +38,7 @@ public class EdgeEndpointConfig {
     private String serverName = EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();
     private String bindAddress = EdgeOpcUaCommon.WELL_KNOWN_LOCALHOST_ADDRESS.getValue();
     private int bindPort = 12686;
-    private boolean viweNodeFalg = true;
+    private boolean viweNodeFalg = false;
 
     public Builder() {}
 
@@ -63,7 +63,7 @@ public class EdgeEndpointConfig {
       applicationUri = val;
       return this;
     }
-    
+
     /**
      * @fn Builder setProductUri(String val)
      * @brief set product uri
@@ -96,7 +96,7 @@ public class EdgeEndpointConfig {
       serverName = val;
       return this;
     }
-    
+
     /**
      * @fn Builder setbindAddress(String addr)
      * @brief set bind address
@@ -129,7 +129,7 @@ public class EdgeEndpointConfig {
       viweNodeFalg = flag;
       return this;
     }
-    
+
     /**
      * @fn EdgeEndpointConfig build()
      * @brief create EdgeEndpointConfig instance (builder)
@@ -191,7 +191,7 @@ public class EdgeEndpointConfig {
   public String getProductUri() {
     return productUri;
   }
-  
+
   /**
    * @fn String getSecurityPolicyUri()
    * @brief get Security Policy Uri
@@ -209,7 +209,7 @@ public class EdgeEndpointConfig {
   public String getServerName() {
     return serverName;
   }
-  
+
   /**
    * @fn String getBindAddress()
    * @brief get bindaddress
@@ -227,7 +227,7 @@ public class EdgeEndpointConfig {
   public int getBindPort() {
     return bindPort;
   }
-  
+
   /**
    * @fn boolean getViewNodeFlag()
    * @brief get viweNodeFalg
