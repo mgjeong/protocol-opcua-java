@@ -24,13 +24,13 @@
 
 1. Environment : Ubuntu 16.04 (64bit)
 
-2. Run ./build.sh in command line in *protocol-stack/opc-ua/edge-opcua/mavenProjects*
+2. Run ./build.sh in command line in *protocol-opcua/java/edge-opcua*
 
-   ![build_1_1](../documents/readme_images/build_1.png)
+   ![build_stack](../documents/readme_images/build_1.png)
 <br></br>
 ## How to build OPC-UA library with Eclipse
 
-1. import opcua stack project(*protocol-stack/opc-ua/edge-opcua/mavenProjects*)
+1. import opcua stack project(*protocol-opcua/java/edge-opcua*)
 
    ![build_2_1](../documents/readme_images/build_2_1.png)
 
