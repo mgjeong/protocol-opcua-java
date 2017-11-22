@@ -30,13 +30,13 @@
 
 2. Run ./build.sh in command line in *protocol-stack/opc-ua/edge-opcua/mavenProjects*
 
-   ![build_1_1](./opc-ua/example/images/build_1.png)
+   ![build_1_1](./documents/readme_images/build_1.png)
 <br></br>
 ## How to build OPC-UA library with Eclipse
 
 1. import opcua stack project(*protocol-stack/opc-ua/edge-opcua/mavenProjects*)
 
-   ![build_2_1](./opc-ua/example/images/build_2_1.png)
+   ![build_2_1](./documents/readme_images/build_2_1.png)
 
 2. Select Project -> Click Right button 
 
@@ -44,11 +44,11 @@
 
 4. insert goal : assembly:assembly install
 
-   ![build_2_2](./opc-ua/example/images/build_2_2.png)
+   ![build_2_2](./documents/readme_images/build_2_2.png)
 
 5. Run As -> Maven Build 
 
 6. you can find 'opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar' in /target forlder
 <br></br>
 
-#### Test OPC-UA sample application [here](./opc-ua/example/README.md)
+#### Test OPC-UA sample application [here](./example/README.md)

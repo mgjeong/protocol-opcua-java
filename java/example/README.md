@@ -12,7 +12,7 @@
 
 2. In *protocol-stack/opc-ua/example*, run `./build.sh` in command line
 
-   ![build_3_1](./images/build_3_1.png)
+   ![build_3_1](../documents/readme_images/build_3_1.png)
 
 3. You can execute opcua-client/opcua-server sample with
    
@@ -20,7 +20,7 @@
    
    `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` in each command window
 
-   ![build_3_2](./images/build_3_2.png)
+   ![build_3_2](../documents/readme_images/build_3_2.png)
 
 ### How to build sample application with Eclipse
 
@@ -41,14 +41,14 @@
 5. Reference : If you have errors in pom.xml, Select Project -> Click Right button 
                   -> Maven -> Update Maven Project -> Check Force Update of Snapshots/Releases -> OK
 
-   ![build_4_1](./images/build_4_1.png)
+   ![build_4_1](../documents/readme_images/build_4_1.png)
 <br></br>
 ## Test
 
 ### 1. Execute *OPC-UA Server* <br>
    command : `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
    
-   ![server_1](./images/server_1.PNG)
+   ![server_1](../documents/readme_images/server_1.PNG)
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
@@ -63,7 +63,7 @@
 ### 2. Execute *OPC-UA Client* <br>
    command : `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
 
-   ![client_1](./images/client_1.PNG)
+   ![client_1](../documents/readme_images/client_1.PNG)
 
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
@@ -99,41 +99,41 @@
 <br>
 ### 3. Start Server <br>
    input `start` and than, input `Your IP Address` in **OPC-UA Server**.
-   ![server_2](./images/server_2.PNG)
+   ![server_2](../documents/readme_images/server_2.PNG)
    
    Then start *OPC-UA Server*. And create service node.
-   ![server_3](./images/server_3.PNG)
+   ![server_3](../documents/readme_images/server_3.PNG)
 <br>
 ### 4. Start Client <br>
    input `start` and than, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
-   ![client_2](./images/client_2.PNG)
+   ![client_2](../documents/readme_images/client_2.PNG)
    
    Then, *OPC-UA Client* connects with *OPC-UA Server*. <br>
    And Create service provider
-   ![client_3](./images/client_3.PNG)
+   ![client_3](../documents/readme_images/client_3.PNG)
    
    And, Show *Provider ValueAlias's List*
-   ![client_4](./images/client_4.PNG)
+   ![client_4](../documents/readme_images/client_4.PNG)
 <br>
 ### 5. Read Command<br>
    input `read_t` and than, input `Provider ValueAlias` (refer. *Provider ValueAlias's List*).<br>
    Then read server node. 
-   ![client_5](./images/client_5.PNG)
+   ![client_5](../documents/readme_images/client_5.PNG)
 <br>     
 ### 6. Write Command<br>
    input `write` and than, input `Provider ValueAlias`.<br>
    Then write to server node. 
-   ![client_6](./images/client_6.PNG)
+   ![client_6](../documents/readme_images/client_6.PNG)
 <br>     
 ### 7. Monitoring <br>
    input `start CNC` in *OPC-UA Server*.<br>
    Then Run 'cnc100'
-   ![server_8](./images/server_8.PNG)
+   ![server_8](../documents/readme_images/server_8.PNG)
    
    input `sub` in *OPC-UA Client*.<br>
    Then subscribe to server node.
-   ![client_7](./images/client_7.PNG)
-   ![client_8](./images/client_8.PNG)
+   ![client_7](../documents/readme_images/client_7.PNG)
+   ![client_8](../documents/readme_images/client_8.PNG)
 
 
 
