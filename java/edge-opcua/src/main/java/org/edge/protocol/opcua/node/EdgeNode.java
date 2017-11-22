@@ -295,7 +295,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), !item.getForward()));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
 
     nodeManager.put(node.getNodeId(), node);
 
@@ -329,7 +329,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
 
     nodeManager.put(node.getNodeId(), node);
 
@@ -352,7 +352,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
 
     nodeManager.put(node.getNodeId(), node);
     return node;
@@ -378,7 +378,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
     nodeManager.put(node.getNodeId(), node);
 
     return node;
@@ -398,7 +398,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
     nodeManager.put(node.getNodeId(), node);
 
     return node;
@@ -418,7 +418,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
     nodeManager.put(node.getNodeId(), node);
 
     return node;
@@ -437,7 +437,7 @@ public class EdgeNode {
     node.addReference(new Reference(node.getNodeId(), Identifiers.Organizes,
         pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-    logger.info("Added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
+    logger.info("added reference: {} -> {}", pNode.getNodeId(), node.getNodeId());
     nodeManager.put(node.getNodeId(), node);
 
     return node;
@@ -469,8 +469,8 @@ public class EdgeNode {
       UaObjectNode cNode = (UaObjectNode) getUaNode(item.getSourceNode());
       addViewReference(viewNode, cNode);
 
-      logger.info("Added reference for ViewNode: {}", viewNode.getNodeId());
-      logger.info("Added reference for ViewNode2: {}", cNode.getNodeId());
+      logger.info("added reference for ViewNode: {}", viewNode.getNodeId());
+      logger.info("added reference for ViewNode2: {}", cNode.getNodeId());
     }
     nodeManager.put(viewNode.getNodeId(), viewNode);
 
@@ -510,7 +510,7 @@ public class EdgeNode {
       nodeManager.get(root.getNodeId()).addReference(new Reference(root.getNodeId(),
           Identifiers.Organizes, firstNode.getNodeId().expanded(), firstNode.getNodeClass(), true));
 
-      logger.info("Added reference: {} -> {}", root.getNodeId(), firstNode.getNodeId());
+      logger.info("added reference: {} -> {}", root.getNodeId(), firstNode.getNodeId());
     }
 
     PeekingIterator<UaObjectNode> iterator = Iterators.peekingIterator(folderNodes.iterator());
@@ -529,7 +529,7 @@ public class EdgeNode {
           nodeManager.get(node.getNodeId()).addReference(new Reference(node.getNodeId(),
               Identifiers.Organizes, next.getNodeId().expanded(), next.getNodeClass(), true));
 
-          logger.info("Added reference: {} -> {}", node.getNodeId(), next.getNodeId());
+          logger.info("added reference: {} -> {}", node.getNodeId(), next.getNodeId());
         }
       }
     }
