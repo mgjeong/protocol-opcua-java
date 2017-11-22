@@ -10,9 +10,9 @@
 
 1. Environment : Ubuntu 16.04 (64bit)
 
-2. In *protocol-stack/opc-ua/example*, run `./build.sh` in command line
+2. In *protocol-opcua/java/example*, run `./build.sh` in command line
 
-   ![build_3_1](../documents/readme_images/build_3_1.png)
+   ![build_exam](../documents/readme_images/build_3_1.png)
 
 3. You can execute opcua-client/opcua-server sample with
    
@@ -20,7 +20,7 @@
    
    `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` in each command window
 
-   ![build_3_2](../documents/readme_images/build_3_2.png)
+   ![example_jars](../documents/readme_images/build_3_2.png)
 
 ### How to build sample application with Eclipse
 
@@ -28,12 +28,12 @@
 
 2. make project
    File - Import -Existing Maven Project - next
-     -> select Root Directory in your source directory : *protocol-stack/opc-ua/edge-opcua/mavenProjects*
+     -> select Root Directory in your source directory : *protocol-opcua/java/edge-opcua*
      -> finish
 
 3. make project
    File - Import -Existing Maven Project - next
-     -> select Root Directory in your source directory : *protocol-stack/opc-ua/example*
+     -> select Root Directory in your source directory : *protocol-opcua/java/example*
      -> finish
 
 4. You can build on each java file which has main() and run as 'java application' in opcua-client/opcua-server
