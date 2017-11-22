@@ -26,13 +26,3 @@ Install Guide : https://maven.apache.org/install.html
 tar xzvf apache-maven-3.5.2-bin.tar.gz
 
 Add the bin directory of the created directory apache-maven-3.5.2 to the PATH environment variable 
-
-
-How to build OPC-UA library with Maven
-
-OPC-UA library(Stand-alone) build here
-
-
-How to build OPC-UA library with Eclipse
-
-OPC-UA library(Stand-alone) build here
