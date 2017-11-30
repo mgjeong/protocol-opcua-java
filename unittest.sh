@@ -4,6 +4,7 @@ edge_opcua_home=$(pwd)
 
 #start install edge_opcua
 cd $edge_opcua_home
+cd ./edge-opcua
 mvn test
 #check unit test fail
 if [ $? -ne 0 ]; then
