@@ -66,7 +66,7 @@ public class EdgeClient {
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
   private static String defaultSecureType =
       "http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15";
-  private static EdgeEndpointInfo epInfo;
+  private static EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
   private static List<String> methodProviders = null;
   private static List<String> attributeProviders = null;
   private static List<String> viewProviders = null;
@@ -270,10 +270,7 @@ public class EdgeClient {
   }
 
   public static void testGetEndpoint() throws Exception {
-    EdgeEndpointConfig config = new EdgeEndpointConfig.Builder()
-        .setApplicationName(EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
-        .setApplicationUri(EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue()).build();
-    EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).setConfig(config).build();
+    EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).build();
     EdgeNodeInfo nodeInfo = new EdgeNodeInfo.Builder().build();
     EdgeMessage msg = new EdgeMessage.Builder(ep).setCommand(EdgeCommandType.CMD_GET_ENDPOINTS)
         .setRequest(new EdgeRequest.Builder(nodeInfo).build()).build();
