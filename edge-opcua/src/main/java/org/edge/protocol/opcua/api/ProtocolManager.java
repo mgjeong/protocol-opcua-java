@@ -57,7 +57,6 @@ import org.edge.protocol.opcua.session.EdgeOpcUaServer;
 import org.edge.protocol.opcua.session.EdgeSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.google.common.base.Preconditions;
 
 public class ProtocolManager implements MessageInterface {
   private final Logger logger = LoggerFactory.getLogger(getClass());

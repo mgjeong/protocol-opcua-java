@@ -23,12 +23,12 @@ import java.util.concurrent.CompletableFuture;
 public class EdgeEndpointInfo {
   private String endpointUri;
   private EdgeEndpointConfig config;
-  private CompletableFuture<EdgeMessage> future = null;
+  private CompletableFuture<String> future = null;
 
   public static class Builder {
     private String endpointUri = null;;
     private EdgeEndpointConfig config = null;
-    private CompletableFuture<EdgeMessage> future = null;
+    private CompletableFuture<String> future = null;
 
     public Builder(String endpointUri) {
       this.endpointUri = endpointUri;
@@ -46,12 +46,12 @@ public class EdgeEndpointInfo {
     }
 
     /**
-     * @fn Builder setFuture(CompletableFuture<EdgeMessage> future)
-     * @brief set future instance of CompletableFuture<EdgeMessage>
-     * @param [in] future CompletableFuture<EdgeMessage> future
+     * @fn Builder setFuture(CompletableFuture<String> future)
+     * @brief set future instance of CompletableFuture<String>
+     * @param [in] future CompletableFuture<String> future
      * @return this
      */
-    public Builder setFuture(CompletableFuture<EdgeMessage> future) {
+    public Builder setFuture(CompletableFuture<String> future) {
       this.future = future;
       return this;
     }
@@ -96,11 +96,11 @@ public class EdgeEndpointInfo {
   }
 
   /**
-   * @fn String CompletableFuture<EdgeMessage> getFuture()
+   * @fn String CompletableFuture<String> getFuture()
    * @brief get CompletableFuture
    * @return future
    */
-  public CompletableFuture<EdgeMessage> getFuture() {
+  public CompletableFuture<String> getFuture() {
     return future;
   }
 }
