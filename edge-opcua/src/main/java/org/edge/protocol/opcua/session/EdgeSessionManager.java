@@ -21,7 +21,7 @@
 package org.edge.protocol.opcua.session;
 
 import java.util.ArrayList;
-
+import java.util.concurrent.CompletableFuture;
 import org.eclipse.milo.opcua.stack.client.UaTcpStackClient;
 import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 import org.edge.protocol.opcua.api.common.EdgeEndpointConfig;
@@ -80,11 +80,11 @@ public class EdgeSessionManager {
    * @param [in] endpoint endpoint uri
    * @return void
    */
-  public void connect(String endpoint) {
+  public void connect(String endpoint, CompletableFuture<String> future) {
     EdgeOpcUaClient client = sessionMap.getNode(endpoint).get();
 
     try {
-      client.connect(endpoint);
+      client.connect(endpoint, future);
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

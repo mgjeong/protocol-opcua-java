@@ -182,13 +182,11 @@ public class ProtocolManager implements MessageInterface {
       logger.info("{} command should use valueAlias", msg.getCommand());
       return new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
     } else if ((msg.getCommand() == EdgeCommandType.CMD_METHOD
-        || msg.getCommand() == EdgeCommandType.CMD_SUB)
-        && msg.getRequest() == null) {
+        || msg.getCommand() == EdgeCommandType.CMD_SUB) && msg.getRequest() == null) {
       logger.info("{} command should use single request", msg.getCommand());
       return new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
     } else if ((msg.getCommand() == EdgeCommandType.CMD_METHOD
-        || msg.getCommand() == EdgeCommandType.CMD_SUB)
-        && msg.getRequests() != null) {
+        || msg.getCommand() == EdgeCommandType.CMD_SUB) && msg.getRequests() != null) {
       logger.info("{} command can not use multiple request", msg.getCommand());
       return new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
     } else if (msg.getCommand() == EdgeCommandType.CMD_METHOD
@@ -200,8 +198,7 @@ public class ProtocolManager implements MessageInterface {
             && msg.getRequest().getSubRequest().getSubType() == null))) {
       logger.info("{} command should set both subRequest and subType", msg.getCommand());
       return new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
-    } else if (msg.getCommand() == EdgeCommandType.CMD_BROWSE
-        && msg.getBrowseParameter() == null) {
+    } else if (msg.getCommand() == EdgeCommandType.CMD_BROWSE && msg.getBrowseParameter() == null) {
       logger.info("{} command should set browse-parameter", msg.getCommand());
       return new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
     }
@@ -367,7 +364,8 @@ public class ProtocolManager implements MessageInterface {
         EdgeOpcUaClient client =
             EdgeSessionManager.getInstance().getSession(msg.getEdgeEndpointInfo().getEndpointUri());
         if (client != null) {
-          client.connect(msg.getEdgeEndpointInfo().getEndpointUri());
+          client.connect(msg.getEdgeEndpointInfo().getEndpointUri(),
+              msg.getEdgeEndpointInfo().getFuture());
           initialized = true;
         }
       } catch (Exception e) {
@@ -668,8 +666,8 @@ public class ProtocolManager implements MessageInterface {
         }
       }
       return new EdgeDevice.Builder(deviceSet[0], Integer.parseInt(deviceSet[1].toString()))
-          .setServerName(deviceSet[2]).setEndpoints(EdgeSessionManager
-            .getInstance().getEndpoints(msg)).build();
+          .setServerName(deviceSet[2])
+          .setEndpoints(EdgeSessionManager.getInstance().getEndpoints(msg)).build();
     }
     return null;
   }
