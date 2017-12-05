@@ -26,6 +26,7 @@ import org.eclipse.milo.opcua.stack.client.UaTcpStackClient;
 import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 import org.edge.protocol.opcua.api.common.EdgeEndpointConfig;
 import org.edge.protocol.opcua.api.common.EdgeEndpointInfo;
+import org.edge.protocol.opcua.api.common.EdgeMessage;
 import org.edge.protocol.opcua.api.common.EdgeNodeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,7 +128,8 @@ public class EdgeSessionManager {
    * @param [in] endpointUri target endpoint uri (e.g. opc.tcp://localhost:12686/edge-opc-server)
    * @return The list of EdgeEndpoint
    */
-  public ArrayList<EdgeEndpointInfo> getEndpoints(String endpointUri) throws Exception {
+  public ArrayList<EdgeEndpointInfo> getEndpoints(EdgeMessage msg) throws Exception {
+    String endpointUri = msg.getEdgeEndpointInfo().getEndpointUri();
     EndpointDescription[] endpoints = UaTcpStackClient.getEndpoints(endpointUri).get();
     ArrayList<EdgeEndpointInfo> endpointList = new ArrayList<EdgeEndpointInfo>();
     for (int i = 0; i < endpoints.length; i++) {
@@ -138,6 +140,7 @@ public class EdgeSessionManager {
       endpointList.add(new EdgeEndpointInfo.Builder(endpoints[i].getEndpointUrl())
           .setConfig(new EdgeEndpointConfig.Builder()
               .setSecurityPolicyUri(endpoints[i].getSecurityPolicyUri()).build())
+          .setFuture(msg.getEdgeEndpointInfo().getFuture())
           .build());
     }
     return endpointList;

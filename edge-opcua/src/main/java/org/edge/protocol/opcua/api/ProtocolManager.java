@@ -436,7 +436,7 @@ public class ProtocolManager implements MessageInterface {
       }
     } else if (msg.getCommand() == EdgeCommandType.CMD_GET_ENDPOINTS) {
       try {
-        EdgeDevice device = parseEndpointUri(msg.getEdgeEndpointInfo().getEndpointUri());
+        EdgeDevice device = parseEndpointUri(msg);
         if (discoveryCallback != null && device != null) {
           discoveryCallback.onFoundEndpoint(device);
         }
@@ -639,7 +639,8 @@ public class ProtocolManager implements MessageInterface {
     return new EdgeResult.Builder(EdgeStatusCode.STATUS_OK).build();
   }
 
-  private EdgeDevice parseEndpointUri(String endpointUri) throws Exception {
+  private EdgeDevice parseEndpointUri(EdgeMessage msg) throws Exception {
+    String endpointUri = msg.getEdgeEndpointInfo().getEndpointUri();
     if (discoveryCallback != null) {
       logger.info("onFoundEndpoint = {}", endpointUri);
 
@@ -668,7 +669,7 @@ public class ProtocolManager implements MessageInterface {
       }
       return new EdgeDevice.Builder(deviceSet[0], Integer.parseInt(deviceSet[1].toString()))
           .setServerName(deviceSet[2]).setEndpoints(EdgeSessionManager
-            .getInstance().getEndpoints(endpointUri)).build();
+            .getInstance().getEndpoints(msg)).build();
     }
     return null;
   }
