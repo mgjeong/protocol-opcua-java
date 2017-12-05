@@ -20,6 +20,7 @@ package org.edge.protocol.opcua.session;
 
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
 import org.eclipse.milo.opcua.sdk.client.SessionActivityListener;
@@ -59,7 +60,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   private final String endpointUri;
   private String securityUri = null;
   private boolean viewNodeEnabled = true;
-
+  private CompletableFuture<String> startFuture = null;
+  
   public EdgeOpcUaClient(EdgeEndpointInfo epInfo) throws Exception {
     this.endpointUri = epInfo.getEndpointUri();
     this.client = configure(epInfo);
@@ -220,7 +222,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
             nodeInfo.getEdgeNodeID().getEdgeNodeIdentifier().value()),
         null, NodeClass.Object, this, viewNodeEnabled);
 
-    EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).build();
+    EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).setFuture(startFuture).build();
     ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
         EdgeStatusCode.STATUS_CLIENT_STARTED);
   }
@@ -241,7 +243,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
    * @param [in] endpoint target endpoint
    * @return void
    */
-  public void connect(String endpoint) throws Exception {
+  public void connect(String endpoint, CompletableFuture<String> future) throws Exception {
+    startFuture = future;
     connectWithActivityListener();
     // connectThread.start();
   }
