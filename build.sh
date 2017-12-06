@@ -13,6 +13,7 @@ cd $mapper_home
 #start install edge_opcua
 cd $edge_opcua_home
 cd ./edge-opcua
+mvn clean package
 mvn install -U -Dmaven.test.skip=true
 rm -rf target/
 
