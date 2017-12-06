@@ -104,7 +104,8 @@ public class EdgeMethodCaller {
         logger.info("method result={}", v);
 
         EdgeEndpointInfo epInfo =
-            new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri()).build();
+            new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
+            .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
         EdgeMessage inputData =
             new EdgeMessage.Builder(epInfo).setMessageType(EdgeMessageType.GENERAL_RESPONSE)
                 .setResponses(
