@@ -5,13 +5,6 @@
 	<artifactId>opcua-adapter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>this is for test maven app</description>
-	<repositories>
-	<repository>
-		<id>oss-sonatype</id>
-		<name>oss-sonatype</name>
-		<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-	</repository>
-	</repositories>
 	<build>
 		<plugins>
 			<plugin>
