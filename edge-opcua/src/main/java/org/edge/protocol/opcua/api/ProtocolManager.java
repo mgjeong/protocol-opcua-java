@@ -402,7 +402,8 @@ public class ProtocolManager implements MessageInterface {
           client = null;
 
           EdgeEndpointInfo ep =
-              new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri()).build();
+              new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
+              .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
           ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
               EdgeStatusCode.STATUS_STOP_CLIENT);
         }
