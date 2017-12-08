@@ -106,7 +106,7 @@ public class EdgeServices {
       ErrorHandler.getInstance().addErrorMessage(new EdgeNodeInfo.Builder().build(),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_INAVAILD_PROVIDER).build(),
           EdgeOpcUaCommon.DEFAULT_REQUEST_ID);
-      throw new IllegalArgumentException("no method provider registered with name: " + name);
+      return null;
     }
     return methodProvider;
   }
@@ -125,7 +125,7 @@ public class EdgeServices {
       ErrorHandler.getInstance().addErrorMessage(new EdgeNodeInfo.Builder().build(),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_INAVAILD_PROVIDER).build(),
           EdgeOpcUaCommon.DEFAULT_REQUEST_ID);
-      throw new IllegalArgumentException("no provider registered with name: " + name);
+      return null;
     }
     return attributeProvider;
   }
@@ -143,7 +143,7 @@ public class EdgeServices {
       ErrorHandler.getInstance().addErrorMessage(new EdgeNodeInfo.Builder().build(),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_INAVAILD_PROVIDER).build(),
           EdgeOpcUaCommon.DEFAULT_REQUEST_ID);
-      throw new IllegalArgumentException("no provider registered with name: " + name);
+      return null;
     }
     return viewProvider;
   }
@@ -170,7 +170,7 @@ public class EdgeServices {
     ArrayList<String> methodProviderKeys = new ArrayList<String>(methodProviders.keySet());
     return methodProviderKeys;
   }
-  
+
   /**
    * @fn ArrayList<String> getViewProviderKeyList()
    * @brief get all provider key.
