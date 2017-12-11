@@ -60,7 +60,7 @@ public class ErrorHandler {
    */
   public void addErrorMessage(EdgeEndpointInfo epInfo, EdgeNodeInfo nodeInfo, EdgeResult ret,
       EdgeVersatility value, int requestId) {
-    logger.error("[ERROR] occured error message={} provider={}, value={}", ret.getStatusCode(),
+    logger.debug("message={} provider={}, value={}", ret.getStatusCode(),
         nodeInfo.getValueAlias(), value);
     EdgeMessage errorData = new EdgeMessage.Builder(epInfo)
         .setResponses(
@@ -79,7 +79,7 @@ public class ErrorHandler {
    */
   public void addErrorMessage(EdgeEndpointInfo epInfo, EdgeNodeInfo nodeInfo, EdgeResult ret,
       int requestId) {
-    logger.error("[ERROR] occured error message={} provider={}", ret.getStatusCode(),
+    logger.debug("message={} provider={}", ret.getStatusCode(),
         nodeInfo.getValueAlias());
     EdgeMessage errorData = new EdgeMessage.Builder(epInfo).setMessageType(EdgeMessageType.ERROR)
         .setResult(ret).build();
@@ -95,7 +95,7 @@ public class ErrorHandler {
    * @return void
    */
   public void addErrorMessage(EdgeNodeInfo nodeInfo, EdgeResult ret, int requestId) {
-    logger.error("[ERROR] occured error message={} provider={}", ret.getStatusCode(),
+    logger.debug("message={} provider={}", ret.getStatusCode(),
         nodeInfo.getValueAlias());
     EdgeEndpointInfo epInfo =
         new EdgeEndpointInfo.Builder(EdgeOpcUaCommon.WELL_KNOWN_LOCALHOST_URI.getValue()).build();
@@ -112,7 +112,7 @@ public class ErrorHandler {
    * @return void
    */
   public void addErrorMessage(EdgeResult ret, int requestId) {
-    logger.error("[ERROR] occured error message={} provider={}", ret.getStatusCode());
+    logger.debug("message={} provider={}", ret.getStatusCode());
     EdgeEndpointInfo epInfo =
         new EdgeEndpointInfo.Builder(EdgeOpcUaCommon.WELL_KNOWN_LOCALHOST_URI.getValue()).build();
     EdgeMessage errorData = new EdgeMessage.Builder(epInfo).setMessageType(EdgeMessageType.ERROR)
@@ -131,7 +131,7 @@ public class ErrorHandler {
    */
   public void addErrorMessage(EdgeNodeInfo nodeInfo, EdgeResult ret, EdgeVersatility value,
       int requestId) {
-    logger.error("[ERROR] occured error message={} provider={}, value={}", ret.getStatusCode(),
+    logger.debug("message={} provider={}, value={}", ret.getStatusCode(),
         nodeInfo.getValueAlias(), value);
     EdgeEndpointInfo epInfo =
         new EdgeEndpointInfo.Builder(EdgeOpcUaCommon.WELL_KNOWN_LOCALHOST_URI.getValue()).build();
