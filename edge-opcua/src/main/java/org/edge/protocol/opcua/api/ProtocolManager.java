@@ -299,6 +299,10 @@ public class ProtocolManager implements MessageInterface {
    */
   @Override
   public void onErrorCallback(EdgeMessage msg) throws Exception {
+    if (msg == null) {
+      logger.info("message is invalid");
+      return;
+    }
     for (EdgeResponse res : msg.getResponses()) {
       Timestamp stamp = new Timestamp(System.currentTimeMillis());
       logger.info("onError time={}, result={}", stamp, msg.getResult().getStatusCode());
@@ -403,7 +407,7 @@ public class ProtocolManager implements MessageInterface {
 
           EdgeEndpointInfo ep =
               new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
-              .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
+                  .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
           ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
               EdgeStatusCode.STATUS_STOP_CLIENT);
         }
