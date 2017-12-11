@@ -303,16 +303,18 @@ public class ProtocolManager implements MessageInterface {
       logger.info("message is invalid");
       return;
     }
-    for (EdgeResponse res : msg.getResponses()) {
-      Timestamp stamp = new Timestamp(System.currentTimeMillis());
-      logger.info("onError time={}, result={}", stamp, msg.getResult().getStatusCode());
-      if (res != null && res.getMessage() != null) {
-        logger.info("onError value={}", res.getMessage().getValue());
-      } else if (msg.getRequest() != null && msg.getRequest().getEdgeNodeInfo() != null) {
-        logger.info("onError provider={}", msg.getRequest().getEdgeNodeInfo().getValueAlias());
-      }
-      if (recvCallback != null) {
-        recvCallback.onErrorMessage(msg);
+    if (msg.getResponses() != null) {
+      for (EdgeResponse res : msg.getResponses()) {
+        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        logger.info("onError time={}, result={}", stamp, msg.getResult().getStatusCode());
+        if (res != null && res.getMessage() != null) {
+          logger.info("onError value={}", res.getMessage().getValue());
+        } else if (msg.getRequest() != null && msg.getRequest().getEdgeNodeInfo() != null) {
+          logger.info("onError provider={}", msg.getRequest().getEdgeNodeInfo().getValueAlias());
+        }
+        if (recvCallback != null) {
+          recvCallback.onErrorMessage(msg);
+        }
       }
     }
   }
