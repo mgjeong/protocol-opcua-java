@@ -61,7 +61,7 @@ public class EdgeEmulator {
     private boolean readFileFlag = true;
 
     private final int END_TIME = 70;
-    private final int SERVER_CLOSE_TIME = 180;
+    private final int SERVER_CLOSE_TIME = 99999;
 
     public final EdgeNodeIdentifier[] Data_Access_Nodes = new EdgeNodeIdentifier[] {
             EdgeNodeIdentifier.AnalogItemType, EdgeNodeIdentifier.DataItemType,
