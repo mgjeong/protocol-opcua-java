@@ -132,7 +132,8 @@ public class EdgeOpcUaServer {
         .setApplicationUri(config.getApplicationUri())
         .setBindAddresses(newArrayList(config.getBindAddress())).setBindPort(config.getBindPort())
         .setCertificateManager(certificateManager).setCertificateValidator(certificateValidator)
-        .setSecurityPolicies(EnumSet.of(SecurityPolicy.None, SecurityPolicy.Basic128Rsa15))
+        .setSecurityPolicies(EnumSet.of(SecurityPolicy.None, SecurityPolicy.Basic128Rsa15,
+            SecurityPolicy.Basic256, SecurityPolicy.Basic256Sha256))
         .setProductUri(config.getProductUri()).setServerName(config.getServerName())
         .setUserTokenPolicies(userTokenPolicies).setBuildInfo(buildInfo)
         .setIdentityValidator(new CompositeValidator(usernameValidator, x509IdentityValidator))
