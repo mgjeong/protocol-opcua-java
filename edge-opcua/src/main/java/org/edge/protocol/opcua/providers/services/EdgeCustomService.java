@@ -482,7 +482,7 @@ public class EdgeCustomService implements EdgeAttributeService {
                   newArrayList(new EdgeResponse.Builder(ep, msg.getRequest().getRequestId())
                       .setDiagnosticInfo(
                           (EdgeDiagnosticInfo) values.get(EdgeNodeIdentifier.DiagnosticInfo.name()))
-                      .setMessage(new EdgeVersatility.Builder(dataValue.getValue()).build())
+                      .setMessage(new EdgeVersatility.Builder(dataValue.getValue().getValue()).build())
                       .build()))
               .build();
           ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
