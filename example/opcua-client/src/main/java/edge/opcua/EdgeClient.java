@@ -64,8 +64,15 @@ public class EdgeClient {
   private static final String ANSI_PURPLE = "\u001B[35m";
 
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
+//  private static String defaultSecureType =
+//      "http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15";
+  
+//  private static String defaultSecureType =
+//      "http://opcfoundation.org/UA/SecurityPolicy#Basic256";
+  
   private static String defaultSecureType =
-      "http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15";
+      "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256";
+  
   private static EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
   private static List<String> methodProviders = null;
   private static List<String> attributeProviders = null;
@@ -103,6 +110,8 @@ public class EdgeClient {
     EdgeEndpointConfig endpointConfig = new EdgeEndpointConfig.Builder()
         .setApplicationName(EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
         .setApplicationUri(EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
+        .setbindAddress("127.0.0.1")
+        .setbindPort(12686)
         .setSecurityPolicyUri(securePolicyType).build();
     EdgeEndpointInfo ep =
         new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
@@ -468,6 +477,7 @@ public class EdgeClient {
         viewProviders = new ArrayList<String>();
 
       logger.info("onStart: status={} from={}", status, ep.getEndpointUri());
+      logger.info("onStart: status={} from={}", status, ep.getConfig().getBindAddress());
       if (status == EdgeStatusCode.STATUS_CLIENT_STARTED) {
         System.out.println(ANSI_GREEN + "\n------------------------" + ANSI_RESET);
         System.out.println(ANSI_YELLOW + " Get Provider " + ANSI_RESET);
