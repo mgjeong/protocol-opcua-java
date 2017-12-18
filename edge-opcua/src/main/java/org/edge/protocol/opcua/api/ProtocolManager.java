@@ -68,7 +68,6 @@ public class ProtocolManager implements MessageInterface {
   private ReceivedMessageCallback recvCallback = null;
   private StatusCallback statusCallback = null;
   private DiscoveryCallback discoveryCallback = null;
-  private boolean initialized = false;
   private static int LIMIT_SIZE = 4;
 
   /**
@@ -359,12 +358,6 @@ public class ProtocolManager implements MessageInterface {
             msg.getRequest().getRequestId());
       }
     } else if (msg.getCommand() == EdgeCommandType.CMD_START_CLIENT) {
-      if (initialized == true) {
-        ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
-            new EdgeResult.Builder(EdgeStatusCode.STATUS_ALREADY_INIT).build(),
-            msg.getRequest().getRequestId());
-        return;
-      }
       try {
         EdgeSessionManager.getInstance().configure(msg.getEdgeEndpointInfo());
         EdgeOpcUaClient client =
@@ -372,7 +365,6 @@ public class ProtocolManager implements MessageInterface {
         if (client != null) {
           client.connect(msg.getEdgeEndpointInfo().getEndpointUri(),
               msg.getEdgeEndpointInfo().getFuture());
-          initialized = true;
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -381,12 +373,6 @@ public class ProtocolManager implements MessageInterface {
             msg.getRequest().getRequestId());
       }
     } else if (msg.getCommand() == EdgeCommandType.CMD_START_SERVER) {
-      if (initialized == true) {
-        ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
-            new EdgeResult.Builder(EdgeStatusCode.STATUS_ALREADY_INIT).build(),
-            msg.getRequest().getRequestId());
-        return;
-      }
       try {
         EdgeOpcUaServer server = EdgeOpcUaServer.getInstance();
         if (server != null) {
@@ -409,7 +395,8 @@ public class ProtocolManager implements MessageInterface {
 
           EdgeEndpointInfo ep =
               new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
-                  .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
+                  .setFuture(msg.getEdgeEndpointInfo().getFuture())
+                  .setConfig(msg.getEdgeEndpointInfo().getConfig()).build();
           ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
               EdgeStatusCode.STATUS_STOP_CLIENT);
         }
@@ -429,7 +416,8 @@ public class ProtocolManager implements MessageInterface {
           server = null;
 
           EdgeEndpointInfo ep =
-              new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri()).build();
+              new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
+                  .setConfig(msg.getEdgeEndpointInfo().getConfig()).build();
           ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
               EdgeStatusCode.STATUS_STOP_SERVER);
         }
@@ -688,7 +676,7 @@ public class ProtocolManager implements MessageInterface {
    * @return void
    */
   public void onStatusCallback(EdgeEndpointInfo ep, EdgeStatusCode status) {
-    logger.info("onStatusCallback");
+    logger.info("onStatusCallback...");
     if (statusCallback == null) {
       logger.info("status callback is not available");
       return;
