@@ -34,6 +34,7 @@ import org.eclipse.milo.opcua.stack.core.types.enumerated.NodeClass;
 import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 import org.edge.protocol.opcua.api.ProtocolManager;
 import org.edge.protocol.opcua.api.common.EdgeNodeInfo;
+import org.edge.protocol.opcua.api.common.EdgeEndpointConfig;
 import org.edge.protocol.opcua.api.common.EdgeEndpointInfo;
 import org.edge.protocol.opcua.api.common.EdgeNodeId;
 import org.edge.protocol.opcua.api.common.EdgeNodeIdentifier;
@@ -60,11 +61,13 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   private final String endpointUri;
   private String securityUri = null;
   private boolean viewNodeEnabled = true;
+  private EdgeEndpointConfig config = null;
   private CompletableFuture<String> startFuture = null;
 
   public EdgeOpcUaClient(EdgeEndpointInfo epInfo) throws Exception {
     this.endpointUri = epInfo.getEndpointUri();
     this.client = configure(epInfo);
+    this.config = epInfo.getConfig();
     this.viewNodeEnabled = epInfo.getConfig().getViewNodeFlag();
   }
 
@@ -227,7 +230,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
             nodeInfo.getEdgeNodeID().getEdgeNodeIdentifier().value()),
         null, NodeClass.Object, this, viewNodeEnabled);
 
-    EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).setFuture(startFuture).build();
+    EdgeEndpointInfo ep =
+        new EdgeEndpointInfo.Builder(endpointUri).setFuture(startFuture).setConfig(config).build();
     ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
         EdgeStatusCode.STATUS_CLIENT_STARTED);
   }
