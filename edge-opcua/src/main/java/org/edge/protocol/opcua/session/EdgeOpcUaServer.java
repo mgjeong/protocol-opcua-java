@@ -19,6 +19,7 @@
 package org.edge.protocol.opcua.session;
 
 import static com.google.common.collect.Lists.newArrayList;
+import java.io.File;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.eclipse.milo.opcua.sdk.server.identity.CompositeValidator;
 import org.eclipse.milo.opcua.sdk.server.identity.UsernameIdentityValidator;
 import org.eclipse.milo.opcua.sdk.server.identity.X509IdentityValidator;
 import org.eclipse.milo.opcua.stack.core.Stack;
+import org.eclipse.milo.opcua.stack.core.application.DefaultCertificateValidator;
 import org.eclipse.milo.opcua.stack.core.security.SecurityPolicy;
 import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
@@ -117,13 +119,28 @@ public class EdgeOpcUaServer {
         newArrayList(OpcUaServerConfig.USER_TOKEN_POLICY_ANONYMOUS,
             OpcUaServerConfig.USER_TOKEN_POLICY_USERNAME, OpcUaServerConfig.USER_TOKEN_POLICY_X509);
 
-    KeyStoreLoader loader = new KeyStoreLoader().load();
+    KeyStoreLoader loader = null;
+    TestCertificateManager certificateManager;
+    TestCertificateValidator certificateValidator = null;
+    DefaultCertificateValidator defaultValidator = null;
 
-    TestCertificateManager certificateManager =
-        new TestCertificateManager(loader.getServerKeyPair(), loader.getServerCertificate());
+    if (epInfo.getConfig() == null || epInfo.getConfig()
+        .getSecurityPolicyUri() == SecurityPolicy.None.getSecurityPolicyUri()) {
+      certificateManager = new TestCertificateManager(null, null);
 
-    TestCertificateValidator certificateValidator =
-        new TestCertificateValidator(loader.getClientCertificate());
+      File securityDir = new File(System.getProperty("user.dir"));
+
+      if (!securityDir.exists() && !securityDir.mkdirs()) {
+        throw new Exception("unable to create security directory");
+      }
+
+      defaultValidator = new DefaultCertificateValidator(securityDir);
+    } else {
+      loader = new KeyStoreLoader().load();
+      certificateManager =
+          new TestCertificateManager(loader.getServerKeyPair(), loader.getServerCertificate());
+      certificateValidator = new TestCertificateValidator(loader.getClientCertificate());
+    }
 
     BuildInfo buildInfo = new BuildInfo("/edge", "samsung", "edgeSolution", "0.9", "0.1", null);
 
@@ -131,7 +148,8 @@ public class EdgeOpcUaServer {
         .setApplicationName(LocalizedText.english(config.getApplicationName()))
         .setApplicationUri(config.getApplicationUri())
         .setBindAddresses(newArrayList(config.getBindAddress())).setBindPort(config.getBindPort())
-        .setCertificateManager(certificateManager).setCertificateValidator(certificateValidator)
+        .setCertificateManager(certificateManager)
+        .setCertificateValidator(loader != null ? certificateValidator : defaultValidator)
         .setSecurityPolicies(EnumSet.of(SecurityPolicy.None, SecurityPolicy.Basic128Rsa15,
             SecurityPolicy.Basic256, SecurityPolicy.Basic256Sha256))
         .setProductUri(config.getProductUri()).setServerName(config.getServerName())

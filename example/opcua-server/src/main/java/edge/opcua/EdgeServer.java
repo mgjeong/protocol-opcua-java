@@ -21,6 +21,7 @@ package edge.opcua;
 import java.util.List;
 import java.util.Scanner;
 import org.eclipse.milo.opcua.sdk.core.WriteMask;
+import org.eclipse.milo.opcua.stack.core.security.SecurityPolicy;
 import org.edge.protocol.opcua.api.ProtocolManager;
 import org.edge.protocol.opcua.api.ProtocolManager.DiscoveryCallback;
 import org.edge.protocol.opcua.api.ProtocolManager.ReceivedMessageCallback;
@@ -173,7 +174,8 @@ public class EdgeServer {
 
   private static void startServer() throws Exception {
     EdgeEndpointConfig endpointConfig =
-        new EdgeEndpointConfig.Builder().setbindAddress(ipAddress).setbindPort(12686).build();
+        new EdgeEndpointConfig.Builder().setbindAddress(ipAddress).setbindPort(12686)
+            .setSecurityPolicyUri(SecurityPolicy.Basic128Rsa15.getSecurityPolicyUri()).build();
     EdgeEndpointInfo ep =
         new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
     EdgeNodeInfo nodeInfo = new EdgeNodeInfo.Builder().build();
