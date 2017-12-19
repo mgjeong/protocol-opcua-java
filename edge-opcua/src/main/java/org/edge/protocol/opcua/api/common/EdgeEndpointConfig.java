@@ -32,7 +32,7 @@ public class EdgeEndpointConfig {
   public static class Builder {
     private int requestTimeout = 60000;
     private String applicationName = EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue();
-    private String applicationUri = EdgeOpcUaCommon.DEFAULT_SERVER_URI.getValue();
+    private String applicationUri = EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue();
     private String productUri = EdgeOpcUaCommon.DEFAULT_PRODUCT_URI.getValue();
     private String securityPolicyUri = null;
     private String serverName = EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();

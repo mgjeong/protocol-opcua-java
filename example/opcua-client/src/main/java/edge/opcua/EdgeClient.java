@@ -26,6 +26,8 @@ import java.util.Scanner;
 import org.edge.protocol.opcua.api.common.EdgeCommandType;
 import org.edge.protocol.opcua.api.common.EdgeNodeIdentifier;
 import org.edge.protocol.opcua.api.common.EdgeOpcUaCommon;
+import org.eclipse.milo.opcua.stack.client.UaTcpStackClient;
+import org.eclipse.milo.opcua.stack.core.types.structured.ApplicationDescription;
 import org.edge.protocol.opcua.api.ProtocolManager;
 import org.edge.protocol.opcua.api.ProtocolManager.DiscoveryCallback;
 import org.edge.protocol.opcua.api.ProtocolManager.ReceivedMessageCallback;
@@ -61,7 +63,6 @@ public class EdgeClient {
   private static final String ANSI_RESET = "\u001B[0m";
   private static final String ANSI_GREEN = "\u001B[32m";
   private static final String ANSI_YELLOW = "\u001B[33m";
-  private static final String ANSI_PURPLE = "\u001B[35m";
 
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
   private static String defaultSecureType =
@@ -100,10 +101,22 @@ public class EdgeClient {
   }
 
   public static void startClient(String securePolicyType) throws Exception {
+    ApplicationDescription[] applicationDescriptions =
+        UaTcpStackClient.findServers(endpointUri).get();
+
+    for (ApplicationDescription applicationDescription : applicationDescriptions) {
+      logger.info("applicationDescription : {}", applicationDescription);
+    }
+
     EdgeEndpointConfig endpointConfig = new EdgeEndpointConfig.Builder()
-        .setApplicationName(EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
-        .setApplicationUri(EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
+        .setApplicationName(applicationDescriptions[0].getApplicationName().getText() != null
+            ? applicationDescriptions[0].getApplicationName().getText()
+            : EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
+        .setApplicationUri(applicationDescriptions[0].getApplicationUri() != null
+            ? applicationDescriptions[0].getApplicationUri()
+            : EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
         .setSecurityPolicyUri(securePolicyType).build();
+
     EdgeEndpointInfo ep =
         new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
     EdgeNodeInfo endpoint = new EdgeNodeInfo.Builder().build();

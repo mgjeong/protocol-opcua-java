@@ -61,7 +61,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   private String securityUri = null;
   private boolean viewNodeEnabled = true;
   private CompletableFuture<String> startFuture = null;
-  
+
   public EdgeOpcUaClient(EdgeEndpointInfo epInfo) throws Exception {
     this.endpointUri = epInfo.getEndpointUri();
     this.client = configure(epInfo);
@@ -159,21 +159,27 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
             .findFirst().orElseThrow(() -> new Exception("no desired endpoints returned"));
 
     OpcUaClientConfig clientConfig = null;
-    KeyStoreLoader loader = new KeyStoreLoader().load();
+    KeyStoreLoader loader = null;
+
+    if (ep.getConfig() != null
+        && ep.getConfig().getSecurityPolicyUri() != SecurityPolicy.None.getSecurityPolicyUri()) {
+      loader = new KeyStoreLoader().load();
+    }
 
     if (ep.getConfig() == null) {
       clientConfig = OpcUaClientConfig.builder()
           .setApplicationName(
               LocalizedText.english(EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue()))
           .setApplicationUri(EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
-          .setEndpoint(endpoint).setCertificate(loader.getClientCertificate())
-          .setKeyPair(loader.getClientKeyPair()).setRequestTimeout(uint(60000)).build();
+          .setEndpoint(endpoint).setCertificate(null).setKeyPair(null)
+          .setRequestTimeout(uint(60000)).build();
 
     } else {
       clientConfig = OpcUaClientConfig.builder()
           .setApplicationName(LocalizedText.english(ep.getConfig().getApplicationName()))
           .setApplicationUri(ep.getConfig().getApplicationUri()).setEndpoint(endpoint)
-          .setCertificate(loader.getClientCertificate()).setKeyPair(loader.getClientKeyPair())
+          .setCertificate(loader != null ? loader.getClientCertificate() : null)
+          .setKeyPair(loader != null ? loader.getClientKeyPair() : null)
           .setRequestTimeout(uint(ep.getConfig().getRequestTimeout())).build();
     }
 
@@ -190,9 +196,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
     EdgeAttributeProvider discoveryServiceProvider =
         new EdgeAttributeProvider(EdgeMonitoredItemService.getInstance(),
             EdgeBrowseService.getInstance()).registerAttributeService(
-                EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue(),
-                new EdgeCustomService.Builder(0, EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue())
-                    .build());
+                EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue(), new EdgeCustomService.Builder(0,
+                    EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue()).build());
     EdgeServices.registerAttributeProvider(EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue(),
         discoveryServiceProvider);
 
