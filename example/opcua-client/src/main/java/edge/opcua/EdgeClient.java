@@ -20,6 +20,7 @@ package edge.opcua;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,6 +28,7 @@ import org.edge.protocol.opcua.api.common.EdgeCommandType;
 import org.edge.protocol.opcua.api.common.EdgeNodeIdentifier;
 import org.edge.protocol.opcua.api.common.EdgeOpcUaCommon;
 import org.eclipse.milo.opcua.stack.client.UaTcpStackClient;
+import org.eclipse.milo.opcua.stack.core.security.SecurityPolicy;
 import org.eclipse.milo.opcua.stack.core.types.structured.ApplicationDescription;
 import org.edge.protocol.opcua.api.ProtocolManager;
 import org.edge.protocol.opcua.api.ProtocolManager.DiscoveryCallback;
@@ -65,16 +67,21 @@ public class EdgeClient {
   private static final String ANSI_YELLOW = "\u001B[33m";
 
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
-//  private static String defaultSecureType =
-//      "http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15";
-  
-//  private static String defaultSecureType =
-//      "http://opcfoundation.org/UA/SecurityPolicy#Basic256";
-  
+  private static String ipAddress = null;
+
+  // private static String defaultSecureType =
+  // "http://opcfoundation.org/UA/SecurityPolicy#None";
+
   private static String defaultSecureType =
-      "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256";
-  
+      "http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15";
+
+  // private static String defaultSecureType =
+  // "http://opcfoundation.org/UA/SecurityPolicy#Basic256";
+
+  // private static String defaultSecureType =
+  // "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256";
   private static EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+
   private static List<String> methodProviders = null;
   private static List<String> attributeProviders = null;
   private static List<String> viewProviders = null;
@@ -122,9 +129,8 @@ public class EdgeClient {
         .setApplicationUri(applicationDescriptions[0].getApplicationUri() != null
             ? applicationDescriptions[0].getApplicationUri()
             : EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
-        .setbindAddress("127.0.0.1")
-        .setbindPort(12686)
-        .setSecurityPolicyUri(securePolicyType).build();
+        .setbindAddress(ipAddress).setbindPort(12686).setSecurityPolicyUri(securePolicyType)
+        .build();
 
     EdgeEndpointInfo ep =
         new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
@@ -316,8 +322,15 @@ public class EdgeClient {
         System.out.println(ANSI_GREEN + "------------------------\n" + ANSI_RESET);
 
         System.out.print("[PLEASE INPUT SERVER ENDPOINT URI] : ");
-        String ipAddress = scanner.next();
-        endpointUri = ipAddress;
+
+        String userEndpointUri = scanner.next();
+
+        ipAddress = userEndpointUri.substring(10);
+        int endIndex = ipAddress.indexOf(":");
+        ipAddress = ipAddress.substring(0, endIndex);
+        logger.info("ipAddress : {}", ipAddress);
+
+        endpointUri = userEndpointUri;
         epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
         testGetEndpoint();
         quitThread.start();
