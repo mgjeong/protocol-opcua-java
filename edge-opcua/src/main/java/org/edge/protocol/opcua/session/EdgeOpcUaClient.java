@@ -107,7 +107,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
 
       providerThread.start();
 
-      EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).build();
+      EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).setConfig(config).build();
       ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
           EdgeStatusCode.STATUS_CONNECTED);
     }
@@ -118,7 +118,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
           session.getSessionName());
       deinitEdgeProvider();
 
-      EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).build();
+      EdgeEndpointInfo ep = new EdgeEndpointInfo.Builder(endpointUri).setConfig(config).build();
       ProtocolManager.getProtocolManagerInstance().onStatusCallback(ep,
           EdgeStatusCode.STATUS_DISCONNECTED);
     }
