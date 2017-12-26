@@ -39,7 +39,7 @@
 4. You can build on each java file which has main() and run as 'java application' in opcua-client/opcua-server
 
 5. Reference : If you have errors in pom.xml, Select Project -> Click Right button 
-                  -> Maven -> Update Maven Project -> Check Force Update of Snapshots/Releases -> OK
+                  -> Maven -> Update Maven Project -> Check 'Force Update of Snapshots/Releases' -> OK
 
    ![build_4_1](../documents/readme_images/build_4_1.png)
 <br></br>
