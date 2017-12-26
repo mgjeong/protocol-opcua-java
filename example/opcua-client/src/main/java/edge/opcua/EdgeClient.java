@@ -130,6 +130,7 @@ public class EdgeClient {
             ? applicationDescriptions[0].getApplicationUri()
             : EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
         .setbindAddress(ipAddress).setbindPort(12686).setSecurityPolicyUri(securePolicyType)
+        .setViewNodeFlag(true)
         .build();
 
     EdgeEndpointInfo ep =
