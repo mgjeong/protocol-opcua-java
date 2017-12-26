@@ -69,7 +69,7 @@
 
    *quit* : terminate client
 
-   *provider* : get  providers name of created node currently
+   *provider* : get providers name of created node currently
 
    *browse* : browse all node using root node
 
@@ -112,7 +112,7 @@
    And Create service provider
    ![client_3](../documents/readme_images/client_3.PNG)
    
-   And, Show *Provider ValueAlias's List*
+   And, Show *the alias of the Provider*
    ![client_4](../documents/readme_images/client_4.PNG)
 <br>
 ### 5. Read Command<br>
