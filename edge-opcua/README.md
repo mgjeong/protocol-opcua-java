@@ -30,7 +30,7 @@
 <br></br>
 ## How to build OPC-UA library with Eclipse
 
-1. import opcua stack project(*protocol-opcua-java/*)
+1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
 
    ![build_2_1](../documents/readme_images/build_2_1.png)
 
