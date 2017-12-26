@@ -402,18 +402,18 @@ public class EdgeMonitoredItemService {
         MonitoredItemModifyRequest monitoredItemRequest =
             new MonitoredItemModifyRequest(itemValue.getMonitoredItemId(), parameters);
 
-//        TODO UA-milo commit
-//        subscription
-//            .modifyMonitoredItems2(TimestampsToReturn.Both, newArrayList(monitoredItemRequest))
-//            .thenApply(monitoredItems -> {
-//              logger.info("MonitoredItemModifyRequest item size={}", monitoredItems.size());
+        subscription
+            .modifyMonitoredItems(TimestampsToReturn.Both, newArrayList(monitoredItemRequest))
+            .thenApply(monitoredItems -> {
+              logger.info("MonitoredItemModifyRequest item size={}", monitoredItems.size());
+//            TODO UA-milo should be updated with List<UaMonitoredItem> return value.
 //              checkMonitoredItemErrorStatus(monitoredItems, request);
-//              return monitoredItems;
-//            }).exceptionally(e -> {
-//              logger.info("error type : {}", e.getMessage());
-//              callErrorMessageCB(request, EdgeStatusCode.STATUS_ERROR);
-//              return null;
-//            });
+              return monitoredItems;
+            }).exceptionally(e -> {
+              logger.info("error type : {}", e.getMessage());
+              callErrorMessageCB(request, EdgeStatusCode.STATUS_ERROR);
+              return null;
+            });
 
       }
     } else if (req.getSubType() == EdgeNodeIdentifier.Edge_Create_Sub) {
