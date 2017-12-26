@@ -98,14 +98,14 @@
    *help* : print menu
 <br>
 ### 3. Start Server <br>
-   input `start` and than, input `Your IP Address` in **OPC-UA Server**.
+   input `start` and then, input `Your IP Address` in **OPC-UA Server**.
    ![server_2](../documents/readme_images/server_2.PNG)
    
    Then start *OPC-UA Server*. And create service node.
    ![server_3](../documents/readme_images/server_3.PNG)
 <br>
 ### 4. Start Client <br>
-   input `start` and than, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
+   input `start` and then, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
    ![client_2](../documents/readme_images/client_2.PNG)
    
    Then, *OPC-UA Client* connects with *OPC-UA Server*. <br>
@@ -116,12 +116,12 @@
    ![client_4](../documents/readme_images/client_4.PNG)
 <br>
 ### 5. Read Command<br>
-   input `read_t` and than, input `Provider ValueAlias` (refer. *Provider ValueAlias's List*).<br>
+   input `read_t` and then, input the alias of the Provider which indicate target Node. (refer. *Provider ValueAlias's List*).<br>
    Then read server node. 
    ![client_5](../documents/readme_images/client_5.PNG)
 <br>     
 ### 6. Write Command<br>
-   input `write` and than, input `Provider ValueAlias`.<br>
+   input `write` and then, input the alias of the Provider which indicate target Node.<br>
    Then write to server node. 
    ![client_6](../documents/readme_images/client_6.PNG)
 <br>     
@@ -130,7 +130,7 @@
    Then Run 'cnc100'
    ![server_8](../documents/readme_images/server_8.PNG)
    
-   input `sub` in *OPC-UA Client*. And than, input `Provider ValueAlias`.<br>
+   input `sub` command in *OPC-UA Client*. And then, input the alias of the Provider which indicate target Node.<br>
    Then subscribe to server node.
    ![client_7](../documents/readme_images/client_7.PNG)
    ![client_8](../documents/readme_images/client_8.PNG)
