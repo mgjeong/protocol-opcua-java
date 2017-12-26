@@ -1,9 +1,8 @@
 # How to test OPC-UA Sample Application
 
-## Reference
+## Introduction
 
-- Run `./build.sh.`
-  You can get OPC-UA Server/Client jar file in taret folder.
+- It provides example codes of both client and server. It will be helpful usage of opcua stack library.
 <br></br>
 ## Build
 ### How to build sample application in command line
