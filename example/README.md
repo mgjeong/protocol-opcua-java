@@ -130,7 +130,7 @@
    Then Run 'cnc100'
    ![server_8](../documents/readme_images/server_8.PNG)
    
-   input `sub` in *OPC-UA Client*.<br>
+   input `sub` in *OPC-UA Client*. And than, input `Provider ValueAlias`.<br>
    Then subscribe to server node.
    ![client_7](../documents/readme_images/client_7.PNG)
    ![client_8](../documents/readme_images/client_8.PNG)
