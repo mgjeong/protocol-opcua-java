@@ -378,9 +378,9 @@ public class EdgeClient {
       } else if (operator.equals("browse_m")) {
         testBrowses();
       } else if (operator.equals("sub_modify")) {
-        testSubModification(EdgeSampleCommon.TARGET_NODE_CNC100.getValue());
+        testSubModification("/1/cnc100");
       } else if (operator.equals("sub_delete")) {
-        testSubDelete(EdgeSampleCommon.TARGET_NODE_CNC100.getValue());
+        testSubDelete("/1/cnc100");
       } else if (operator.equals("read_d")) {
         testRead(EdgeSampleCommon.KEY_URI_DA_TEMPORATURE1.getValue(),
             EdgeNodeIdentifier.Edge_Node_Class_Type);
