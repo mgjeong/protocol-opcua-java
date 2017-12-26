@@ -14,11 +14,11 @@
 
    ![build_exam](../documents/readme_images/build_exam.png)
 
-3. You can execute opcua-client/opcua-server sample with
+3. You can find opcua-client, opcua-server sample application
    
    `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
    
-   `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` in each command window
+   `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` follwing below
 
    ![example_jars](../documents/readme_images/example_jars.png)
 
@@ -26,20 +26,21 @@
 
 1. Environment : Eclipse
 
-2. make project
+2. Import opcua stack
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/edge-opcua*
      -> finish
 
-3. make project
+3. Import sample application
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/example*
      -> finish
 
-4. You can build on each java file which has main() and run as 'java application' in opcua-client/opcua-server
+4. You can build source codes of the opcua stack and run as 'java application' in both opcua-client and opcua-server.
 
-5. Reference : If you have errors in pom.xml, Select Project -> Click Right button 
-                  -> Maven -> Update Maven Project -> Check 'Force Update of Snapshots/Releases' -> OK
+5. Reference : If you have some error related dependency in pom.xml. please update maven project following below.
+               'Select Project' -> 'Click Right button' 
+               -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
 
    ![build_4_1](../documents/readme_images/build_4_1.png)
 <br></br>
@@ -52,13 +53,13 @@
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
-   *getnode* : get information of created node currently
+   *getnode* : get node information
 
-   *getnode2* : get information of created node with browse name
+   *getnode2* : get node information with browse name
 
-   *quit* : termiate server
+   *quit* : terminate server
 
-   *help* : print menu
+   *help* : show menu
 <br>
 ### 2. Execute *OPC-UA Client* <br>
    command : `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
@@ -69,69 +70,69 @@
 
    *quit* : terminate client
 
-   *provider* : get providers name of created node currently
+   *provider* : get the provider list
 
-   *browse* : browse all node using root node
+   *browse* : browse all nodes with root node
 
-   *browse_m* : multiple browse with several nodes
+   *browse_m* : multiple browse with several target nodes
 
-   *read_s* : read value attribute for server node
+   *read_s* : read attribute for server node
 
-   *read_t* : read value attribute for target node
+   *read_t* : read attribute for target node
 
-   *read_gp* : multiple read value attribute for nodes
+   *read_gp* : multiple read attribute for target nodes
 
-   *write* : write attribute into node
+   *write* : write attribute to target node
 
-   *write_gp* : multiple value write attributes into nodes
+   *write_gp* : multiple write attributes to nodes
 
-   *sub* : subscription(1ms)
+   *sub* : subscription 
 
    *sub_modify* : modfiy subscription
 
    *sub_delete* : delete subscription
 
-   *endpoint* : get endpoint lists from opcua server
+   *endpoint* : get endpoints from the server
 
    *auto* : run test automatically
 
-   *help* : print menu
+   *help* : show menu
 <br>
 ### 3. Start Server <br>
    input `start` and then, input `Your IP Address` in **OPC-UA Server**.
    ![server_2](../documents/readme_images/server_2.PNG)
    
-   Then start *OPC-UA Server*. And create service node.
+   Then start *OPC-UA Server*. And create nodes.
    ![server_3](../documents/readme_images/server_3.PNG)
 <br>
 ### 4. Start Client <br>
    input `start` and then, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
    ![client_2](../documents/readme_images/client_2.PNG)
    
-   Then, *OPC-UA Client* connects with *OPC-UA Server*. <br>
-   And Create service provider
+   Then, *OPC-UA Client* connect with *OPC-UA Server*. <br>
+   And create service provider which indicate target node.
    ![client_3](../documents/readme_images/client_3.PNG)
    
-   And, Show *the alias of the Provider*
+   And, Show *the alias of the provider*
    ![client_4](../documents/readme_images/client_4.PNG)
 <br>
 ### 5. Read Command<br>
-   input `read_t` and then, input the alias of the Provider which indicate target Node. (refer. *Provider ValueAlias's List*).<br>
-   Then read server node. 
+   input `read_t` and then, input the alias of the provider which indicate target node. (refer getting *the alias of the Provider step*).<br>
+   Then read attribute from server node.
    ![client_5](../documents/readme_images/client_5.PNG)
 <br>     
 ### 6. Write Command<br>
-   input `write` and then, input the alias of the Provider which indicate target Node.<br>
-   Then write to server node. 
+   input `write` and then, input the alias of the provider which indicate target node.<br>
+   Then write to the target node of the opcua server. 
    ![client_6](../documents/readme_images/client_6.PNG)
 <br>     
 ### 7. Monitoring <br>
    input `start CNC` in *OPC-UA Server*.<br>
-   Then Run 'cnc100'
+   Then update value of the 'cnc100' node
    ![server_8](../documents/readme_images/server_8.PNG)
    
-   input `sub` command in *OPC-UA Client*. And then, input the alias of the Provider which indicate target Node.<br>
-   Then subscribe to server node.
+   input `sub` command in *OPC-UA Client*. And then, input the alias of the provider which indicate target node.<br>
+   Then request subscription to target node. you can receive changed value from the target node.
    ![client_7](../documents/readme_images/client_7.PNG)
    ![client_8](../documents/readme_images/client_8.PNG)
 
