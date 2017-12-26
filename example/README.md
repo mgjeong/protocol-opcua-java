@@ -10,7 +10,7 @@
 
 1. Environment : Ubuntu 16.04 (64bit)
 
-2. In *protocol-opcua/java/example*, run `./build.sh` in command line
+2. In *protocol-opcua-java/example*, run `./build.sh` in command line
 
    ![build_exam](../documents/readme_images/build_exam.png)
 
@@ -28,12 +28,12 @@
 
 2. make project
    File - Import -Existing Maven Project - next
-     -> select Root Directory in your source directory : *protocol-opcua/java/edge-opcua*
+     -> select Root Directory in your source directory : *protocol-opcua-java/edge-opcua*
      -> finish
 
 3. make project
    File - Import -Existing Maven Project - next
-     -> select Root Directory in your source directory : *protocol-opcua/java/example*
+     -> select Root Directory in your source directory : *protocol-opcua-java/example*
      -> finish
 
 4. You can build on each java file which has main() and run as 'java application' in opcua-client/opcua-server
