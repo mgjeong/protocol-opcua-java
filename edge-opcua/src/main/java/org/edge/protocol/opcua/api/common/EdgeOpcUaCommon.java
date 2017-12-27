@@ -31,7 +31,7 @@ public enum EdgeOpcUaCommon {
   WELL_KNOWN_SERVER_NODE_CURRENTTIME(6, "/server/currenttime", ""),
   WELL_KNOWN_SERVER_NODE_STATUS(7, "/server/status", ""),
   WELL_KNOWN_SERVER_NODE_BUILD_INFO(8, "/server/buildInfo", ""),
-    
+
   // default values 
   DEFAULT_SERVER_NAME(100, "edge-opc-server", "default server name"),
   DEFAULT_SERVER_URI(101, "opc.tcp://localhost:12686/", "default server address and port"),
@@ -55,6 +55,10 @@ public enum EdgeOpcUaCommon {
   public static int DEFAULT_NAMESPACE_INDEX = 2;
   public static int DEFAULT_REQUEST_ID = 10000;
   public static final int MAX_BROWSEREQUEST_SIZE = 10;
+
+  public static final int SERVER_MODE = 1;
+  public static final int CLIENT_MODE = 2;
+  public static final int BOTH_MODE = 3;
 
   private EdgeOpcUaCommon(int code, String value, String description) {
     this.code = code;

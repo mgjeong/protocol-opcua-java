@@ -166,7 +166,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
 
     if (ep.getConfig() != null
         && ep.getConfig().getSecurityPolicyUri() != SecurityPolicy.None.getSecurityPolicyUri()) {
-      loader = new KeyStoreLoader().load();
+      loader = new KeyStoreLoader().load(EdgeOpcUaCommon.CLIENT_MODE);
     }
 
     if (ep.getConfig() == null) {

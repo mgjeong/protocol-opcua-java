@@ -405,9 +405,11 @@ public class EdgeServer {
         EdgeNodeType.Edge_Node_Custom_Type);
 
     // for (EdgeNodeIdentifier daNodeId : Data_Access_Nodes) {
-    // item = new EdgeNodeItem.Builder(EdgeSampleCommon.TARGET_NODE_ROBOT.getValue())
+    // item = new
+    // EdgeNodeItem.Builder(EdgeSampleCommon.TARGET_NODE_ROBOT.getValue())
     // .setDataAccessNodeId(daNodeId).setSourceNode(rootNodeId).build();
-    // ProtocolManager.getProtocolManagerInstance().createNode(namespace, item,
+    // ProtocolManager.getProtocolManagerInstance().createNode(namespace,
+    // item,
     // EdgeNodeType.Edge_Node_Classical_DataAccess_Type);
     // }
   }
@@ -445,7 +447,8 @@ public class EdgeServer {
         ipAddress = scanner.nextLine();
         endpointUri =
             "opc.tcp://" + ipAddress + ":12686/" + EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();
-        epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+        epInfo = new EdgeEndpointInfo.Builder(endpointUri)
+            .setConfig(new EdgeEndpointConfig.Builder().setMode(EdgeOpcUaCommon.BOTH_MODE).build()).build();
         init();
         startServer();
         startFlag = true;

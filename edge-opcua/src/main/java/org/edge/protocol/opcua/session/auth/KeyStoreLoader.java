@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Kevin Herron
+ * Copyright (c) 2016 Kevin Herron and others
  *
  * All rights reserved. This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 and Eclipse Distribution License v1.0 which accompany
@@ -17,6 +17,7 @@ import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
+import org.edge.protocol.opcua.api.common.EdgeOpcUaCommon;
 
 public class KeyStoreLoader {
 
@@ -35,9 +36,18 @@ public class KeyStoreLoader {
    * @param [in] void
    * @return KeyStoreLoader
    */
-  public KeyStoreLoader load() throws Exception {
+  public KeyStoreLoader load(int mode) throws Exception {
     KeyStore keyStore = KeyStore.getInstance("PKCS12");
-    keyStore.load(getClass().getClassLoader().getResourceAsStream("example-certs.pfx"), PASSWORD);
+
+    if (EdgeOpcUaCommon.BOTH_MODE == mode) {
+      keyStore.load(getClass().getClassLoader().getResourceAsStream("demo-certs.pfx"), PASSWORD);
+    } else if (EdgeOpcUaCommon.SERVER_MODE == mode) {
+      keyStore.load(getClass().getClassLoader().getResourceAsStream("demo-server.pfx"), PASSWORD);
+    } else if (EdgeOpcUaCommon.CLIENT_MODE == mode) {
+      keyStore.load(getClass().getClassLoader().getResourceAsStream("demo-client.pfx"), PASSWORD);
+    } else {
+      return this;
+    }
 
     Key clientPrivateKey = keyStore.getKey(CLIENT_ALIAS, PASSWORD);
     if (clientPrivateKey instanceof PrivateKey) {
