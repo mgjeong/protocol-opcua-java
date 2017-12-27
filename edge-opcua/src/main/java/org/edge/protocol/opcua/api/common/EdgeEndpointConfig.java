@@ -27,10 +27,12 @@ public class EdgeEndpointConfig {
   private String serverName;
   private String bindAddress;
   private int bindPort;
-  private boolean viweNodeFalg;
+  private boolean viewNodeFlag;
+  private int mode;
 
   public static class Builder {
     private int requestTimeout = 60000;
+    private int mode = EdgeOpcUaCommon.BOTH_MODE;
     private String applicationName = EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue();
     private String applicationUri = EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue();
     private String productUri = EdgeOpcUaCommon.DEFAULT_PRODUCT_URI.getValue();
@@ -38,13 +40,13 @@ public class EdgeEndpointConfig {
     private String serverName = EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();
     private String bindAddress = EdgeOpcUaCommon.WELL_KNOWN_LOCALHOST_ADDRESS.getValue();
     private int bindPort = 12686;
-    private boolean viweNodeFalg = false;
+    private boolean viewNodeFlag = false;
 
     public Builder() {}
 
     /**
-     * @fn Builder setApplicationName(String val)
-     * @brief set application name
+     * set application name
+     *
      * @param [in] val application name
      * @return this
      */
@@ -54,8 +56,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setApplicationUri(String val)
-     * @brief set application uri
+     * set application uri
+     *
      * @param [in] val application uri
      * @return this
      */
@@ -65,8 +67,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setProductUri(String val)
-     * @brief set product uri
+     * set product uri
+     *
      * @param [in] val product uri
      * @return this
      */
@@ -76,8 +78,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setSecurityPolicyUri(String val)
-     * @brief set security policy uri
+     * set security policy uri
+     *
      * @param [in] val security policy uri
      * @return this
      */
@@ -87,8 +89,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn String setServerName(String val)
-     * @brief set Server Name
+     * set Server Name
+     *
      * @param [in] val server Name
      * @return this
      */
@@ -98,8 +100,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setbindAddress(String addr)
-     * @brief set bind address
+     * set bind address
+     *
      * @param [in] addr address
      * @return this
      */
@@ -109,8 +111,8 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setbindPort(int port)
-     * @brief set bind port
+     * set bind port
+     *
      * @param [in] port port
      * @return this
      */
@@ -120,19 +122,30 @@ public class EdgeEndpointConfig {
     }
 
     /**
-     * @fn Builder setViewNodeFlag(boolean flag)
-     * @brief set configure which initialize provider with only view node
+     * set configure which initialize provider with only view node
+     *
      * @param [in] flag View Node flag is set
      * @return this
      */
     public Builder setViewNodeFlag(boolean flag) {
-      viweNodeFalg = flag;
+      viewNodeFlag = flag;
       return this;
     }
 
     /**
-     * @fn EdgeEndpointConfig build()
-     * @brief create EdgeEndpointConfig instance (builder)
+     * set configure which initialize mode(server/client/both)
+     *
+     * @param [in] mode of stack
+     * @return this
+     */
+    public Builder setMode(int mode) {
+      mode = this.mode;
+      return this;
+    }
+
+    /**
+     * create EdgeEndpointConfig instance (builder)
+     *
      * @return EdgeEndpointConfig
      */
     public EdgeEndpointConfig build() {
@@ -141,8 +154,7 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn EdgeEndpointConfig(Builder builder)
-   * @brief constructor
+   * constructor
    */
   private EdgeEndpointConfig(Builder builder) {
     requestTimeout = builder.requestTimeout;
@@ -153,12 +165,13 @@ public class EdgeEndpointConfig {
     serverName = builder.serverName;
     bindAddress = builder.bindAddress;
     bindPort = builder.bindPort;
-    viweNodeFalg = builder.viweNodeFalg;
+    viewNodeFlag = builder.viewNodeFlag;
+    mode = builder.mode;
   }
 
   /**
-   * @fn int getRequestTimeout()
-   * @brief get request time-out
+   * get request time-out
+   *
    * @return time-out
    */
   public int getRequestTimeout() {
@@ -166,8 +179,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getApplicationName()
-   * @brief get Application name
+   * get Application name
+   *
    * @return application name
    */
   public String getApplicationName() {
@@ -175,8 +188,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getApplicationUri()
-   * @brief get Application uri
+   * get Application uri
+   *
    * @return application uri
    */
   public String getApplicationUri() {
@@ -184,8 +197,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getProductUri()
-   * @brief get product uri
+   * get product uri
+   *
    * @return productUri
    */
   public String getProductUri() {
@@ -193,8 +206,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getSecurityPolicyUri()
-   * @brief get Security Policy Uri
+   * get Security Policy Uri
+   *
    * @return Security Policy Uri
    */
   public String getSecurityPolicyUri() {
@@ -202,8 +215,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getServerName()
-   * @brief get Server Name
+   * get Server Name
+   *
    * @return serverName
    */
   public String getServerName() {
@@ -211,8 +224,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn String getBindAddress()
-   * @brief get bindaddress
+   * get bindaddress
+   *
    * @return bind address
    */
   public String getBindAddress() {
@@ -220,8 +233,8 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn int getBindPort()
-   * @brief get bindPort
+   * get bindPort
+   *
    * @return bindPort
    */
   public int getBindPort() {
@@ -229,11 +242,20 @@ public class EdgeEndpointConfig {
   }
 
   /**
-   * @fn boolean getViewNodeFlag()
-   * @brief get viweNodeFalg
-   * @return viweNodeFalg
+   * get viweNodeFlag
+   *
+   * @return viweNodeFlag
    */
   public boolean getViewNodeFlag() {
-    return viweNodeFalg;
+    return viewNodeFlag;
+  }
+
+  /**
+   * get Mode of stack
+   *
+   * @return mode
+   */
+  public int getMode() {
+    return mode;
   }
 }
