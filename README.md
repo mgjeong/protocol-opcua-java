@@ -39,7 +39,7 @@ $ ./build.sh
 
 3. Run As -> Run Configurations
 
-4. insert goal : `assembly:assembly install`
+4. insert goal : `assembly:single install -U`
    ![build_2_2](./documents/readme_images/build_2_2.png)
 
 5. Run As -> `Maven Build`
