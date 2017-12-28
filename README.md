@@ -27,6 +27,9 @@ $ ./build.sh
 ```
  ![build_stack](./documents/readme_images/build_stack.png)
 
+##### Binaries #####
+- opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
 #### 2. Eclipse ####
 
 1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
@@ -41,7 +44,8 @@ $ ./build.sh
 
 5. Run As -> `Maven Build`
 
-6. you can find 'opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar' in /target forlder 
+##### Binaries #####
+- opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## Test ##
 
