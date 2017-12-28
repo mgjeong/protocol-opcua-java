@@ -19,6 +19,10 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 
 #### Eclipse ####
 
+##### Prerequisites #####
+- opcua stack library
+  - [build opcua stack library](../README.md)
+ 
 1. Import opcua stack
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/edge-opcua*
@@ -31,17 +35,20 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 
 3. Run as 'java application' in both opcua-client and opcua-server projects
 
-
-Reference : If you have some error related dependency in pom.xml. please update maven project following below.
+- *Reference* : If you have some error related dependency in pom.xml. please update maven project following below.
                'Select Project' -> 'Click Right button' 
                -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
 ![build_4_1](../documents/readme_images/build_4_1.png)
 
-## Test
+## How to run ##
 
-### 1. Execute *OPC-UA Server* <br>
-   command : `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-   
+#### Test ####
+#### 1. Executable binary ####
+
+```shell
+$ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
+ 
    ![server_1](../documents/readme_images/server_1.png)
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
@@ -53,8 +60,12 @@ Reference : If you have some error related dependency in pom.xml. please update 
    *quit* : terminate server
 
    *help* : show menu
-<br>
-### 2. Execute *OPC-UA Client* <br>
+
+
+```shell
+$ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
+
    command : `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
 
    ![client_1](../documents/readme_images/client_1.png)
