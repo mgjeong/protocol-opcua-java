@@ -13,6 +13,6 @@ cd $mapper_home
 #start install edge_opcua
 cd $edge_opcua_home
 cd ./edge-opcua
-mvn clean compile assembly:single -U -Dmaven.test.skip=true
+mvn clean install assembly:single -U -Dmaven.test.skip=true
 
 echo "End of edge opcua build"
