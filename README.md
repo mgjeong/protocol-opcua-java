@@ -1,36 +1,53 @@
-# OPC-UA Protocol Stack
+OPC-UA Protocol Stack
+================================
 
-This provides opcua protocol stack library. Services such as opcua device service and opcua expert service needs pre-requirements whcih build this protocol stack.
-And this protocol stack has some pre-requirements (JDK, maven) which build like below.
-<br></br>
+This provides opcua protocol stack library. 
+Services such as opcua device service and opcua expert service needs pre-requirements whcih build this protocol stack.
 
-## OPC-UA library for Java
+## Prerequisites ##
 
-### JDK 1.8
+- JDK
+  - Version : 1.8
+  - [How to install](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html)
+  - Eclipse Setting
+     - Select Project -> Preference - Java Build Path - JRE System Library -Edit -> 
+            Installed JREs - Add - Standard VM - Next -input Path installed JDK 1.8 -> finish 
+- Maven
+  - Version : 3.5.2
+  - [Where to download](https://maven.apache.org/download.cgi)
+  - [How to install](https://maven.apache.org/install.html)
+  - [Setting up proxy for maven](https://maven.apache.org/guides/mini/guide-proxies.html)
 
-#### Intall JDK v1.8
+## How to build  ##
 
-Install Guide : https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html
+#### 1. Command ####
 
-Eclipse Setting
+```shell
+$ ./build.sh
+```
+ ![build_stack](./documents/readme_images/build_stack.png)
 
-Select Project -> Preference - Java Build Path - JRE System Library -Edit -> Installed JREs - Add - Standard VM - Next - input Path installed JDK 1.8 -> finish 
-<br></br>
+##### Binaries #####
+- opcua protocol stack library : edge-opcua/targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-#### maven
+#### 2. Eclipse ####
 
-Install maven v3.5.2
+1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
+ ![build_2_1](./documents/readme_images/build_2_1.png)
 
-Download : https://maven.apache.org/download.cgi
+2. Select Project -> Click Right button
 
-Install Guide : https://maven.apache.org/install.html
+3. Run As -> Run Configurations
 
-tar xzvf apache-maven-3.5.2-bin.tar.gz
+4. insert goal : `assembly:single install -U`
+   ![build_2_2](./documents/readme_images/build_2_2.png)
 
-Add the bin directory of the created directory apache-maven-3.5.2 to the PATH environment variable
-<br></br>
+5. Run As -> `Maven Build`
 
-#### How to build OPC-UA library [here](./edge-opcua/README.md)
+##### Binaries #####
+- opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-#### Test OPC-UA sample application [here](./example/README.md)
+## How to run ##
 
+#### Test ####
+  - [How to test with sample client/server](./example/README.md)
