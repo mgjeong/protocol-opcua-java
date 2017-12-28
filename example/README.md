@@ -47,11 +47,11 @@ $ ./build.sh
 #### Test ####
 #### 1. Executable binary ####
 - *server*
+   ![server_1](../documents/readme_images/server_1.png)
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
-  - commands of server 
-   ![server_1](../documents/readme_images/server_1.png)
+  ##### menu of server #####
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
@@ -64,13 +64,12 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    *help* : show menu
 
 - *client*
+   ![client_1](../documents/readme_images/client_1.png)
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
+  ##### menu of client #####
 
-   ![client_1](../documents/readme_images/client_1.png)
-
-  - commands of client 
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
    *quit* : terminate client
