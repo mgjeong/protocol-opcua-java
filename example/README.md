@@ -15,6 +15,7 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
     - Executable : target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
   - Client
     - Executable : target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
 ![example_jars](../documents/readme_images/example_jars.png)
 
 #### Eclipse ####
@@ -47,7 +48,7 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
- 
+- commands of client 
    ![server_1](../documents/readme_images/server_1.png)
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
@@ -65,10 +66,9 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-   command : `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-
    ![client_1](../documents/readme_images/client_1.png)
 
+- commands of client 
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
    *quit* : terminate client
@@ -121,11 +121,11 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    input `read_t` and then, input the alias of the provider which indicate target node. (refer getting *the alias of the Provider step*).<br>
    Then read attribute from server node.
    ![client_5](../documents/readme_images/client_5.PNG)
-### 5. Write Command ####
+#### 5. Write Command ####
    input `write` and then, input the alias of the provider which indicate target node.<br>
    Then write to the target node of the opcua server. 
    ![client_6](../documents/readme_images/client_6.PNG)
-### 6. Monitoring  ####
+#### 6. Monitoring  ####
    input `start CNC` in *OPC-UA Server*.<br>
    Then update value of the 'cnc100' node
    ![server_8](../documents/readme_images/server_8.PNG)
