@@ -47,13 +47,14 @@ $ ./build.sh
 #### Test ####
 #### 1. Executable binary ####
 - *server*
-   ![server_1](../documents/readme_images/server_1.png)
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
-  ##### menu of server #####
+   ![server_1](../documents/readme_images/server_1.png)
+  
 
-   *start* : start opcua server / create Node  -> first of all, you should input this command for testing
+  ``` 
+*start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
    *getnode* : get node information
 
@@ -62,14 +63,14 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    *quit* : terminate server
 
    *help* : show menu
-
+```
 - *client*
-   ![client_1](../documents/readme_images/client_1.png)
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
-  ##### menu of client #####
-
+   ![client_1](../documents/readme_images/client_1.png)
+  
+```
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
    *quit* : terminate client
@@ -101,7 +102,7 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    *auto* : run test automatically
 
    *help* : show menu
-
+```
 #### 2. Start server ####
    input `start` and then, input `Your IP Address` in **OPC-UA Server**.
    ![server_2](../documents/readme_images/server_2.PNG)
