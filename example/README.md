@@ -1,48 +1,42 @@
-# How to test OPC-UA Sample Application
+OPC-UA Sample Application
+================================
 
-## Introduction
+It provides example codes of both client and server. It will be helpful usage of opcua stack library.
 
-- It provides example codes of both client and server. It will be helpful usage of opcua stack library.
-<br></br>
-## Build
-### How to build sample application in command line
+## How to build  ##
 
-1. Environment : Ubuntu 16.04 (64bit)
+#### Command ####
 
-2. In *protocol-opcua-java/example*, run `./build.sh` in command line
-
+In *protocol-opcua-java/example*, run `./build.sh` in command line
    ![build_exam](../documents/readme_images/build_exam.png)
 
-3. You can find opcua-client, opcua-server sample application
-   
-   `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-   
-   `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` follwing below
+##### Executable binary #####
+![example_jars](../documents/readme_images/example_jars.png)
+  - Server
+    - Executable : target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+  - Client
+    - Executable : target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-   ![example_jars](../documents/readme_images/example_jars.png)
+#### Eclipse ####
 
-### How to build sample application with Eclipse
-
-1. Environment : Eclipse
-
-2. Import opcua stack
+1. Import opcua stack
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/edge-opcua*
      -> finish
 
-3. Import sample application
+2. Import sample application
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/example*
      -> finish
 
-4. You can build source codes of the opcua stack and run as 'java application' in both opcua-client and opcua-server.
+3. Run as 'java application' in both opcua-client and opcua-server projects
 
-5. Reference : If you have some error related dependency in pom.xml. please update maven project following below.
+
+Reference : If you have some error related dependency in pom.xml. please update maven project following below.
                'Select Project' -> 'Click Right button' 
                -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
+![build_4_1](../documents/readme_images/build_4_1.png)
 
-   ![build_4_1](../documents/readme_images/build_4_1.png)
-<br></br>
 ## Test
 
 ### 1. Execute *OPC-UA Server* <br>
@@ -134,6 +128,5 @@
    Then request subscription to target node. you can receive changed value from the target node.
    ![client_7](../documents/readme_images/client_7.PNG)
    ![client_8](../documents/readme_images/client_8.PNG)
-
 
 
