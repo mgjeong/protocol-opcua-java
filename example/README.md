@@ -7,7 +7,9 @@ It provides example codes of both client and server. It will be helpful usage of
 
 #### Command ####
 
-In *protocol-opcua-java/example*, run `./build.sh` in command line
+```shell
+$ ./build.sh
+```
    ![build_exam](../documents/readme_images/build_exam.png)
 
 ##### Executable binary #####
@@ -44,11 +46,11 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 
 #### Test ####
 #### 1. Executable binary ####
-- server
+- *server*
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
-- commands of client 
+  - commands of server 
    ![server_1](../documents/readme_images/server_1.png)
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
@@ -61,14 +63,14 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
    *help* : show menu
 
-- client
+- *client*
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
    ![client_1](../documents/readme_images/client_1.png)
 
-- commands of client 
+  - commands of client 
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
    *quit* : terminate client
