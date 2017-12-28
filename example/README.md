@@ -1,54 +1,59 @@
-# How to test OPC-UA Sample Application
+OPC-UA Sample Application
+================================
 
-## Introduction
+It provides example codes of both client and server. It will be helpful usage of opcua stack library.
 
-- It provides example codes of both client and server. It will be helpful usage of opcua stack library.
-<br></br>
-## Build
-### How to build sample application in command line
+## How to build  ##
 
-1. Environment : Ubuntu 16.04 (64bit)
+#### Command ####
 
-2. In *protocol-opcua-java/example*, run `./build.sh` in command line
-
+```shell
+$ ./build.sh
+```
    ![build_exam](../documents/readme_images/build_exam.png)
 
-3. You can find opcua-client, opcua-server sample application
-   
-   `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-   
-   `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar` follwing below
+##### Executable binary #####
+  - Server
+    - Executable : target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+  - Client
+    - Executable : target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-   ![example_jars](../documents/readme_images/example_jars.png)
+![example_jars](../documents/readme_images/example_jars.png)
 
-### How to build sample application with Eclipse
+#### Eclipse ####
 
-1. Environment : Eclipse
-
-2. Import opcua stack
+##### Prerequisites #####
+- opcua stack library
+  - [build opcua stack library](../README.md)
+ 
+1. Import opcua stack
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/edge-opcua*
      -> finish
 
-3. Import sample application
+2. Import sample application
    File - Import -Existing Maven Project - next
      -> select Root Directory in your source directory : *protocol-opcua-java/example*
      -> finish
 
-4. You can build source codes of the opcua stack and run as 'java application' in both opcua-client and opcua-server.
+3. Run as 'java application' in both opcua-client and opcua-server projects
 
-5. Reference : If you have some error related dependency in pom.xml. please update maven project following below.
-               'Select Project' -> 'Click Right button' 
+- *Reference* : If you have some error related dependency in pom.xml, please update maven project following below
+               - 'Select Project' -> 'Click Right button' 
                -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
 
-   ![build_4_1](../documents/readme_images/build_4_1.png)
-<br></br>
-## Test
+## How to run ##
 
-### 1. Execute *OPC-UA Server* <br>
-   command : `java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-   
+#### Test ####
+#### 1. Executable binary ####
+- *server*
+```shell
+$ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
    ![server_1](../documents/readme_images/server_1.png)
+  
+
+  ```*commands*
 
    *start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
@@ -59,11 +64,14 @@
    *quit* : terminate server
 
    *help* : show menu
-<br>
-### 2. Execute *OPC-UA Client* <br>
-   command : `java -jar target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
-
+```
+- *client*
+```shell
+$ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
    ![client_1](../documents/readme_images/client_1.png)
+  
+```*commands*
 
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
@@ -96,15 +104,14 @@
    *auto* : run test automatically
 
    *help* : show menu
-<br>
-### 3. Start Server <br>
+```
+#### 2. Start server ####
    input `start` and then, input `Your IP Address` in **OPC-UA Server**.
    ![server_2](../documents/readme_images/server_2.PNG)
    
    Then start *OPC-UA Server*. And create nodes.
    ![server_3](../documents/readme_images/server_3.PNG)
-<br>
-### 4. Start Client <br>
+#### 3. Start Client ####
    input `start` and then, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
    ![client_2](../documents/readme_images/client_2.PNG)
    
@@ -114,18 +121,15 @@
    
    And, Show *the alias of the provider*
    ![client_4](../documents/readme_images/client_4.PNG)
-<br>
-### 5. Read Command<br>
+#### 4. Read Command ####
    input `read_t` and then, input the alias of the provider which indicate target node. (refer getting *the alias of the Provider step*).<br>
    Then read attribute from server node.
    ![client_5](../documents/readme_images/client_5.PNG)
-<br>     
-### 6. Write Command<br>
+#### 5. Write Command ####
    input `write` and then, input the alias of the provider which indicate target node.<br>
    Then write to the target node of the opcua server. 
    ![client_6](../documents/readme_images/client_6.PNG)
-<br>     
-### 7. Monitoring <br>
+#### 6. Monitoring  ####
    input `start CNC` in *OPC-UA Server*.<br>
    Then update value of the 'cnc100' node
    ![server_8](../documents/readme_images/server_8.PNG)
@@ -134,6 +138,5 @@
    Then request subscription to target node. you can receive changed value from the target node.
    ![client_7](../documents/readme_images/client_7.PNG)
    ![client_8](../documents/readme_images/client_8.PNG)
-
 
 
