@@ -36,8 +36,8 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 
 3. Run as 'java application' in both opcua-client and opcua-server projects
 
-- *Reference* : If you have some error related dependency in pom.xml. please update maven project following below.
-               'Select Project' -> 'Click Right button' 
+- *Reference* : If you have some error related dependency in pom.xml, please update maven project following below
+               - 'Select Project' -> 'Click Right button' 
                -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
 
 ## How to run ##
