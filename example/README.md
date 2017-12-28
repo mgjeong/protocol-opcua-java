@@ -53,8 +53,9 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    ![server_1](../documents/readme_images/server_1.png)
   
 
-  ``` 
-*start* : start opcua server / create Node  -> first of all, you should input this command for testing
+  ```*commands*
+
+   *start* : start opcua server / create Node  -> first of all, you should input this command for testing
 
    *getnode* : get node information
 
@@ -70,7 +71,8 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
    ![client_1](../documents/readme_images/client_1.png)
   
-```
+```*commands*
+
    *start* : start opcua client / connect with opcua server / intialize Service Provider
 
    *quit* : terminate client
