@@ -47,5 +47,7 @@ $ ./build.sh
 ##### Binaries #####
 - opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
-## How to test ##
+## How to run ##
+
+#### Test ####
   - [How to test with sample client/server](./example/README.md)
