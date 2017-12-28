@@ -10,7 +10,7 @@ Services such as opcua device service and opcua expert service needs pre-require
   - Version : 1.8
   - [How to install](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html)
   - Eclipse Setting
-     Select Project -> Preference - Java Build Path - JRE System Library -Edit -> 
+     - Select Project -> Preference - Java Build Path - JRE System Library -Edit -> 
             Installed JREs - Add - Standard VM - Next -input Path installed JDK 1.8 -> finish 
 - Maven
   - Version : 3.5.2
