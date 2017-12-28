@@ -25,7 +25,7 @@ Services such as opcua device service and opcua expert service needs pre-require
 ```shell
 $ ./build.sh
 ```
-  ![build_stack](../documents/readme_images/build_stack.png)
+  ![build_stack](./documents/readme_images/build_stack.png)
 
 #### 2. Eclipse ####
 
