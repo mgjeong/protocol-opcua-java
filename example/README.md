@@ -53,17 +53,17 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    ![server_1](../documents/readme_images/server_1.png)
   
 
-  ```*commands*
+  ```commands
 
-   *start* : start opcua server / create Node  -> first of all, you should input this command for testing
+   start : start opcua server / create Node  -> first of all, you should input this command for testing
 
-   *getnode* : get node information
+   getnode : get node information
 
-   *getnode2* : get node information with browse name
+   getnode2 : get node information with browse name
 
-   *quit* : terminate server
+   quit : terminate server
 
-   *help* : show menu
+   help : show menu
 ```
 - *client*
 ```shell
@@ -71,39 +71,39 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
    ![client_1](../documents/readme_images/client_1.png)
   
-```*commands*
+```commands
 
-   *start* : start opcua client / connect with opcua server / intialize Service Provider
+   start : start opcua client / connect with opcua server / intialize Service Provider
 
-   *quit* : terminate client
+   quit : terminate client
 
-   *provider* : get the provider list
+   provider : get the provider list
 
-   *browse* : browse all nodes with root node
+   browse : browse all nodes with root node
 
-   *browse_m* : multiple browse with several target nodes
+   browse_m : multiple browse with several target nodes
 
-   *read_s* : read attribute for server node
+   read_s : read attribute for server node
 
-   *read_t* : read attribute for target node
+   read_t : read attribute for target node
 
-   *read_gp* : multiple read attribute for target nodes
+   read_gp : multiple read attribute for target nodes
 
-   *write* : write attribute to target node
+   write : write attribute to target node
 
-   *write_gp* : multiple write attributes to nodes
+   write_gp : multiple write attributes to nodes
 
-   *sub* : subscription 
+   sub : subscription 
 
-   *sub_modify* : modfiy subscription
+   sub_modify : modfiy subscription
 
-   *sub_delete* : delete subscription
+   sub_delete : delete subscription
 
-   *endpoint* : get endpoints from the server
+   endpoint : get endpoints from the server
 
-   *auto* : run test automatically
+   auto : run test automatically
 
-   *help* : show menu
+   help : show menu
 ```
 #### 2. Start server ####
    input `start` and then, input `Your IP Address` in **OPC-UA Server**.
