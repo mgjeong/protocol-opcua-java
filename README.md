@@ -48,4 +48,4 @@ $ ./build.sh
 - opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ## How to test ##
-  - [How to test](./example/README.md)
+  - [How to test with sample client/server](./example/README.md)
