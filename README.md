@@ -20,7 +20,14 @@ Services such as opcua device service and opcua expert service needs pre-require
 
 ## How to build  ##
 
-#### How to build OPC-UA library [here](./edge-opcua/README.md)
+#### 1. cmd line ####
+
+```shell
+$ ./build.sh
+```
+  - ![build_stack](../documents/readme_images/build_stack.png)
+
+#### 2. Eclipse ####
 
 ## Test ##
 
