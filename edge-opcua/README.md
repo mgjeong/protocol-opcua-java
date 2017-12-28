@@ -22,7 +22,7 @@ OPC-UA Protocol Stack
 ```shell
 $ ./build.sh
 ```
- ![build_stack](./documents/readme_images/build_stack.png)
+ ![build_stack](../documents/readme_images/build_stack.png)
 
 ##### Binaries #####
 - opcua protocol stack library : edge-opcua/targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
@@ -30,14 +30,14 @@ $ ./build.sh
 #### 2. Eclipse ####
 
 1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
- ![build_2_1](./documents/readme_images/build_2_1.png)
+ ![build_2_1](../documents/readme_images/build_2_1.png)
 
 2. Select Project -> Click Right button
 
 3. Run As -> Run Configurations
 
 4. insert goal : `assembly:single install -U`
-   ![build_2_2](./documents/readme_images/build_2_2.png)
+   ![build_2_2](../documents/readme_images/build_2_2.png)
 
 5. Run As -> `Maven Build`
 
@@ -47,4 +47,4 @@ $ ./build.sh
 ## How to run ##
 
 #### Test ####
-  - [How to test with sample client/server](./example/README.md)
+  - [How to test with sample client/server](../example/README.md)
