@@ -11,11 +11,11 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
    ![build_exam](../documents/readme_images/build_exam.png)
 
 ##### Executable binary #####
-![example_jars](../documents/readme_images/example_jars.png)
   - Server
     - Executable : target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
   - Client
     - Executable : target/opcua-client-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+![example_jars](../documents/readme_images/example_jars.png)
 
 #### Eclipse ####
 
@@ -38,13 +38,12 @@ In *protocol-opcua-java/example*, run `./build.sh` in command line
 - *Reference* : If you have some error related dependency in pom.xml. please update maven project following below.
                'Select Project' -> 'Click Right button' 
                -> 'Maven' -> 'Update Maven Project' -> Check 'Force Update of Snapshots/Releases' -> OK
-![build_4_1](../documents/readme_images/build_4_1.png)
 
 ## How to run ##
 
 #### Test ####
 #### 1. Executable binary ####
-
+- server
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
@@ -61,7 +60,7 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
    *help* : show menu
 
-
+- client
 ```shell
 $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
@@ -101,15 +100,14 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    *auto* : run test automatically
 
    *help* : show menu
-<br>
-### 3. Start Server <br>
+
+#### 2. Start server ####
    input `start` and then, input `Your IP Address` in **OPC-UA Server**.
    ![server_2](../documents/readme_images/server_2.PNG)
    
    Then start *OPC-UA Server*. And create nodes.
    ![server_3](../documents/readme_images/server_3.PNG)
-<br>
-### 4. Start Client <br>
+#### 3. Start Client ####
    input `start` and then, input `opc.tcp://[OPC-UA Server's IP Addreess]/edge-opc-server` in **OPC-UA Client**.
    ![client_2](../documents/readme_images/client_2.PNG)
    
@@ -119,18 +117,15 @@ $ java -jar target/opcua-server-0.0.1-SNAPSHOT-jar-with-dependencies.jar
    
    And, Show *the alias of the provider*
    ![client_4](../documents/readme_images/client_4.PNG)
-<br>
-### 5. Read Command<br>
+#### 4. Read Command ####
    input `read_t` and then, input the alias of the provider which indicate target node. (refer getting *the alias of the Provider step*).<br>
    Then read attribute from server node.
    ![client_5](../documents/readme_images/client_5.PNG)
-<br>     
-### 6. Write Command<br>
+### 5. Write Command ####
    input `write` and then, input the alias of the provider which indicate target node.<br>
    Then write to the target node of the opcua server. 
    ![client_6](../documents/readme_images/client_6.PNG)
-<br>     
-### 7. Monitoring <br>
+### 6. Monitoring  ####
    input `start CNC` in *OPC-UA Server*.<br>
    Then update value of the 'cnc100' node
    ![server_8](../documents/readme_images/server_8.PNG)
