@@ -30,17 +30,16 @@ $ ./build.sh
 #### 2. Eclipse ####
 
 1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
-
  ![build_2_1](./documents/readme_images/build_2_1.png)
 
-2.  Select Project -> Click Right button
+2. Select Project -> Click Right button
 
 3. Run As -> Run Configurations
 
-4. insert goal : assembly:assembly install
+4. insert goal : `assembly:assembly install`
    ![build_2_2](./documents/readme_images/build_2_2.png)
 
-5. Run As -> Maven Build
+5. Run As -> `Maven Build`
 
 6. you can find 'opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar' in /target forlder 
 
