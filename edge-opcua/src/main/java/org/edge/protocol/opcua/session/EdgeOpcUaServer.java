@@ -124,8 +124,8 @@ public class EdgeOpcUaServer {
     TestCertificateValidator certificateValidator = null;
     DefaultCertificateValidator defaultValidator = null;
 
-    if (epInfo.getConfig() == null || epInfo.getConfig()
-        .getSecurityPolicyUri() == SecurityPolicy.None.getSecurityPolicyUri()) {
+    if (config == null
+        || config.getSecurityPolicyUri() == SecurityPolicy.None.getSecurityPolicyUri()) {
       certificateManager = new TestCertificateManager(null, null);
 
       File securityDir = new File(System.getProperty("user.dir"));
@@ -136,10 +136,24 @@ public class EdgeOpcUaServer {
 
       defaultValidator = new DefaultCertificateValidator(securityDir);
     } else {
-      loader = new KeyStoreLoader().load();
+      if (EdgeOpcUaCommon.BOTH_MODE == config.getMode()) {
+        loader = new KeyStoreLoader().load(EdgeOpcUaCommon.BOTH_MODE);
+        certificateValidator = new TestCertificateValidator(loader.getClientCertificate());
+      } else if (EdgeOpcUaCommon.SERVER_MODE == config.getMode()) {
+        loader = new KeyStoreLoader().load(EdgeOpcUaCommon.SERVER_MODE);
+
+        File securityDir = new File(System.getProperty("user.dir"));
+
+        if (!securityDir.exists() && !securityDir.mkdirs()) {
+          throw new Exception("unable to create security directory");
+        }
+
+        defaultValidator = new DefaultCertificateValidator(securityDir);
+      }
+
       certificateManager =
           new TestCertificateManager(loader.getServerKeyPair(), loader.getServerCertificate());
-      certificateValidator = new TestCertificateValidator(loader.getClientCertificate());
+
     }
 
     BuildInfo buildInfo = new BuildInfo("/edge", "samsung", "edgeSolution", "0.9", "0.1", null);
@@ -149,7 +163,8 @@ public class EdgeOpcUaServer {
         .setApplicationUri(config.getApplicationUri())
         .setBindAddresses(newArrayList(config.getBindAddress())).setBindPort(config.getBindPort())
         .setCertificateManager(certificateManager)
-        .setCertificateValidator(loader != null ? certificateValidator : defaultValidator)
+        .setCertificateValidator(loader != null || EdgeOpcUaCommon.BOTH_MODE == config.getMode()
+            ? certificateValidator : defaultValidator)
         .setSecurityPolicies(EnumSet.of(SecurityPolicy.None, SecurityPolicy.Basic128Rsa15,
             SecurityPolicy.Basic256, SecurityPolicy.Basic256Sha256))
         .setProductUri(config.getProductUri()).setServerName(config.getServerName())
