@@ -1,36 +1,27 @@
-# OPC-UA Protocol Stack
+OPC-UA Protocol Stack
+================================
 
-This provides opcua protocol stack library. Services such as opcua device service and opcua expert service needs pre-requirements whcih build this protocol stack.
-And this protocol stack has some pre-requirements (JDK, maven) which build like below.
-<br></br>
+This provides opcua protocol stack library. 
+Services such as opcua device service and opcua expert service needs pre-requirements whcih build this protocol stack.
 
-## OPC-UA library for Java
+## Prerequisites ##
 
-### JDK 1.8
+- JDK
+  - Version : 1.8
+  - [How to install](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html)
+  - Eclipse Setting
+     Select Project -> Preference - Java Build Path - JRE System Library -Edit -> 
+            Installed JREs - Add - Standard VM - Next -input Path installed JDK 1.8 -> finish 
+- Maven
+  - Version : 3.5.2
+  - [Where to download](https://maven.apache.org/download.cgi)
+  - [How to install](https://maven.apache.org/install.html)
+  - [Setting up proxy for maven](https://maven.apache.org/guides/mini/guide-proxies.html)
 
-#### Intall JDK v1.8
-
-Install Guide : https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html
-
-Eclipse Setting
-
-Select Project -> Preference - Java Build Path - JRE System Library -Edit -> Installed JREs - Add - Standard VM - Next - input Path installed JDK 1.8 -> finish 
-<br></br>
-
-#### maven
-
-Install maven v3.5.2
-
-Download : https://maven.apache.org/download.cgi
-
-Install Guide : https://maven.apache.org/install.html
-
-tar xzvf apache-maven-3.5.2-bin.tar.gz
-
-Add the bin directory of the created directory apache-maven-3.5.2 to the PATH environment variable
-<br></br>
+## How to build  ##
 
 #### How to build OPC-UA library [here](./edge-opcua/README.md)
 
-#### Test OPC-UA sample application [here](./example/README.md)
+#### Test ####
 
+#### Test OPC-UA sample application [here](./example/README.md)
