@@ -20,7 +20,7 @@ Services such as opcua device service and opcua expert service needs pre-require
 
 ## How to build  ##
 
-#### 1. cmd line ####
+#### 1. Command ####
 
 ```shell
 $ ./build.sh
@@ -30,6 +30,7 @@ $ ./build.sh
 #### 2. Eclipse ####
 
 1. import opcua stack project(*protocol-opcua-java/edge-opcua*)
+
  ![build_2_1](./documents/readme_images/build_2_1.png)
 
 2.  Select Project -> Click Right button
@@ -37,12 +38,11 @@ $ ./build.sh
 3. Run As -> Run Configurations
 
 4. insert goal : assembly:assembly install
-   ![build_2_2](../documents/readme_images/build_2_2.png)
+   ![build_2_2](./documents/readme_images/build_2_2.png)
 
 5. Run As -> Maven Build
 
 6. you can find 'opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar' in /target forlder 
-#### How to build OPC-UA library [here](./edge-opcua/README.md)
 
 ## Test ##
 
