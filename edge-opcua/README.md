@@ -1,9 +1,6 @@
 OPC-UA Protocol Stack
 ================================
 
-This provides opcua protocol stack library. 
-Services such as opcua device service and opcua expert service needs pre-requirements whcih build this protocol stack.
-
 ## Prerequisites ##
 
 - JDK
