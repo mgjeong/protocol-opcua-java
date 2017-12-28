@@ -28,7 +28,7 @@ $ ./build.sh
  ![build_stack](./documents/readme_images/build_stack.png)
 
 ##### Binaries #####
-- opcua protocol stack library : targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+- opcua protocol stack library : edge-opcua/targets/opcua-adapter-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 #### 2. Eclipse ####
 
