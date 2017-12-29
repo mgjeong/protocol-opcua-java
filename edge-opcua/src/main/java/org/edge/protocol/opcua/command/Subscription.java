@@ -37,11 +37,9 @@ public class Subscription implements Command {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] future
-   * @prarm [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  future result of execution
+   * @param  msg message of subscription
    */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -58,10 +56,9 @@ public class Subscription implements Command {
   }
 
   /**
-   * @fn EdgeResult subscribe(EdgeMessage msg)
-   * @brief subscribe with EdgeMessage
-   * @prarm [in] msg
-   * @return EdgeResult
+   * subscribe with EdgeMessage
+   * @param  msg EdgeMessage
+   * @return EdgeResult result of subscription
    */
   private EdgeResult subscribe(EdgeMessage msg) throws Exception {
     String serviceName = msg.getRequest().getEdgeNodeInfo().getValueAlias();

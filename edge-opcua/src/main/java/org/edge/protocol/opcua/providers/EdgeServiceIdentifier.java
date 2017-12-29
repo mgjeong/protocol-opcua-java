@@ -30,9 +30,8 @@ public enum EdgeServiceIdentifier {
   }
 
   /**
-   * @fn int value()
-   * @brief get value from the enum
-   * @return value
+   * get value from the enum
+   * @return key 
    */
   public int value() {
     return key;

@@ -30,11 +30,10 @@ public class EdgeBaseProvider {
   protected final EdgeGroupService groupService;
 
   /**
-   * @fn EdgeMethodProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse)
-   * @brief constructor for base provider for other provider such as EdgeMethodProvider,
+   * constructor for base provider for other provider such as EdgeMethodProvider,
    *        EdgeAttributeProvider
-   * @prarm [in] monitor EdgeMonitoredItemService instance
-   * @prarm [in] browse EdgeBrowseService instance
+   * @param  monitor EdgeMonitoredItemService instance
+   * @param  browse EdgeBrowseService instance
    * @return void
    */
   EdgeBaseProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse) {
@@ -44,10 +43,8 @@ public class EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeMethodProvider(EdgeGroupService group)
-   * @brief constructor for EdgeGroupService
-   * @prarm [in] group EdgeGroupService instance
-   * @return void
+   * constructor for EdgeGroupService
+   * @param  group EdgeGroupService instance
    */
   EdgeBaseProvider(EdgeGroupService group) {
     this.monitorService = null;
@@ -56,8 +53,7 @@ public class EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeMonitoredItemService getMonitoredItemService()
-   * @brief get MonitoredItemService instance
+   * get MonitoredItemService instance
    * @return MonitoredItemService instance
    */
   public EdgeMonitoredItemService getMonitoredItemService() {
@@ -65,8 +61,7 @@ public class EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeBrowseService getBrowseService()
-   * @brief get EdgeBrowseService instance
+   * get EdgeBrowseService instance
    * @return EdgeBrowseService instance
    */
   public EdgeBrowseService getBrowseService() {
@@ -74,8 +69,7 @@ public class EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeGroupService getGroupService()
-   * @brief get EdgeGroupService instance
+   * get EdgeGroupService instance
    * @return EdgeGroupService instance
    */
   public EdgeGroupService getGroupService() {

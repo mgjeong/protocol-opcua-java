@@ -44,17 +44,13 @@ public class EdgeMessage {
     private EdgeBrowseParameter browseMsg = null;
     private List<EdgeBrowseResult> browseResult = null;
 
-    /**
-     * @fn default Builder()
-     */
     public Builder(EdgeEndpointInfo endpointInfo) {
       this.endpointInfo = endpointInfo;
     }
 
     /**
-     * @fn Builder setRequest(EdgeRequest request)
-     * @brief set single request information
-     * @param [in] request send request
+     * set single request information
+     * @param  request send request
      * @return this
      */
     public Builder setRequest(EdgeRequest request) {
@@ -63,9 +59,8 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setRequests(List<EdgeRequest> requests)
-     * @brief set multiple request information ( Max Request Size is 10 in Browse )
-     * @param [in] requests send request list
+     * set multiple request information ( Max Request Size is 10 in Browse )
+     * @param  requests send request list
      * @return this
      */
     public Builder setRequests(List<EdgeRequest> requests) {
@@ -75,9 +70,8 @@ public class EdgeMessage {
 
 
     /**
-     * @fn Builder setBrowseReq(EdgeBrowseRequest req)
-     * @brief set browse message
-     * @param [in] browseMsg
+     * set browse message
+     * @param  req browseMsg
      * @return this
      */
     public Builder setBrowseParameter(EdgeBrowseParameter req) {
@@ -86,9 +80,8 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setBrowseResult(List<EdgeBrowseResult> browseResponses)
-     * @brief set browse result
-     * @param [in] browseResult
+     * set browse result
+     * @param  browseResult
      * @return this
      */
     public Builder setBrowseResult(List<EdgeBrowseResult> browseResult) {
@@ -97,9 +90,8 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setResponses(List<EdgeResponse> responses)
-     * @brief set multiple response information
-     * @param [in] responses received response information list
+     * set multiple response information
+     * @param  responses received response information list
      * @return this
      */
     public Builder setResponses(List<EdgeResponse> responses) {
@@ -108,9 +100,8 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setResult(EdgeResult result)
-     * @brief set result you can find detailed result data in EdgeStatusCode
-     * @param [in] responses received response information list
+     * set result you can find detailed result data in EdgeStatusCode
+     * @param  result edgeResult
      * @return this
      */
     public Builder setResult(EdgeResult result) {
@@ -119,10 +110,9 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setMessageType(EdgeMessageType type)
-     * @brief set message type it appears that message type such as single request, multiple
+     * set message type it appears that message type such as single request, multiple
      *        request, response message, event message, etc
-     * @param [in] type message type
+     * @param  type message type
      * @return this
      */
     public Builder setMessageType(EdgeMessageType type) {
@@ -131,10 +121,9 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn Builder setCommand(String cmd)
-     * @brief set command(operation) you can find detailed command information as CMD_XXX in
+     * set command(operation) you can find detailed command information as CMD_XXX in
      *        EdgeOpcUaCommon enum class
-     * @param [in] cmd command
+     * @param  cmd command
      * @return this
      */
     public Builder setCommand(EdgeCommandType cmd) {
@@ -143,8 +132,7 @@ public class EdgeMessage {
     }
 
     /**
-     * @fn EdgeMessage build()
-     * @brief EdgeMesssage instance creator
+     * EdgeMesssage instance creator
      * @return EdgeMessage instance
      */
     public EdgeMessage build() {
@@ -153,9 +141,8 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeMessage(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeMessage Builder
+   * constructor
+   * @param  builder EdgeMessage Builder
    */
   private EdgeMessage(Builder builder) {
     request = builder.request;
@@ -170,8 +157,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeRequest getRequest()
-   * @brief get request
+   * get request
    * @return single request
    */
   public EdgeRequest getRequest() {
@@ -179,8 +165,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn List<EdgeRequest> getRequests()
-   * @brief get request list
+   * get request list
    * @return multiple request
    */
   public List<EdgeRequest> getRequests() {
@@ -188,8 +173,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn List<EdgeResponse> getResponses()
-   * @brief get response list
+   * get response list
    * @return multiple response
    */
   public List<EdgeResponse> getResponses() {
@@ -197,8 +181,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeBrowseRequest getBrowseMsg()
-   * @brief get browse configuration
+   * get browse configuration
    * @return configuration
    */
   public EdgeBrowseParameter getBrowseParameter() {
@@ -206,8 +189,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn List<EdgeBrowseResult> getBrowseResults()
-   * @brief get browse results
+   * get browse results
    * @return browse results
    */
   public List<EdgeBrowseResult> getBrowseResults() {
@@ -215,8 +197,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeMessageType getMessageType()
-   * @brief get message type it can be found in EdgeMessageType
+   * get message type it can be found in EdgeMessageType
    * @return message type
    */
   public EdgeMessageType getMessageType() {
@@ -224,8 +205,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn String getCommand()
-   * @brief get message type it can be found in CMD_XXX of EdgeOpcUaCommon
+   * get message type it can be found in CMD_XXX of EdgeOpcUaCommon
    * @return command string
    */
   public EdgeCommandType getCommand() {
@@ -233,8 +213,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeEndpointInfo getEdgeEndpointInfo()
-   * @brief get endpointInfo
+   * get endpointInfo
    * @return endpointInfo
    */
   public EdgeEndpointInfo getEdgeEndpointInfo() {
@@ -242,8 +221,7 @@ public class EdgeMessage {
   }
 
   /**
-   * @fn EdgeResult getResult()
-   * @brief get result you can find detailed result as status code in EdgeStatusCode
+   * get result you can find detailed result as status code in EdgeStatusCode
    * @return result
    */
   public EdgeResult getResult() {

@@ -40,11 +40,9 @@ public class Write implements Command {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] future
-   * @prarm [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  future
+   * @param  msg
    */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -57,9 +55,8 @@ public class Write implements Command {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write with EdgeMessage
-   * @prarm [in] msg
+   * write with EdgeMessage
+   * @param  msg
    * @return EdgeResult
    */
   private EdgeResult write(EdgeMessage msg) throws Exception {
@@ -82,7 +79,6 @@ public class Write implements Command {
     try {
       ret = service.write(msg);
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
       ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),

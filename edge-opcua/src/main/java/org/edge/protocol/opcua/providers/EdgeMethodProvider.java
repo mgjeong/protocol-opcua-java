@@ -30,11 +30,9 @@ public class EdgeMethodProvider extends EdgeBaseProvider {
   private Map<String, EdgeMethodService> methodServices;
 
   /**
-   * @fn EdgeMethodProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse)
-   * @brief constructor
-   * @prarm [in] monitor EdgeMonitoredItemService instance
-   * @prarm [in] browse EdgeBrowseService instance
-   * @return void
+   * constructor
+   * @param  monitor EdgeMonitoredItemService instance
+   * @param  browse EdgeBrowseService instance
    */
   public EdgeMethodProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse) {
     super(monitor, browse);
@@ -42,11 +40,9 @@ public class EdgeMethodProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeMethodProvider registerMethodService(String name, EdgeMethodService method)
-   * @brief register Method Service
-   * @prarm [in] name provider key value
-   * @param [in] method EdgeMethodService instance
-   * @return void
+   * register Method Service
+   * @param  name provider key value
+   * @param  method EdgeMethodService instance
    */
   public EdgeMethodProvider registerMethodService(String name, EdgeMethodService method) {
     if (methodServices == null)
@@ -56,9 +52,8 @@ public class EdgeMethodProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeMethodService getMethodService(String name)
-   * @brief get EdgeMethodService instance
-   * @prarm [in] name provider key value
+   * get EdgeMethodService instance
+   * @param  name provider key value
    * @return EdgeMethodService instance
    */
   public EdgeMethodService getMethodService(String name) {

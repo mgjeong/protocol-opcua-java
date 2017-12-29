@@ -51,10 +51,10 @@ public class EdgeNodeItem {
     }
 
     /**
-     * @fn Builder setEdgeNodeType(EdgeIdentifier nodeType)
-     * @brief set setEdgeNodeType
-     * @param [in] nodeType such as VARIABLE_NODE, VARIABLE_TYPE_NODE, METHOD_NODE, OBJECT_NODE,
+     * set setEdgeNodeType
+     * @param  nodeType such as VARIABLE_NODE, VARIABLE_TYPE_NODE, METHOD_NODE, OBJECT_NODE,
      *        ARRAY_NODE, OBJECT_TYPE_NODE, REFERENCE_TYPE_NODE, VIEW_NODE, DATA_TYPE_NODE
+     * @return Builder
      */
     public Builder setEdgeNodeType(EdgeIdentifier nodeType) {
       this.nodeType = nodeType;
@@ -62,9 +62,9 @@ public class EdgeNodeItem {
     }
 
     /**
-     * @fn Builder setDataAccessNodeId(EdgeNodeIdentifier id)
-     * @brief set Node Identifier - this function is available in Data Access Node
-     * @param [in] id EdgeNodeIdentifier related Data Access
+     * set Node Identifier - this function is available in Data Access Node
+     * @param  id EdgeNodeIdentifier related Data Access
+     * @return Builder
      */
     public Builder setDataAccessNodeId(EdgeNodeIdentifier id) {
       this.daNodeIdentifier = id;
@@ -72,10 +72,10 @@ public class EdgeNodeItem {
     }
 
     /**
-     * @fn Builder setVariableItemSet(Object[][] nodeSet)
-     * @brief set Parameter related Variable type such as VARIABLE_NODE, VARIABLE_TYPE_NODE,
+     * set Parameter related Variable type such as VARIABLE_NODE, VARIABLE_TYPE_NODE,
      *        ARRAY_NODE, other type will be ignored.
-     * @param [in] variableItems object set related variable (please refer EdgeSampleCommon.java)
+     * @param  variableItems object set related variable (please refer EdgeSampleCommon.java)
+     * @return Builder
      */
     public Builder setVariableItemSet(Object[][] variableItems) {
       this.variableItemSet = variableItems;
@@ -103,9 +103,9 @@ public class EdgeNodeItem {
     }
 
     /**
-     * @fn Builder setForward()
-     * @brief set Forward(reference direction) default detection is forward
-     * @param [in] forward
+     * set Forward(reference direction) default detection is forward
+     * @param  forward flag of forward or not
+     * @return Builder
      */
     public Builder setForward(boolean forward) {
       this.forward = forward;
@@ -113,10 +113,10 @@ public class EdgeNodeItem {
     }
 
     /**
-     * @fn Builder setSourceNode(EdgeNodeId targetNodeId
-     * @brief set source node which has HasComponent. this component will be Target Node if there is
+     * set source node which has HasComponent. this component will be Target Node if there is
      *        no set in EdgeNodeItem. source node will be root node.
-     * @param [in] forward
+     * @param  nodeId source nodeId
+     * @return Builder
      */
     public Builder setSourceNode(EdgeNodeId nodeId) {
       this.sourceNodeId = nodeId;
@@ -142,8 +142,7 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn String getBrowseName()
-   * @brief get nodeName
+   * get nodeName
    * @return nodeName
    */
   public String getBrowseName() {
@@ -151,27 +150,24 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn EdgeIdentifier getEdgeNodeType()
-   * @brief get EdgeNodeType such as VARIABLE_NODE, VARIABLE_TYPE_NODE, METHOD_NODE, OBJECT_NODE,
+   * get EdgeNodeType such as VARIABLE_NODE, VARIABLE_TYPE_NODE, METHOD_NODE, OBJECT_NODE,
    *        ARRAY_NODE, OBJECT_TYPE_NODE, REFERENCE_TYPE_NODE, VIEW_NODE, DATA_TYPE_NODE
-   * @return nodeType
+   * @return EdgeIdentifier nodeType
    */
   public EdgeIdentifier getEdgeNodeType() {
     return nodeType;
   }
 
   /**
-   * @fn EdgeNodeIdentifier getDataAccessNodeId()
-   * @brief get Node Identifier - this function is available in Data Access Node
-   * @return daNodeIdentifier
+   * get Node Identifier - this function is available in Data Access Node
+   * @return EdgeNodeIdentifier data node
    */
   public EdgeNodeIdentifier getDataAccessNodeId() {
     return daNodeIdentifier;
   }
 
   /**
-   * @fn Object[][] getVariableItemSet()
-   * @brief get AccessLevel
+   * get AccessLevel
    * @return accessLevel
    */
   public Object[][] getVariableItemSet() {
@@ -179,8 +175,7 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn int getAccessLevel()
-   * @brief get AccessLevel
+   * get AccessLevel
    * @return accessLevel
    */
   public int getAccessLevel() {
@@ -188,8 +183,7 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn int getUserAccessLevel()
-   * @brief get UserAccessLevel
+   * get UserAccessLevel
    * @return userAccessLevel
    */
   public int getUserAccessLevel() {
@@ -197,8 +191,7 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn int getWriteMask()
-   * @brief get WriteMask
+   * get WriteMask
    * @return writeMask
    */
   public int getWriteMask() {
@@ -206,8 +199,7 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn int getUserWriteMask()
-   * @brief get UserWriteMask
+   * get UserWriteMask
    * @return userWriteMask
    */
   public int getUserWriteMask() {
@@ -215,18 +207,16 @@ public class EdgeNodeItem {
   }
 
   /**
-   * @fn int getForward()
-   * @brief get Forward(reference direction) default detection is forward
-   * @return forward
+   * get Forward(reference direction) default detection is forward
+   * @return boolean forward
    */
   public boolean getForward() {
     return forward;
   }
 
   /**
-   * @fn EdgeNodeId getSourceNode()
-   * @brief get Source NodeId
-   * @return sourceNodeId
+   * get Source NodeId
+   * @return EdgeNodeId sourceNodeId
    */
   public EdgeNodeId getSourceNode() {
     return sourceNodeId;

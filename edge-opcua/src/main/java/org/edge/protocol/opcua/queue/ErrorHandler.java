@@ -36,8 +36,7 @@ public class ErrorHandler {
   private static ErrorHandler errorHandler;
 
   /**
-   * @fn ErrorHandler getInstance()
-   * @brief get error handler instance
+   * get error handler instance
    * @return error handler instance
    */
   public static ErrorHandler getInstance() {
@@ -50,13 +49,11 @@ public class ErrorHandler {
   }
 
   /**
-   * @fn void addErrorMessage(EdgeEndpoint ep, EdgeResult ret, EdgeVersatility value)
-   * @brief add error message into receive queue
-   * @prarm [in] epInfo endpoint
-   * @prarm [in] nodeInfo node Information
-   * @param [in] ret error result
-   * @param [in] value reason
-   * @return void
+   * add error message into receive queue
+   * @param  epInfo endpoint
+   * @param  nodeInfo node Information
+   * @param  ret error result
+   * @param  value reason
    */
   public void addErrorMessage(EdgeEndpointInfo epInfo, EdgeNodeInfo nodeInfo, EdgeResult ret,
       EdgeVersatility value, int requestId) {
@@ -70,12 +67,10 @@ public class ErrorHandler {
   }
 
   /**
-   * @fn void addErrorMessage(EdgeEndpoint ep, EdgeResult ret)
-   * @brief add error message without no reason into receive queue
-   * @prarm [in] epInfo endpoint
-   * @prarm [in] nodeInfo node Information
-   * @param [in] ret error result
-   * @return void
+   * add error message without no reason into receive queue
+   * @param  epInfo endpoint
+   * @param  nodeInfo node Information
+   * @param  ret error result
    */
   public void addErrorMessage(EdgeEndpointInfo epInfo, EdgeNodeInfo nodeInfo, EdgeResult ret,
       int requestId) {
@@ -87,12 +82,10 @@ public class ErrorHandler {
   }
 
   /**
-   * @fn void addErrorMessage(EdgeEndpoint ep, EdgeResult ret, int requestId)
-   * @brief add error message without no reason into receive queue
-   * @prarm [in] nodeInfo node Information
-   * @param [in] ret error result
-   * @param [in] requestId request ID
-   * @return void
+   * add error message without no reason into receive queue
+   * @param  nodeInfo node Information
+   * @param  ret error result
+   * @param  requestId request ID
    */
   public void addErrorMessage(EdgeNodeInfo nodeInfo, EdgeResult ret, int requestId) {
     logger.debug("message={} provider={}", ret.getStatusCode(),
@@ -105,11 +98,9 @@ public class ErrorHandler {
   }
 
   /**
-   * @fn void addErrorMessage(EdgeResult ret, int requestId)
-   * @brief add error message without no reason into receive queue
-   * @param [in] ret error result
-   * @param [in] requestId request ID
-   * @return void
+   * add error message without no reason into receive queue
+   * @param  ret error result
+   * @param  requestId request ID
    */
   public void addErrorMessage(EdgeResult ret, int requestId) {
     logger.debug("message={} provider={}", ret.getStatusCode());
@@ -121,13 +112,10 @@ public class ErrorHandler {
   }
 
   /**
-   * @fn void addErrorMessage(EdgeNodeInfo nodeInfo, EdgeResult ret, EdgeVersatility value, int
-   *     requestId)
-   * @brief add error message into receive queue
-   * @prarm [in] nodeInfo node Information
-   * @param [in] ret error result
-   * @param [in] value reason
-   * @return void
+   * add error message into receive queue
+   * @param  nodeInfo node Information
+   * @param  ret error result
+   * @param  value reason
    */
   public void addErrorMessage(EdgeNodeInfo nodeInfo, EdgeResult ret, EdgeVersatility value,
       int requestId) {

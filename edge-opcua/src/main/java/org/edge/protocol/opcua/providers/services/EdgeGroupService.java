@@ -18,7 +18,6 @@
 
 package org.edge.protocol.opcua.providers.services;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +59,7 @@ public class EdgeGroupService implements EdgeAttributeService {
   private double maxAge = 0.0;
 
   /**
-   * @fn EdgeGroupService getInstance()
-   * @brief get EdgeGroupService Instance
+   * get EdgeGroupService Instance
    * @return EdgeGroupService Instance
    */
   public static EdgeGroupService getInstance() {
@@ -96,9 +94,8 @@ public class EdgeGroupService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeMessage msg)
-   * @brief read async data for requests
-   * @param [IN] msg edge message set
+   * read async data for requests
+   * @param  msg edge message set
    * @return result
    */
   @Override
@@ -177,9 +174,8 @@ public class EdgeGroupService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write data for several nodes.
-   * @param [IN] msg edge message set
+   * write data for several nodes.
+   * @param  msg edge message set
    * @return result
    */
   @Override
@@ -245,35 +241,30 @@ public class EdgeGroupService implements EdgeAttributeService {
 
   @Override
   public EdgeNodeIdentifier getNodeType() throws Exception {
-    // TODO Auto-generated method stub
     logger.info("not support");
     return null;
   }
 
   @Override
   public void setProperty(VariableNode node) throws Exception {
-    // TODO Auto-generated method stub
     logger.info("not support");
 
   }
 
   @Override
   public EdgeMapper getMapper() {
-    // TODO Auto-generated method stub
     logger.info("not support");
     return null;
   }
 
   @Override
   public NodeId getNodeId() {
-    // TODO Auto-generated method stub
     logger.info("not support");
     return null;
   }
 
   @Override
   public EdgeNodeInfo getNodeInfo(String valueAilas) {
-    // TODO Auto-generated method stub
     return null;
   }
 

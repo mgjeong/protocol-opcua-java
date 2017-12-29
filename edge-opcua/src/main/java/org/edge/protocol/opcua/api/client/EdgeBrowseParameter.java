@@ -34,9 +34,8 @@ public class EdgeBrowseParameter {
     public Builder() {}
 
     /**
-     * @fn Builder setDirection(int direction)
-     * @brief set browsing direction
-     * @param [in] direction direction information
+     * set browsing direction
+     * @param  direction direction information
      * @return this
      */
     public Builder setDirection(int direction) {
@@ -45,9 +44,8 @@ public class EdgeBrowseParameter {
     }
 
     /**
-     * @fn Builder setMaxReferencesPerNode(int maxReferencesPerNode)
-     * @brief set MaxReferencesPerNode
-     * @param [in] maxReferencesPerNode
+     * set MaxReferencesPerNode
+     * @param  maxReferencesPerNode The maximum value a node can have reference
      * @return this
      */
     public Builder setMaxReferencesPerNode(int maxReferencesPerNode) {
@@ -56,8 +54,7 @@ public class EdgeBrowseParameter {
     }
 
     /**
-     * @fn EdgeBrowseParameter build()
-     * @brief create EdgeBrowseParameter instance (builder)
+     * create EdgeBrowseParameter instance (builder)
      * @return EdgeBrowseParameter instance
      */
     public EdgeBrowseParameter build() {
@@ -66,9 +63,8 @@ public class EdgeBrowseParameter {
   }
 
   /**
-   * @fn EdgeBrowseParameter(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeBrowseParameter Builder
+   * constructor
+   * @param  builder EdgeBrowseParameter Builder
    */
   private EdgeBrowseParameter(Builder builder) {
     direction = builder.direction;
@@ -76,8 +72,7 @@ public class EdgeBrowseParameter {
   }
 
   /**
-   * @fn int getDirection()
-   * @brief get direction
+   * get direction
    * @return direction
    */
   public int getDirection() {
@@ -85,8 +80,7 @@ public class EdgeBrowseParameter {
   }
 
   /**
-   * @fn int getMaxReferenceValue()
-   * @brief get maxReferencesPer
+   * get maxReferencesPer
    * @return maxReferencesPerNode
    */
   public int getMaxReferenceValue() {
@@ -94,8 +88,7 @@ public class EdgeBrowseParameter {
   }
 
   /**
-   * @fn boolean isMaxReferenceValue()
-   * @brief get maxReferencesPerFlag
+   * get maxReferencesPerFlag
    * @return true or false
    */
   public boolean isMaxReferenceValue() {

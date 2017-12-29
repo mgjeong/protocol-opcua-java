@@ -43,9 +43,8 @@ public class EdgeResult {
     }
 
     /**
-     * @fn Builder setEndpoint(EdgeEndpoint endpoint)
-     * @brief set endpoint
-     * @param [in] endpoint
+     * set endpoint
+     * @param  endpoint
      * @return Builder
      */
     public Builder setEndpoint(EdgeNodeInfo endpoint) {
@@ -54,8 +53,7 @@ public class EdgeResult {
     }
 
     /**
-     * @fn EdgeResult build()
-     * @brief Build EdgeResult
+     * Build EdgeResult
      * @return EdgeResult
      */
     public EdgeResult build() {
@@ -73,8 +71,7 @@ public class EdgeResult {
   }
 
   /**
-   * @fn EdgeStatusCode getStatusCode()
-   * @brief Get EdgeStatusCode
+   * Get EdgeStatusCode
    * @return EdgeStatusCode
    */
   public EdgeStatusCode getStatusCode() {
@@ -82,8 +79,7 @@ public class EdgeResult {
   }
 
   /**
-   * @fn EdgeEndpoint getEndpoint()
-   * @brief Get EdgeEndpoint
+   * Get EdgeEndpoint
    * @return EdgeEndpoint
    */
   public EdgeNodeInfo getEndpoint() {

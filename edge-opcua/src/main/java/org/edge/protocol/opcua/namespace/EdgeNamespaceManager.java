@@ -41,8 +41,7 @@ public class EdgeNamespaceManager {
   private EdgeNamespaceManager() {}
 
   /**
-   * @fn EdgeNamespaceManager getInstance()
-   * @brief get EdgeNamespaceManager Instance
+   * get EdgeNamespaceManager Instance
    * @return EdgeNamespaceManager Instance
    */
   public static EdgeNamespaceManager getInstance() {
@@ -55,9 +54,7 @@ public class EdgeNamespaceManager {
   }
 
   /**
-   * @fn void close()
-   * @brief close EdgeNamespaceManager Instance
-   * @return void
+   * close EdgeNamespaceManager Instance
    */
   public void close() {
     namespaceMap.clear();
@@ -65,11 +62,9 @@ public class EdgeNamespaceManager {
   }
 
   /**
-   * @fn void addNamespace(String id, EdgeNamespace value)
-   * @brief add namespace into namespaceMap to manage namespaces
-   * @param [in] id namespace id
-   * @param [in] value namespace instance
-   * @return void
+   * add namespace into namespaceMap to manage namespaces
+   * @param  id namespace id
+   * @param  value namespace instance
    */
   public void addNamespace(String id, EdgeNamespace value) throws Exception {
     if (false == namespaceMap.containsKey(id)) {
@@ -78,9 +73,8 @@ public class EdgeNamespaceManager {
   }
 
   /**
-   * @fn EdgeNamespace getNamespace(String id)
-   * @brief get namespace
-   * @param [in] id namespace id
+   * get namespace
+   * @param  id namespace id
    * @return EdgeNamespace instance
    */
   public EdgeNamespace getNamespace(String id) {
@@ -88,9 +82,8 @@ public class EdgeNamespaceManager {
   }
 
   /**
-   * @fn List<EdgeNodeId> getNodes(OpcUaServer server)
-   * @brief get nodes from node manager
-   * @param [in] server server context
+   * get nodes from node manager
+   * @param  server server context
    * @return EdgeNodeId list
    */
   public List<EdgeNodeId> getNodes(OpcUaServer server) {
@@ -106,10 +99,9 @@ public class EdgeNamespaceManager {
   }
 
   /**
-   * @fn List<EdgeNodeId> getNodes(OpcUaServer server)
-   * @brief get nodes from node manager
-   * @param [in] server server context
-   * @param [in] browseName browse name
+   * get nodes from node manager
+   * @param  server server context
+   * @param  browseName browse name
    * @return EdgeNodeId list
    */
   public List<EdgeNodeId> getNodes(OpcUaServer server, String browseName) {

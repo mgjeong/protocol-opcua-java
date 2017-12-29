@@ -40,8 +40,7 @@ public class EdgeSessionManager {
   private EdgeSessionManager() {}
 
   /**
-   * @fn EdgeSessionManager getInstance()
-   * @brief get session manager instance
+   * get session manager instance
    * @return EdgeSessionManager instance
    */
   public static EdgeSessionManager getInstance() {
@@ -54,19 +53,15 @@ public class EdgeSessionManager {
   }
 
   /**
-   * @fn void close()
-   * @brief close session manager instance
-   * @return void
+   * close session manager instance
    */
   public void close() {
     session = null;
   }
 
   /**
-   * @fn void configure(EdgeEndpointInfo ep)
-   * @brief insert EdgeOpcUaClient instance with endpoint uri(key)
-   * @param [in] ep EdgeEndpoint which has configuration information
-   * @return void
+   * insert EdgeOpcUaClient instance with endpoint uri(key)
+   * @param  ep EdgeEndpoint which has configuration information
    */
   public void configure(EdgeEndpointInfo ep) throws Exception {
     if (false == sessionMap.containsKey(ep.getEndpointUri())) {
@@ -75,10 +70,8 @@ public class EdgeSessionManager {
   }
 
   /**
-   * @fn void connect(String endpoint)
-   * @brief connect to endpoint (endpoint should be contained in sessionMap)
-   * @param [in] endpoint endpoint uri
-   * @return void
+   * connect to endpoint (endpoint should be contained in sessionMap)
+   * @param  endpoint endpoint uri
    */
   public void connect(String endpoint, CompletableFuture<String> future) {
     EdgeOpcUaClient client = sessionMap.getNode(endpoint).get();
@@ -92,10 +85,8 @@ public class EdgeSessionManager {
   }
 
   /**
-   * @fn void disconnect(String endpoint)
-   * @brief disconnect to endpoint (endpoint should be contained in sessionMap)
-   * @param [in] endpoint endpoint uri
-   * @return void
+   * disconnect to endpoint (endpoint should be contained in sessionMap)
+   * @param  endpoint endpoint uri
    */
   public void disconnect(String endpoint) {
     EdgeOpcUaClient client = sessionMap.getNode(endpoint).get();
@@ -103,15 +94,13 @@ public class EdgeSessionManager {
     try {
       client.disconnect();
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
 
   /**
-   * @fn EdgeOpcUaClient getSession(String endpoint)
-   * @brief get EdgeOpcUaClient instance from sessionMap
-   * @param [in] endpoint endpoint uri
+   * get EdgeOpcUaClient instance from sessionMap
+   * @param  endpoint endpoint uri
    * @return EdgeOpcUaClient instance
    */
   public EdgeOpcUaClient getSession(String endpoint) {
@@ -123,10 +112,9 @@ public class EdgeSessionManager {
 
 
   /**
-   * @fn ArrayList<EdgeEndpointInfo> getEndpoints(String endpointUri) throws Exception
-   * @brief get endpoint list from server
-   * @param [in] endpointUri target endpoint uri (e.g. opc.tcp://localhost:12686/edge-opc-server)
-   * @return The list of EdgeEndpoint
+   * get endpoint list from server
+   * @param  msg
+   * @return The list of EdgeEndpoint(include endpointUri target endpoint uri (e.g. opc.tcp://localhost:12686/edge-opc-server)
    */
   public ArrayList<EdgeEndpointInfo> getEndpoints(EdgeMessage msg) throws Exception {
     String endpointUri = msg.getEdgeEndpointInfo().getEndpointUri();

@@ -48,15 +48,13 @@ public class EdgeDiagnosticInfo {
     }
 
     /**
-     * @fn Builder(int symbolicId, int localizedText, String additionalInfo, StatusCode
-     *     innerStatusCode, DiagnosticInfo innerDiagnostics)
-     * @brief set builder
-     * @param [in] symbolicId symbolic id
-     * @param [in] localizedText localized Text
-     * @param [in] additionalInfo additional Information
-     * @param [in] innerStatusCode innerStatusCode
-     * @param [in] innerDiagnostics innerDiagnostics
-     * @return this
+     * set builder
+     * @param  symbolicId symbolic id
+     * @param  localizedText localized Text
+     * @param  additionalInfo additional Information
+     * @param  innerStatusCode innerStatusCode
+     * @param  innerDiagnostics innerDiagnostics
+     * @return Builder
      */
     public Builder(int symbolicId, int localizedText, String additionalInfo,
         StatusCode innerStatusCode, DiagnosticInfo innerDiagnostics) {
@@ -68,10 +66,9 @@ public class EdgeDiagnosticInfo {
     }
 
     /**
-     * @fn Builder setMessage(String msg)
-     * @brief set string message
-     * @param [in] msg message
-     * @return this
+     * set string message
+     * @param  msg message
+     * @return Builder
      */
     public Builder setMessage(String msg) {
       this.msg = msg;
@@ -79,8 +76,7 @@ public class EdgeDiagnosticInfo {
     }
 
     /**
-     * @fn EdgeDiagnosticInfo build()
-     * @brief create EdgeDiagnosticInfo instance (builder)
+     * create EdgeDiagnosticInfo instance (builder)
      * @return EdgeDiagnosticInfo instance
      */
     public EdgeDiagnosticInfo build() {
@@ -89,9 +85,8 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn EdgeDiagnosticInfo(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeDiagnosticInfo Builder
+   * constructor
+   * @param  builder EdgeDiagnosticInfo Builder
    */
   private EdgeDiagnosticInfo(Builder builder) {
     symbolicId = builder.symbolicId;
@@ -104,8 +99,7 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn int getSymbolicId()
-   * @brief get symbolic Id
+   * get symbolic Id
    * @return symbolicId
    */
   public int getSymbolicId() {
@@ -113,8 +107,7 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn int getLocalizedText()
-   * @brief get localized text
+   * get localized text
    * @return localizedText
    */
   public int getLocalizedText() {
@@ -122,8 +115,7 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn String getAdditionalInfo()
-   * @brief get additional information
+   * get additional information
    * @return additionalInfo
    */
   public String getAdditionalInfo() {
@@ -131,8 +123,7 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn StatusCode getInnerStatusCode()
-   * @brief get inner StatusCode
+   * get inner StatusCode
    * @return innerStatusCode
    */
   public StatusCode getInnerStatusCode() {
@@ -140,8 +131,7 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn DiagnosticInfo gettInnerDiagnosticInfo()
-   * @brief get inner diagnostics
+   * get inner diagnostics
    * @return innerDiagnostics
    */
   public DiagnosticInfo gettInnerDiagnosticInfo() {
@@ -149,9 +139,8 @@ public class EdgeDiagnosticInfo {
   }
 
   /**
-   * @fn String getMsg()
-   * @brief get detailed message
-   * @return msg
+   * get detailed message
+   * @return message
    */
   public String getMsg() {
     return msg;

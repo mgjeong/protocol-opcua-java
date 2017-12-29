@@ -63,9 +63,8 @@ public class EdgeServerService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
+   * @param  valueAilas service provider key
    * @return EdgeNodeInfo
    */
   @Override
@@ -77,16 +76,14 @@ public class EdgeServerService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readSync(EdgeEndpoint ep)
-   * @brief read data from target Node in server (sync method) and response will be checked in
+   * read data from target Node in server (sync method) and response will be checked in
    *        onResonseMessage Callback with EdgeMessageType.SERVER_INFO and error message will be
    *        checked in onErrorMessage Callback.
-   * @prarm [in] ep target endpoint
-   * @return result
+   * @param  msg message
+   * @return result of read request
    */
   @Override
   public EdgeResult readSync(EdgeMessage msg) throws Exception {
-    // TODO Auto-generated method stub
     EdgeNodeInfo ep = msg.getRequest().getEdgeNodeInfo();
     logger.info("ReadServerState(id={})", new NodeId(ep.getEdgeNodeID().getNameSpace(),
         ep.getEdgeNodeID().getEdgeNodeIdentifier().value()));
@@ -131,37 +128,32 @@ public class EdgeServerService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief it is not supported
-   * @prarm [in] msg write value
+   * it is not supported
+   * @param  msg write value
    * @return result
    */
   @Override
   public EdgeResult write(EdgeMessage msg) throws Exception {
-    // TODO Auto-generated method stub
     return new EdgeResult.Builder(EdgeStatusCode.STATUS_OK).build();
   }
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get edge service type related attribute service. Node Type is including
+   * get edge service type related attribute service. Node Type is including
    *        Edge_Node_Class_Type, Edge_Node_ServerInfo_Type, Edge_Node_Custom_Type in
    *        EdgeNodeIdentifier
    * @return service node type (EdgeNodeIdentifier.Edge_Node_ServerInfo_Type)
    */
   @Override
   public EdgeNodeIdentifier getNodeType() throws Exception {
-    // TODO Auto-generated method stub
     return EdgeNodeIdentifier.Edge_Node_ServerInfo_Type;
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeEndpoint ep)
-   * @brief read data from target Node in server (async method) this function is worked on single
+   * read data from target Node in server (async method) this function is worked on single
    *        target node. multi access is supported on EdgeGroupService. and response will be checked
    *        in onResonseMessage Callback with EdgeMessageType.SERVER_INFO and error message will be
    *        checked in onErrorMessage Callback.
-   * @prarm [in] ep target endpoint
+   * @param  msg message
    * @return result
    */
   @Override
@@ -201,8 +193,7 @@ public class EdgeServerService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeMapper getMapper()
-   * @brief get mapper instance this function is provided metadata such as access-level, data-type.
+   * get mapper instance this function is provided metadata such as access-level, data-type.
    * @return mapper instance
    */
   public EdgeMapper getMapper() {
@@ -223,9 +214,8 @@ public class EdgeServerService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void setProperty(VariableNode v)
-   * @brief set Property Data for Mapper
-   * @return void
+   * set Property Data for Mapper
+   * @param v a node for which user wan to set property
    */
   @Override
   public void setProperty(VariableNode v) throws Exception {
@@ -237,7 +227,6 @@ public class EdgeServerService implements EdgeAttributeService {
 
   @Override
   public NodeId getNodeId() {
-    // TODO Auto-generated method stub
     return null;
   }
 }

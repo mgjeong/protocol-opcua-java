@@ -71,8 +71,7 @@ public class EdgeDataAccessLoader {
   private EdgeDataAccessLoader() {}
 
   /**
-   * @fn EdgeDataAccessLoader getInstance()
-   * @brief get EdgeDataAccessLoader Instance
+   * get EdgeDataAccessLoader Instance
    * @return EdgeDataAccessLoader Instance
    */
   public static EdgeDataAccessLoader getInstance() {
@@ -85,9 +84,7 @@ public class EdgeDataAccessLoader {
   }
 
   /**
-   * @fn void close()
-   * @brief close EdgeDataAccessLoader Instance
-   * @return void
+   * close EdgeDataAccessLoader Instance
    */
   public void close() {
     loader = null;
@@ -419,12 +416,10 @@ public class EdgeDataAccessLoader {
   }
 
   /**
-   * @fn void buildNodes(ServerNodeMap nodeMap, UaVariableNode node, EdgeNodeItem item)
-   * @brief load data access types to make simple server node
-   * @param [in] nodeMap ServerNodeMap
-   * @param [in] node UaVariableNode
-   * @param [in] item EdgeNodeItem
-   * @return void
+   * load data access types to make simple server node
+   * @param  nodeMap ServerNodeMap
+   * @param  node UaVariableNode
+   * @param  item EdgeNodeItem
    */
   public void buildNodes(ServerNodeMap nodeMap, UaVariableNode node, EdgeNodeItem item) {
     EdgeNodeIdentifier type = item.getDataAccessNodeId();

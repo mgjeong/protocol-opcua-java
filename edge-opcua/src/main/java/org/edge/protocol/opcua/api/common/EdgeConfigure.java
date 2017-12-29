@@ -37,9 +37,8 @@ public class EdgeConfigure {
     }
 
     /**
-     * @fn Builder setRecvCallback(ReceivedMessageCallback cb)
-     * @brief set ReceivedMessageCallback
-     * @param [in] cb callback
+     * set ReceivedMessageCallback
+     * @param  cb callback
      * @return this
      */
     public Builder setRecvCallback(ReceivedMessageCallback cb) {
@@ -48,9 +47,8 @@ public class EdgeConfigure {
     }
 
     /**
-     * @fn Builder setStatusCallback(StatusCallback cb)
-     * @brief set StatusCallback
-     * @param [in] cb callback
+     * set StatusCallback
+     * @param  cb callback
      * @return this
      */
     public Builder setStatusCallback(StatusCallback cb) {
@@ -59,9 +57,8 @@ public class EdgeConfigure {
     }
 
     /**
-     * @fn Builder setDiscoveryCallback(DiscoveryCallback cb)
-     * @brief set DiscoveryCallback
-     * @param [in] cb callback
+     * set DiscoveryCallback
+     * @param  cb callback
      * @return this
      */
     public Builder setDiscoveryCallback(DiscoveryCallback cb) {
@@ -70,8 +67,7 @@ public class EdgeConfigure {
     }
 
     /**
-     * @fn EdgeConfigure build()
-     * @brief create EdgeConfigure instance (builder)
+     * create EdgeConfigure instance (builder)
      * @return EdgeConfigure instance
      */
     public EdgeConfigure build() {
@@ -80,9 +76,8 @@ public class EdgeConfigure {
   }
 
   /**
-   * @fn EdgeConfigure(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeConfigure Builder
+   * constructor
+   * @param  builder EdgeConfigure Builder
    */
   private EdgeConfigure(Builder builder) {
     recvCallback = builder.recvCallback;
@@ -91,8 +86,7 @@ public class EdgeConfigure {
   }
 
   /**
-   * @fn ReceivedMessageCallback getRecvCallback()
-   * @brief get receiveCallback
+   * get receiveCallback
    * @return recvCallback
    */
   public ReceivedMessageCallback getRecvCallback() {
@@ -100,8 +94,7 @@ public class EdgeConfigure {
   }
 
   /**
-   * @fn StatusCallback getStatusCallback()
-   * @brief get statusCallback
+   * get statusCallback
    * @return statusCallback
    */
   public StatusCallback getStatusCallback() {
@@ -109,8 +102,7 @@ public class EdgeConfigure {
   }
 
   /**
-   * @fn DiscoveryCallback getDiscoveryCallback()
-   * @brief get discoveryCallback
+   * get discoveryCallback
    * @return discoveryCallback
    */
   public DiscoveryCallback getDiscoveryCallback() {

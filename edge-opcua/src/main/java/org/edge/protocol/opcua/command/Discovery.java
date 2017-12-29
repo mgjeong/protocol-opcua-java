@@ -31,11 +31,9 @@ import org.edge.protocol.opcua.api.common.EdgeStatusCode;
 public class Discovery implements Command {
 
    /**
-    * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-    * @brief excute with EdgeMessage
-    * @prarm [in] future
-    * @prarm [in] msg
-    * @return void
+    * execute with EdgeMessage
+    * @param  future result of execution
+    * @param  msg message of discovery
     */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -48,9 +46,8 @@ public class Discovery implements Command {
   }
 
   /**
-   * @fn EdgeResult discovery(EdgeMessage msg)
-   * @brief discovery with EdgeMessage
-   * @prarm [in] msg
+   * discovery with EdgeMessage
+   * @param  msg EdgeMessage
    * @return EdgeResult
    */
   private EdgeResult discovery(EdgeMessage msg) throws Exception {

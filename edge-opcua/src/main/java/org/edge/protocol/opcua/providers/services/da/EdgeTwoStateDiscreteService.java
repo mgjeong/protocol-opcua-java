@@ -77,9 +77,8 @@ public class EdgeTwoStateDiscreteService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
+   * @param  valueAilas service provider key
    * @return EdgeNodeInfo
    */
   @Override

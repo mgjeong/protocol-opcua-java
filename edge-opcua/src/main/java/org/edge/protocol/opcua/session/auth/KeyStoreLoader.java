@@ -31,9 +31,8 @@ public class KeyStoreLoader {
   private KeyPair serverKeyPair;
 
   /**
-   * @fn load()
-   * @brief load key store
-   * @param [in] void
+   * load key store
+   * @param  void
    * @return KeyStoreLoader
    */
   public KeyStoreLoader load(int mode) throws Exception {
@@ -67,9 +66,8 @@ public class KeyStoreLoader {
   }
 
   /**
-   * @fn getClientCertificate()
-   * @brief get client certificate
-   * @param [in] void
+   * get client certificate
+   * @param  void
    * @return X509Certificate
    */
   public X509Certificate getClientCertificate() {
@@ -77,9 +75,8 @@ public class KeyStoreLoader {
   }
 
   /**
-   * @fn getClientKeyPair()
-   * @brief get client pair
-   * @param [in] void
+   * get client pair
+   * @param  void
    * @return KeyPair
    */
   public KeyPair getClientKeyPair() {
@@ -87,9 +84,8 @@ public class KeyStoreLoader {
   }
 
   /**
-   * @fn getServerCertificate()
-   * @brief get server pair
-   * @param [in] void
+   * get server pair
+   * @param  void
    * @return X509Certificate
    */
   public X509Certificate getServerCertificate() {
@@ -97,9 +93,8 @@ public class KeyStoreLoader {
   }
 
   /**
-   * @fn getServerKeyPair()
-   * @brief get server pair
-   * @param [in] void
+   * get server pair
+   * @param  void
    * @return KeyPair
    */
   public KeyPair getServerKeyPair() {

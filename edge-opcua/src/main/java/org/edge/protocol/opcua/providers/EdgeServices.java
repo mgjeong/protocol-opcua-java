@@ -44,60 +44,49 @@ public class EdgeServices {
       EdgeOpcUaCommon.WELL_KNOWN_SERVER_NODE.getValue();
 
   /**
-   * @fn void registerAttributeProvider(String name, EdgeAttributeProvider p)
-   * @brief register new provider related attribute type of opcua.
-   * @prarm [in] name provider key value
-   * @param [in] p attribute type instance base on EdgeAttributeProvider
-   * @return void
+   * register new provider related attribute type of opcua.
+   * @param  name provider key value
+   * @param  p attribute type instance base on EdgeAttributeProvider
    */
   public static void registerAttributeProvider(String name, EdgeAttributeProvider p) {
     attributeProviders.put(name, p);
   }
 
   /**
-   * @fn void registerMethodProvider(String name, EdgeMethodProvider methodProvider)
-   * @brief register new provider related method type of opcua.
-   * @prarm [in] name provider key value
-   * @param [in] methodProvider method type instance base on EdgeMethodProvider
-   * @return void
+   * register new provider related method type of opcua.
+   * @param  name provider key value
+   * @param  methodProvider method type instance base on EdgeMethodProvider
    */
   public static void registerMethodProvider(String name, EdgeMethodProvider methodProvider) {
     methodProviders.put(name, methodProvider);
   }
 
   /**
-   * @fn void registerViewProvider(String name, EdgeViewProvider viewProvider)
-   * @brief register new provider related method type of opcua.
-   * @prarm [in] name provider key value
-   * @param [in] viewProvider view type instance base on EdgeViewProvider
-   * @return void
+   * register new provider related method type of opcua.
+   * @param  name provider key value
+   * @param  viewProvider view type instance base on EdgeViewProvider
    */
   public static void registerViewProvider(String name, EdgeViewProvider viewProvider) {
     viewProviders.put(name, viewProvider);
   }
 
   /**
-   * @fn void removeAttributeProvider()
-   * @brief remove all providers related attribute type of opcua.
-   * @return void
+   * remove all providers related attribute type of opcua.
    */
   public static void removeAttributeProvider() {
     attributeProviders.clear();
   }
 
   /**
-   * @fn void removeMethodProvider()
-   * @brief remove all providers related method type of opcua.
-   * @return void
+   * remove all providers related method type of opcua.
    */
   public static void removeMethodProvider() {
     methodProviders.clear();
   }
 
   /**
-   * @fn EdgeMethodProvider getMethodProvider(String name)
-   * @brief get provider related method type of opcua.
-   * @prarm [in] name provider key value
+   * get provider related method type of opcua.
+   * @param  name provider key value
    * @return method type instance base on EdgeMethodProvider
    */
   public static EdgeMethodProvider getMethodProvider(String name) {
@@ -112,9 +101,8 @@ public class EdgeServices {
   }
 
   /**
-   * @fn EdgeAttributeProvider getAttributeProvider(String name)
-   * @brief get provider related attribute type of opcua.
-   * @prarm [in] name provider key value
+   * get provider related attribute type of opcua.
+   * @param  name provider key value
    * @return attribute type instance base on getAttributeProvider
    */
   public static EdgeAttributeProvider getAttributeProvider(String name) {
@@ -131,9 +119,8 @@ public class EdgeServices {
   }
 
   /**
-   * @fn EdgeViewProvider getViewProvider(String name)
-   * @brief get provider related attribute type of opcua.
-   * @prarm [in] name provider key value
+   * get provider related attribute type of opcua.
+   * @param  name provider key value
    * @return view type instance base on getViewProvider
    */
   public static EdgeViewProvider getViewProvider(String name) {
@@ -149,8 +136,7 @@ public class EdgeServices {
   }
 
   /**
-   * @fn ArrayList<String> getAttributeProviderKeyList()
-   * @brief get all provider key.
+   * get all provider key.
    * @return all provider key list related attribute type
    */
   public static ArrayList<String> getAttributeProviderKeyList() {
@@ -162,8 +148,7 @@ public class EdgeServices {
   }
 
   /**
-   * @fn ArrayList<String> getMethodProviderKeyList()
-   * @brief get all provider key.
+   * get all provider key.
    * @return all provider key list related method type
    */
   public static ArrayList<String> getMethodProviderKeyList() {
@@ -172,8 +157,7 @@ public class EdgeServices {
   }
 
   /**
-   * @fn ArrayList<String> getViewProviderKeyList()
-   * @brief get all provider key.
+   * get all provider key.
    * @return all provider key list related view type
    */
   public static ArrayList<String> getViewProviderKeyList() {

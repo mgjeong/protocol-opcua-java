@@ -51,9 +51,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setSamplingInterval(int value)
-     * @brief set Sampling Interval
-     * @param [in] value Sampling Interval
+     * set Sampling Interval
+     * @param  value Sampling Interval
      * @return this
      */
     public Builder setSamplingInterval(double value) {
@@ -62,9 +61,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setLifetimeCount(int value)
-     * @brief set LifetimeCount
-     * @param [in] value LifetimeCount
+     * set LifetimeCount
+     * @param  value LifetimeCount
      * @return this
      */
     private Builder setLifetimeCount(int value) {
@@ -73,9 +71,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setMaxKeepAliveCount(int value)
-     * @brief set MaxKeepAliveCount
-     * @param [in] value MaxKeepAliveCount
+     * set MaxKeepAliveCount
+     * @param  value MaxKeepAliveCount
      * @return this
      */
     private Builder setMaxKeepAliveCount(int value) {
@@ -84,9 +81,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setMaxNotificationsPerPublish(int value)
-     * @brief set MaxNotificationsPerPublish (modify only)
-     * @param [in] value MaxNotificationsPerPublish
+     * set MaxNotificationsPerPublish (modify only)
+     * @param  value MaxNotificationsPerPublish
      * @return this
      */
     public Builder setMaxNotificationsPerPublish(int value) {
@@ -95,9 +91,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setPublishingFlag(boolean value)
-     * @brief set PublishingFlag (modify or setPublish only)
-     * @param [in] value PublishingFlag
+     * set PublishingFlag (modify or setPublish only)
+     * @param  value PublishingFlag
      * @return this
      */
     public Builder setPublishingFlag(boolean value) {
@@ -106,9 +101,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setPriority(byte value)
-     * @brief set Priority (modify only)
-     * @param [in] value Priority
+     * set Priority (modify only)
+     * @param  value Priority
      * @return this
      */
     public Builder setPriority(byte value) {
@@ -117,9 +111,8 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn Builder setQueueSize(int value)
-     * @brief set Queue Size
-     * @param [in] value Queue Size
+     * set Queue Size
+     * @param  value Queue Size
      * @return this
      */
     public Builder setQueueSize(int value) {
@@ -128,8 +121,7 @@ public class EdgeSubRequest {
     }
 
     /**
-     * @fn EdgeSubRequest build()
-     * @brief create EdgeSubRequest instance (builder)
+     * create EdgeSubRequest instance (builder)
      * @return EdgeSubRequest instance
      */
     public EdgeSubRequest build() {
@@ -138,9 +130,8 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn EdgeSubRequest(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeSubRequest Builder
+   * constructor
+   * @param  builder EdgeSubRequest Builder
    */
   private EdgeSubRequest(Builder builder) {
     enableCTT = builder.enableCTT;
@@ -156,8 +147,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn double getSamplingInterval()
-   * @brief get samplingInterval
+   * get samplingInterval
    * @return samplingInterval
    */
   public double getSamplingInterval() {
@@ -165,8 +155,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn EdgeNodeIdentifier getSubType()
-   * @brief get subscription Type (create, modify, delete)
+   * get subscription Type (create, modify, delete)
    * @return subType
    */
   public EdgeNodeIdentifier getSubType() {
@@ -174,8 +163,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn double getPublishingInterval()
-   * @brief get publishingInterval
+   * get publishingInterval
    * @return publishingInterval
    */
   public double getPublishingInterval() {
@@ -183,8 +171,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn int getLifetimeCount()
-   * @brief get lifetimeCount
+   * get lifetimeCount
    * @return lifetimeCount
    */
   public int getLifetimeCount() {
@@ -192,8 +179,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn int getMaxKeepAliveCount()
-   * @brief get maxKeepAliveCount
+   * get maxKeepAliveCount
    * @return maxKeepAliveCount
    */
   public int getMaxKeepAliveCount() {
@@ -201,8 +187,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn int getMaxNotificationsPerPublish()
-   * @brief get maxNotificationsPerPublish
+   * get maxNotificationsPerPublish
    * @return maxNotificationsPerPublish
    */
   public int getMaxNotificationsPerPublish() {
@@ -210,8 +195,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn boolean getPublishingFlag()
-   * @brief get publishingEnabled
+   * get publishingEnabled
    * @return publishingEnabled
    */
   public boolean getPublishingFlag() {
@@ -219,8 +203,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn byte getPriority()
-   * @brief get priority
+   * get priority
    * @return priority
    */
   public byte getPriority() {
@@ -228,8 +211,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn int getQueueSize()
-   * @brief get queue size
+   * get queue size
    * @return queueSize.
    */
   public int getQueueSize() {
@@ -237,8 +219,7 @@ public class EdgeSubRequest {
   }
 
   /**
-   * @fn boolean getCTTFlag()
-   * @brief enable subscription logic for CTT 
+   * enable subscription logic for CTT 
    * @return true or false for setting.
    */
   public boolean getCTTFlag() {

@@ -32,10 +32,9 @@ public class EdgeAttributeProvider extends EdgeBaseProvider {
   private Map<String, EdgeAttributeService> attributeServices;
 
   /**
-   * @fn EdgeAttributeProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse)
-   * @brief constructor
-   * @prarm [in] monitor EdgeMonitoredItemService instance
-   * @prarm [in] browse EdgeBrowseService instance
+   * constructor
+   * @param  monitor EdgeMonitoredItemService instance
+   * @param  browse EdgeBrowseService instance
    * @return void
    */
   public EdgeAttributeProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse) {
@@ -44,10 +43,8 @@ public class EdgeAttributeProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeAttributeProvider(EdgeGroupService group)
-   * @brief constructor
-   * @prarm [in] group EdgeGroupService instance
-   * @return void
+   * constructor
+   * @param  group EdgeGroupService instance
    */
   public EdgeAttributeProvider(EdgeGroupService group) {
     super(group);
@@ -55,11 +52,9 @@ public class EdgeAttributeProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeAttributeProvider registerAttributeService(String name, EdgeAttributeService method)
-   * @brief register Attribute Service
-   * @prarm [in] name provider key value
-   * @param [in] method EdgeAttributeService instance
-   * @return void
+   * register Attribute Service
+   * @param  name provider key value
+   * @param  method EdgeAttributeService instance
    */
   public EdgeAttributeProvider registerAttributeService(String name, EdgeAttributeService attr) {
     if (attributeServices == null)
@@ -69,9 +64,8 @@ public class EdgeAttributeProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeAttributeService getAttributeService(String name)
-   * @brief get EdgeAttributeService instance
-   * @prarm [in] name provider key value
+   * get EdgeAttributeService instance
+   * @param  name provider key value
    * @return EdgeAttributeService instance
    */
   public EdgeAttributeService getAttributeService(String name) {

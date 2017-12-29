@@ -81,14 +81,12 @@ public class EdgeNode {
   private UaObjectNode lineNumNode;
 
   /**
-   * @fn EdgeNode(OpcUaServer server, UShort namespaceIndex, String rootNodeIdentifier, String
-   *     rootNodeBrowseName, String rootNodeDisplayName)
-   * @brief constructor (root node is set)
-   * @param [in] server target server instance
-   * @param [in] namespaceIndex namespaceIndex to make root NodeId
-   * @param [in] rootNodeIdentifier node Identifier to make root NodeId
-   * @param [in] rootNodeBrowseName browse name to make UaFolderNode
-   * @param [in] rootNodeDisplayName display name to make UaFolderNode
+   * constructor (root node is set)
+   * @param  server target server instance
+   * @param  namespaceIndex namespaceIndex to make root NodeId
+   * @param  rootNodeIdentifier node Identifier to make root NodeId
+   * @param  rootNodeBrowseName browse name to make UaFolderNode
+   * @param  rootNodeDisplayName display name to make UaFolderNode
    * @return void
    */
   public EdgeNode(OpcUaServer server, UShort namespaceIndex, String rootNodeIdentifier,
@@ -114,8 +112,7 @@ public class EdgeNode {
   }
 
   /**
-   * @fn ServerNodeMap getNodeMap()
-   * @brief get node map
+   * get node map
    * @return nodeManager
    */
   public ServerNodeMap getNodeMap() {
@@ -123,8 +120,7 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult addNodes(EdgeNodeItem item)
-   * @brief add nodes by EdgeNodeItem parameter - VARIABLE_NODE, ARRAY_NODE, VARIABLE_TYPE_NODE
+   * add nodes by EdgeNodeItem parameter - VARIABLE_NODE, ARRAY_NODE, VARIABLE_TYPE_NODE
    *        should be needed to set variableItemSet in EdgeNodeItem
    * @return result
    */
@@ -190,9 +186,8 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult addDataAccessNode(EdgeNodeItem item)
-   * @brief initialize Data Access Node (for test)
-   * @param [in] item EdgeNodeItem
+   * initialize Data Access Node (for test)
+   * @param  item EdgeNodeItem
    * @return result
    */
   public EdgeResult addDataAccessNode(EdgeNodeItem item) {
@@ -216,11 +211,10 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult addMethodNode(EdgeNodeItem item)
-   * @brief initialize Custom Method Node (for test)
-   * @param [in] item EdgeNodeItem
-   * @param [in] methodObj the object of the method class
-   * @param [in] type the argument type of the method
+   * initialize Custom Method Node (for test)
+   * @param  item EdgeNodeItem
+   * @param  methodObj the object of the method class
+   * @param  type the argument type of the method
    * @return result
    */
   public EdgeResult addMethodNode(EdgeNodeItem item, Object methodObj, EdgeArgumentType type)
@@ -577,10 +571,9 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult modifyNode(int ns, EdgeNodeIdentifier type, Variant var)
-   * @brief modifyNode for General VariableNode (for test)
-   * @param [in] nodeUri nodeUri to make target NodeId
-   * @param [in] var changed value
+   * modifyNode for General VariableNode (for test)
+   * @param  nodeUri nodeUri to make target NodeId
+   * @param  var changed value
    * @return result
    */
   public EdgeResult modifyNode(String nodeUri, Variant var) {
@@ -596,11 +589,10 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult modifyNode(int ns, EdgeNodeIdentifier type, Variant var)
-   * @brief modifyNode for DataAccess (for test)
-   * @param [in] ns namespace to make target NodeId
-   * @param [in] type node type to make target NodeId
-   * @param [in] var changed value
+   * modifyNode for DataAccess (for test)
+   * @param  ns namespace to make target NodeId
+   * @param  type node type to make target NodeId
+   * @param  var changed value
    * @return result
    */
   public EdgeResult modifyNode(EdgeNodeIdentifier type, Variant var) {
@@ -632,7 +624,6 @@ public class EdgeNode {
             addVariableNode(folderNode, item, obj);
             logger.info("add variable node = {}\n", obj[0]);
           } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
           }
         }
@@ -645,7 +636,6 @@ public class EdgeNode {
             addVariableNode(folderNode, item, obj);
             logger.info("add variable node = {}\n", obj[0]);
           } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
           }
         }
@@ -704,9 +694,8 @@ public class EdgeNode {
   }
 
   /**
-   * @fn EdgeResult addReference(EdgeReference reference)
-   * @brief add reference between source node and target node
-   * @param [in] reference reference parameter - it can set direction and reference id such as
+   * add reference between source node and target node
+   * @param  reference reference parameter - it can set direction and reference id such as
    *        NonHierarchicalReferences, HierarchicalReferences
    * @return result
    */

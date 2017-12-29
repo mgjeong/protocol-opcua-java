@@ -47,7 +47,7 @@ public class EdgeEndpointConfig {
     /**
      * set application name
      *
-     * @param [in] val application name
+     * @param  val application name
      * @return this
      */
     public Builder setApplicationName(String val) {
@@ -58,7 +58,7 @@ public class EdgeEndpointConfig {
     /**
      * set application uri
      *
-     * @param [in] val application uri
+     * @param  val application uri
      * @return this
      */
     public Builder setApplicationUri(String val) {
@@ -69,7 +69,7 @@ public class EdgeEndpointConfig {
     /**
      * set product uri
      *
-     * @param [in] val product uri
+     * @param  val product uri
      * @return this
      */
     public Builder setProductUri(String val) {
@@ -80,7 +80,7 @@ public class EdgeEndpointConfig {
     /**
      * set security policy uri
      *
-     * @param [in] val security policy uri
+     * @param  val security policy uri
      * @return this
      */
     public Builder setSecurityPolicyUri(String val) {
@@ -91,7 +91,7 @@ public class EdgeEndpointConfig {
     /**
      * set Server Name
      *
-     * @param [in] val server Name
+     * @param  val server Name
      * @return this
      */
     public Builder setServerName(String val) {
@@ -102,7 +102,7 @@ public class EdgeEndpointConfig {
     /**
      * set bind address
      *
-     * @param [in] addr address
+     * @param  addr address
      * @return this
      */
     public Builder setbindAddress(String addr) {
@@ -113,7 +113,7 @@ public class EdgeEndpointConfig {
     /**
      * set bind port
      *
-     * @param [in] port port
+     * @param  port port
      * @return this
      */
     public Builder setbindPort(int port) {
@@ -124,7 +124,7 @@ public class EdgeEndpointConfig {
     /**
      * set configure which initialize provider with only view node
      *
-     * @param [in] flag View Node flag is set
+     * @param  flag View Node flag is set
      * @return this
      */
     public Builder setViewNodeFlag(boolean flag) {
@@ -135,7 +135,7 @@ public class EdgeEndpointConfig {
     /**
      * set configure which initialize mode(server/client/both)
      *
-     * @param [in] mode of stack
+     * @param  mode of stack
      * @return this
      */
     public Builder setMode(int mode) {

@@ -45,11 +45,9 @@ public class Browse implements Command {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] future
-   * @param [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  future result of execution
+   * @param  msg message of browsing
    */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -62,11 +60,9 @@ public class Browse implements Command {
   }
 
   /**
-   * @fn void browse(String indent, EdgeMessage msg)
-   * @brief browse by EdgeBrowseService
-   * @prarm [in] indent
-   * @param [in] msg
-   * @return void
+   * browse by EdgeBrowseService
+   * @param  indent indent
+   * @param  msg message of browsing
    */
   private EdgeResult browse(String indent, EdgeMessage msg) throws Exception {
     logger.info("browse");

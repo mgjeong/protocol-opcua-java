@@ -54,8 +54,7 @@ public class EdgeVersatility {
     }
 
     /**
-     * @fn EdgeVersatility build()
-     * @brief create EdgeVersatility instance (builder)
+     * create EdgeVersatility instance (builder)
      * @return EdgeVersatility instance
      */
     public EdgeVersatility build() {
@@ -64,18 +63,16 @@ public class EdgeVersatility {
   }
 
   /**
-   * @fn EdgeVersatility(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeVersatility Builder
+   * constructor
+   * @param  builder EdgeVersatility Builder
    */
   private EdgeVersatility(Builder builder) {
     value = builder.value;
   }
 
   /**
-   * @fn EdgeNodeIdentifier getVariableType()
-   * @brief get Variable Type
-   * @param [in] builder EdgeVersatility Builder
+   * get Variable Type
+   * @param  builder EdgeVersatility Builder
    * @return Node Identifier
    */
   public EdgeNodeIdentifier getVariableType() {
@@ -83,8 +80,7 @@ public class EdgeVersatility {
   }
 
   /**
-   * @fn boolean isNull()
-   * @brief check whether the value is null or not
+   * check whether the value is null or not
    * @return true(null) or false(not null)
    */
   public boolean isNull() {
@@ -92,8 +88,7 @@ public class EdgeVersatility {
   }
   
   /**
-   * @fn Object getValue()
-   * @brief get value
+   * get value
    * @return value
    */
   public Object getValue() {

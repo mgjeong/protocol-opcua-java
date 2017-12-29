@@ -26,19 +26,16 @@ import java.util.concurrent.ConcurrentMap;
 public interface EdgeBaseSessionMap extends ConcurrentMap<String, EdgeOpcUaClient> {
 
   /**
-   * @fn void addNode(EdgeOpcUaClient session)
-   * @brief add value into Map
-   * @param [in] session EdgeOpcUaClient instance
-   * @return void
+   * add value into Map
+   * @param  session EdgeOpcUaClient instance
    */
   default void addNode(EdgeOpcUaClient session) {
     put(session.getEndpoint(), session);
   }
 
   /**
-   * @fn boolean containsSession(EdgeOpcUaClient session)
-   * @brief check whether the session is contained or not
-   * @param [in] session EdgeOpcUaClient instance
+   * check whether the session is contained or not
+   * @param  session EdgeOpcUaClient instance
    * @return true or false
    */
   default boolean containsSession(EdgeOpcUaClient session) {
@@ -46,9 +43,8 @@ public interface EdgeBaseSessionMap extends ConcurrentMap<String, EdgeOpcUaClien
   }
 
   /**
-   * @fn boolean containsEndpoint(String endpoint)
-   * @brief check whether the session is contained or not
-   * @param [in] endpoint endpoint uri
+   * check whether the session is contained or not
+   * @param  endpoint endpoint uri
    * @return true or false
    */
   default boolean containsEndpoint(String endpoint) {
@@ -56,20 +52,18 @@ public interface EdgeBaseSessionMap extends ConcurrentMap<String, EdgeOpcUaClien
   }
 
   /**
-   * @fn Optional<EdgeOpcUaClient> getNode(String endpoint)
-   * @brief get node
-   * @param [in] endpoint endpoint uri
-   * @return Optional<EdgeOpcUaClient>
+   * get node
+   * @param  endpoint endpoint uri
+   * @return EdgeOpcUaClient if there is EdgeOpcUaClient
    */
   default Optional<EdgeOpcUaClient> getNode(String endpoint) {
     return Optional.ofNullable(get(endpoint));
   }
 
   /**
-   * @fn Optional<EdgeOpcUaClient> removeNode(String endpoint)
-   * @brief remove node
-   * @param [in] endpoint endpoint uri
-   * @return Optional<EdgeOpcUaClient>
+   * remove node
+   * @param  endpoint endpoint uri
+   * @return EdgeOpcUaClient if there is EdgeOpcUaClient
    */
   default Optional<EdgeOpcUaClient> removeNode(String endpoint) {
     return Optional.ofNullable(remove(endpoint));

@@ -30,62 +30,58 @@ import org.edge.protocol.opcua.providers.EdgeBaseService;
 public interface EdgeAttributeService extends EdgeBaseService {
 
   /**
-   * @fn EdgeResult readSync(EdgeMessage msg)
-   * @brief read node data synchronously
-   * @param [in] EdgeMessage msg
+   * read node data synchronously
+   * @param  EdgeMessage msg
    * @return result
+   * @throws excepiton
    */
   public EdgeResult readSync(EdgeMessage msg) throws Exception;
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write edge message
-   * @param [in] EdgeMessage msg
+   * write edge message
+   * @param  EdgeMessage msg
    * @return result
+   * @throws excepiton
    */
   public EdgeResult write(EdgeMessage msg) throws Exception;
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get node type
+   * get node type
    * @return EdgeNodeIdentifier
+   * @throws excepiton
    */
   public EdgeNodeIdentifier getNodeType() throws Exception;
 
   /**
-   * @fn EdgeResult readAsync(EdgeMessage msg)
-   * @brief read node data asynchronously
-   * @param [in] EdgeMessage msg
+   * read node data asynchronously
+   * @param  EdgeMessage msg
    * @return result
+   * @throws excepiton
    */
   public EdgeResult readAsync(EdgeMessage msg) throws Exception;
 
   /**
-   * @fn void setProperty(VariableNode node)
-   * @brief set property of node
-   * @param [in] VariableNode node
-   * @return void
+   * set property of node
+   * @param  {@link}VariableNode node
+   * @throws excepiton
    */
   public void setProperty(VariableNode node) throws Exception;
 
   /**
-   * @fn EdgeMapper getMapper()
-   * @brief get mapper
+   * get mapper
    * @return EdgeMapper
    */
   public EdgeMapper getMapper();
 
   /**
-   * @fn EdgeEndpoint getNodeInfo(String valueAilas)
-   * @brief get NodeInfo
-   * @param [in] String valueAilas
+   * get NodeInfo
+   * @param  String valueAilas
    * @return EdgeNodeInfo
    */
   public EdgeNodeInfo getNodeInfo(String valueAilas);
 
   /**
-   * @fn NodeId getNodeId()
-   * @brief get node id
+   * get node id
    * @return NodeId
    */
   public NodeId getNodeId();

@@ -81,10 +81,10 @@ public class EdgeNamespace implements Namespace {
     private String rootNodeDisplayName = null;
 
     /**
-     * @brief CTOR
-     * @param [in] server
-     * @param [in] idx
-     * @param [in] uri
+     * CTOR
+     * @param  server
+     * @param  idx
+     * @param  uri
      */
     public Builder(OpcUaServer server, UShort idx, String uri) {
       this.serverContext = server;
@@ -93,8 +93,7 @@ public class EdgeNamespace implements Namespace {
     }
 
     /**
-     * @fn Builder setNodeId(String id)
-     * @brief set node id
+     * set node id
      * @param id
      * @return Builder
      */
@@ -104,8 +103,7 @@ public class EdgeNamespace implements Namespace {
     }
 
     /**
-     * @fn Builder setBrowseName(String name)
-     * @brief set browse name
+     * set browse name
      * @param name
      * @return Builder
      */
@@ -115,8 +113,7 @@ public class EdgeNamespace implements Namespace {
     }
 
     /**
-     * @fn Builder setDisplayName(String name)
-     * @brief set display name
+     * set display name
      * @param name
      * @return Builder
      */
@@ -126,8 +123,7 @@ public class EdgeNamespace implements Namespace {
     }
 
     /**
-     * @fn EdgeNamespace build()
-     * @brief build EdgeNamespace
+     * build EdgeNamespace
      * @return EdgeNamespace
      */
     public EdgeNamespace build() {
@@ -136,7 +132,7 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @brief CTOR
+   * CTOR
    * @param builder
    */
   private EdgeNamespace(Builder builder) {
@@ -152,8 +148,7 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeNode getEdgeNode()
-   * @brief get EdgeNode
+   * get EdgeNode
    * @return EdgeNode
    */
   public EdgeNode getEdgeNode() {
@@ -161,8 +156,7 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn UShort getNamespaceIndex()
-   * @brief get namespaceIndex
+   * get namespaceIndex
    * @return namespaceIndex
    */
   @Override
@@ -171,8 +165,7 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn UShort getNamespaceUri()
-   * @brief get namespaceUri
+   * get namespaceUri
    * @return namespaceUri
    */
   @Override
@@ -181,11 +174,10 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn CompletableFuture<List<Reference>> browse(AccessContext context, NodeId nodeId)
-   * @brief browse
-   * @param [in] context AccessContext (not used)
-   * @param [in] nodeId nodeId
-   * @return CompletableFuture<List<Reference>>
+   * browse
+   * @param  context AccessContext (not used)
+   * @param  nodeId nodeId
+   * @return list of reference
    */
   @Override
   public CompletableFuture<List<Reference>> browse(AccessContext context, NodeId nodeId) {
@@ -201,13 +193,11 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn read(ReadContext context, Double maxAge, TimestampsToReturn timestamps, List<ReadValueId>
-   *     readValueIds)
-   * @brief read
-   * @param [in] context ReadContext
-   * @param [in] maxAge maxAge
-   * @param [in] timestamps timestamps
-   * @param [in] readValueIds List<ReadValueId>
+   * read
+   * @param  context ReadContext
+   * @param  maxAge maxAge
+   * @param  timestamps timestamps
+   * @param  list of ReadValueId
    * @return void
    */
   @Override
@@ -239,11 +229,9 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn write(WriteContext context, List<WriteValue> writeValues)
-   * @brief write
-   * @param [in] context WriteContext
-   * @param [in] writeValues List<WriteValue>
-   * @return void
+   * write
+   * @param  context WriteContext
+   * @param  writeValues list of WriteValue
    */
   @Override
   public void write(WriteContext context, List<WriteValue> writeValues) {
@@ -285,9 +273,8 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeResult createNode(EdgeNodeItem item)
-   * @brief create variable node depend on OPC-UA on server side (createNamespace should be called before)
-   * @param [in] item node item
+   * create variable node depend on OPC-UA on server side (createNamespace should be called before)
+   * @param  item node item
    * @return result
    */
   public EdgeResult createNodes(EdgeNodeItem item) throws Exception {
@@ -295,9 +282,8 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn addReferences(EdgeReference reference)
-   * @brief add reference with node
-   * @param [in] EdgeRefernce reference
+   * add reference with node
+   * @param  reference defined EdgeReference instance by user
    * @return result
    */
   public EdgeResult addReferences(EdgeReference reference) throws Exception {
@@ -305,10 +291,9 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeResult modifyVariableNodeValue(String nodeUri, EdgeVersatility value)
-   * @brief modify value of target variable node on server side
-   * @param [in] nodeUri node uri related variable node
-   * @param [in] value modified value
+   * modify value of target variable node on server side
+   * @param  nodeUri node uri related variable node
+   * @param  value modified value
    * @return result
    */
   public EdgeResult modifyNode(String nodeUri, EdgeVersatility value) throws Exception{
@@ -316,10 +301,9 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeResult modifyVariableNodeValue(EdgeNodeIdentifier type, EdgeVersatility value)
-   * @brief modify value of target variable node on server side
-   * @param [in] id data access node id
-   * @param [in] value modified value
+   * modify value of target variable node on server side
+   * @param  id data access node id
+   * @param  value modified value
    * @return result
    */
   public EdgeResult modifyNode(EdgeNodeIdentifier id, EdgeVersatility value) throws Exception{
@@ -327,9 +311,8 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeResult createDataAccessNode(EdgeNodeItem item)
-   * @brief create data access node depend on OPC-UA on server side (createNamespace should be called before)
-   * @param [in] item node item
+   * create data access node depend on OPC-UA on server side (createNamespace should be called before)
+   * @param  item node item
    * @return result
    */
   public EdgeResult createDataAccessNode(EdgeNodeItem item) throws Exception{
@@ -337,11 +320,10 @@ public class EdgeNamespace implements Namespace {
   }
 
   /**
-   * @fn EdgeResult createMethodNode(EdgeNodeItem item)
-   * @brief create method node depend on OPC-UA on server side (createNamespace should be called before)
-   * @param [in] item node item
-   * @param [in] methodObj method class
-   * @param [in] type the argument type of the method
+   * create method node depend on OPC-UA on server side (createNamespace should be called before)
+   * @param  item node item
+   * @param  methodObj method class
+   * @param  type the argument type of the method
    * @return result
    */
   public EdgeResult createMethodNode(EdgeNodeItem item, Object methodObj, EdgeArgumentType type) throws Exception {
@@ -350,25 +332,21 @@ public class EdgeNamespace implements Namespace {
 
   @Override
   public void onDataItemsCreated(List<DataItem> arg0) {
-    // TODO Auto-generated method stub
     subscriptionModel.onDataItemsCreated(arg0);
   }
 
   @Override
   public void onDataItemsDeleted(List<DataItem> arg0) {
-    // TODO Auto-generated method stub
     subscriptionModel.onDataItemsDeleted(arg0);
   }
 
   @Override
   public void onDataItemsModified(List<DataItem> arg0) {
-    // TODO Auto-generated method stub
     subscriptionModel.onDataItemsModified(arg0);
   }
 
   @Override
   public void onMonitoringModeChanged(List<MonitoredItem> arg0) {
-    // TODO Auto-generated method stub
     subscriptionModel.onMonitoringModeChanged(arg0);
   }
 }

@@ -31,9 +31,8 @@ public class EdgeNodeInfo {
     public Builder() {}
 
     /**
-     * @fn Builder setEdgeNodeId(EdgeNodeId nodeId)
-     * @brief set EdgeNodeId
-     * @param [in] nodeId node Id
+     * set EdgeNodeId
+     * @param  nodeId node Id
      * @return this
      */
     public Builder setEdgeNodeId(EdgeNodeId nodeId) {
@@ -42,9 +41,8 @@ public class EdgeNodeInfo {
     }
 
     /**
-     * @fn Builder setMethodName(String methodName)
-     * @brief set Method Name
-     * @param [in] methodName Method Name
+     * set Method Name
+     * @param  methodName Method Name
      * @return this
      */
     public Builder setMethodName(String methodName) {
@@ -53,9 +51,8 @@ public class EdgeNodeInfo {
     }
 
     /**
-     * @fn Builder setValueAlias(String name)
-     * @brief set the Alias of Target Node
-     * @param [in] methodName Method Name
+     * set the Alias of Target Node
+     * @param  name Method Name
      * @return this
      */
     public Builder setValueAlias(String name) {
@@ -64,8 +61,7 @@ public class EdgeNodeInfo {
     }
 
     /**
-     * @fn EdgeEndpoint build()
-     * @brief create EdgeEndpoint instance (builder)
+     * create EdgeEndpoint instance (builder)
      * @return EdgeEndpoint instance
      */
     public EdgeNodeInfo build() {
@@ -74,9 +70,8 @@ public class EdgeNodeInfo {
   }
 
   /**
-   * @fn EdgeEndpoint(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeEndpoint Builder
+   * constructor
+   * @param  builder EdgeEndpoint Builder
    */
   private EdgeNodeInfo(Builder builder) {
     methodName = builder.methodName;
@@ -85,8 +80,7 @@ public class EdgeNodeInfo {
   }
 
   /**
-   * @fn String getMethodName()
-   * @brief get method name
+   * get method name
    * @return methodName
    */
   public String getMethodName() {
@@ -94,8 +88,7 @@ public class EdgeNodeInfo {
   }
 
   /**
-   * @fn EdgeNodeId getEdgeNodeID()
-   * @brief get EdgeNodeId
+   * get EdgeNodeId
    * @return nodeId
    */
   public EdgeNodeId getEdgeNodeID() {
@@ -103,8 +96,7 @@ public class EdgeNodeInfo {
   }
 
   /**
-   * @fn String String getvalueAlias()
-   * @brief get the valueAlias of the targetNode
+   * get the valueAlias of the targetNode
    * @return valueAlias
    */
   public String getValueAlias() {

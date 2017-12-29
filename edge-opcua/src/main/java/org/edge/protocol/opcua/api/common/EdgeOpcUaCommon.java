@@ -67,8 +67,7 @@ public enum EdgeOpcUaCommon {
   }
 
   /**
-   * @fn int getCode()
-   * @brief get enum code
+   * get enum code
    * @return code
    */
   public int getCode() {
@@ -76,8 +75,7 @@ public enum EdgeOpcUaCommon {
   }
 
   /**
-   * @fn String getValue()
-   * @brief get enum value
+   * get enum value
    * @return value
    */
   public String getValue() {
@@ -85,8 +83,7 @@ public enum EdgeOpcUaCommon {
   }
 
   /**
-   * @fn String getDescription()
-   * @brief get description
+   * get description
    * @return description
    */
   public String getDescription() {

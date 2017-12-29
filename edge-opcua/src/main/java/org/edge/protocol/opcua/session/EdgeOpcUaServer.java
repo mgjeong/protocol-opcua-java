@@ -63,8 +63,7 @@ public class EdgeOpcUaServer {
   private EdgeOpcUaServer() {}
 
   /**
-   * @fn EdgeOpcUaServer getInstance()
-   * @brief get opcua server instance
+   * get opcua server instance
    * @return server instance
    */
   public static EdgeOpcUaServer getInstance() {
@@ -77,19 +76,17 @@ public class EdgeOpcUaServer {
   }
 
   /**
-   * @fn close
-   * @brief close server instance
-   * @return void
+   * close server instance
    */
   public void close() {
     edgeServer = null;
   }
 
   /**
-   * @fn void start()
-   * @brief start server with default configuration data
-   * @param [in] epInfo EdgeEndpointInfo
-   * @return void
+   * start server with default configuration data
+   * @param  epInfo EdgeEndpointInfo
+   * @return result of start
+   * @throws excepiton
    */
   public EdgeResult start(EdgeEndpointInfo epInfo) throws Exception {
     EdgeEndpointConfig config = epInfo.getConfig();
@@ -185,9 +182,8 @@ public class EdgeOpcUaServer {
   }
 
   /**
-   * @fn void stop()
-   * @brief stop server
-   * @return void
+   * stop server
+   * @throws exception interruptedException, ExecutionExcepiton
    */
   public void stop() throws InterruptedException, ExecutionException {
     server.shutdown().get();
@@ -195,14 +191,12 @@ public class EdgeOpcUaServer {
   }
 
   /**
-   * @fn void createNamespace(String namespaceUri, String rootNodeIdentifier, String
-   *     rootNodeBrowseName, String rootNodeDisplayName)
-   * @brief create Namespace in server side
-   * @param [in] namespaceUri namespace alias to use
-   * @param [in] rootNodeIdentifier path name in root node
-   * @param [in] rootNodeBrowseName browse name in root node
-   * @param [in] rootNodeDisplayName display name in root node
-   * @return void
+   * create Namespace in server side
+   * @param  namespaceUri namespace alias to use
+   * @param  rootNodeIdentifier path name in root node
+   * @param  rootNodeBrowseName browse name in root node
+   * @param  rootNodeDisplayName display name in root node
+   * @throws excepiton
    */
   public void createNamespace(String namespaceUri, String rootNodeIdentifier,
       String rootNodeBrowseName, String rootNodeDisplayName) throws Exception {
@@ -239,9 +233,8 @@ public class EdgeOpcUaServer {
   }
 
   /**
-   * @fn void terminate()
-   * @brief close static classes in server side
-   * @return void
+   * close static classes in server side
+   * @throws excepiton
    */
   public void terminate() throws Exception {
     EdgeDataAccessLoader.getInstance().close();

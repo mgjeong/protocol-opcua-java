@@ -30,48 +30,42 @@ import org.edge.protocol.opcua.namespace.EdgeNamespace;
 public interface EdgeBaseNamespaceMap extends ConcurrentMap<String, EdgeNamespace> {
 
   /**
-   * @fn void addNode(EdgeNamespace namespace)
-   * @brief add EdgeNamespace
-   * @param [in] namespace
-   * @return void
+   * add EdgeNamespace
+   * @param namespace value of namespace
    */
   default void addNode(EdgeNamespace namespace) {
     put(namespace.getNamespaceUri(), namespace);
   }
 
   /**
-   * @fn boolean containsSession(EdgeNamespace node)
-   * @brief check contains sessions
-   * @param [in] node
-   * @return boolean
+   * check contains sessions
+   * @param  node
+   * @return contains session or not
    */
   default boolean containsSession(EdgeNamespace node) {
     return containsEndpoint(node.getNamespaceUri());
   }
 
   /**
-   * @fn boolean containsEndpoint(String id)
-   * @brief check contains endpoint
-   * @param [in] id
-   * @return boolean
+   * check contains endpoint
+   * @param  id
+   * @return contains endpoint or not
    */
   default boolean containsEndpoint(String id) {
     return containsKey(id);
   }
 
   /**
-   * @fn Optional<EdgeNamespace> getNode(String id)
-   * @param [in] id
-   * @return Optional<EdgeNamespace>
+   * @param  id
+   * @return EdgeNamespace instance if there is EdgeNamespace 
    */
   default Optional<EdgeNamespace> getNode(String id) {
     return Optional.ofNullable(get(id));
   }
 
   /**
-   * @fn Optional<EdgeNamespace> removeNode(String id)
-   * @param [in] id
-   * @return Optional<EdgeNamespace>
+   * @param  id
+   * @return EdgeNamespace instance if there is EdgeNamespace 
    */
   default Optional<EdgeNamespace> removeNode(String id) {
     return Optional.ofNullable(remove(id));

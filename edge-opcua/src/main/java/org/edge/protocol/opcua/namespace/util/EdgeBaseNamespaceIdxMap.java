@@ -30,8 +30,7 @@ import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 public interface EdgeBaseNamespaceIdxMap extends ConcurrentMap<Integer, UShort> {
 
    /**
-    * @fn void addNode(Integer type, UShort idx)
-    * @brief add node
+    * add node
     * @param type
     * @param idx
     * @return void
@@ -41,8 +40,7 @@ public interface EdgeBaseNamespaceIdxMap extends ConcurrentMap<Integer, UShort> 
   }
 
   /**
-   * @fn containsNodeType(Integer type)
-   * @brief check contains node type
+   * check contains node type
    * @param type
    * @return
    */
@@ -51,8 +49,7 @@ public interface EdgeBaseNamespaceIdxMap extends ConcurrentMap<Integer, UShort> 
   }
 
   /**
-   * @fn Optional<UShort> getIndex(Integer type)
-   * @brief get index
+   * get index
    * @param type
    */
   default Optional<UShort> getIndex(Integer type) {
@@ -60,8 +57,7 @@ public interface EdgeBaseNamespaceIdxMap extends ConcurrentMap<Integer, UShort> 
   }
 
   /**
-   * @fn Optional<UShort> removeIndex(Integer type)
-   * @brief remove index
+   * remove index
    * @param type
    */
   default Optional<UShort> removeIndex(Integer type) {
