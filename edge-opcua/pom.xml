@@ -128,7 +128,7 @@
 			<version>${milo.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.edge.compute1.protocol</groupId>
+			<groupId>com.edge.protocol</groupId>
 			<artifactId>edge-mapper</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

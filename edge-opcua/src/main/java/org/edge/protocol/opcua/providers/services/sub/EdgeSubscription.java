@@ -31,18 +31,16 @@ public class EdgeSubscription {
     private final UaSubscription uaSubscription;
 
     /**
-     * @fn Builder(UaSubscription uaSubscription)
-     * @brief constructor of Builder class
-     * @prarm [in] UaSubscription uaSubscription
+     * constructor of Builder class
+     * @param  UaSubscription uaSubscription
      */
     public Builder(UaSubscription uaSubscription) {
       this.uaSubscription = uaSubscription;
     }
 
     /**
-     * @fn Builder setSubRequest(EdgeSubRequest subReq)
-     * @brief set subscription request to builder instance
-     * @prarm [in] EdgeSubRequest subReq
+     * set subscription request to builder instance
+     * @param  subReq request of subscription
      * @return Builder
      */
     public Builder setSubRequest(EdgeSubRequest subReq) {
@@ -51,8 +49,7 @@ public class EdgeSubscription {
     }
 
     /**
-     * @fn EdgeSubscription build()
-     * @brief request build to get a subscription
+     * request build to get a subscription
      * @return EdgeSubscription
      */
     public EdgeSubscription build() {
@@ -61,8 +58,7 @@ public class EdgeSubscription {
   }
 
   /**
-   * @fn EdgeSubscription(Builder builder)
-   * @brief constructor of EdgeSubscription class
+   * constructor of EdgeSubscription class
    */
   private EdgeSubscription(Builder builder) {
     uaSubscription = builder.uaSubscription;
@@ -70,8 +66,7 @@ public class EdgeSubscription {
   }
 
   /**
-   * @fn UaSubscription getUaSubscription()
-   * @brief get uaSubscription
+   * get uaSubscription
    * @return UaSubscription
    */
   public UaSubscription getUaSubscription() {
@@ -79,8 +74,7 @@ public class EdgeSubscription {
   }
 
   /**
-   * @fn EdgeSubRequest getSubRequest()
-   * @brief get subscription request
+   * get subscription request
    * @return EdgeSubRequest
    */
   public EdgeSubRequest getSubRequest() {

@@ -59,8 +59,7 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   private static Object lock = new Object();
 
   /**
-   * @fn EdgeArrayItemService()
-   * @brief constructor of EdgeArrayItemService class
+   * constructor of EdgeArrayItemService class
    */
   public EdgeArrayItemService() {
     nameSpace = EdgeOpcUaCommon.DEFAULT_NAMESPACE_INDEX;
@@ -68,8 +67,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeArrayItemService(int nameSpace, String endpointUri)
-   * @brief constructor of EdgeArrayItemService class
+   * constructor of EdgeArrayItemService class
+   * @param nameSpace a value of namespace
+   * @param endpointUri uri of endpoint
    */
   public EdgeArrayItemService(int nameSpace, String endpointUri) {
     this.nameSpace = nameSpace;
@@ -83,8 +83,7 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn ArrayItemNode getNodeInstance()
-   * @brief get array item node instance
+   * get array item node instance
    * @return ArrayItemNode
    */
   private ArrayItemNode getNodeInstance() {
@@ -98,9 +97,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
+   * @param  valueAilas service provider key
    * @return EdgeNodeInfo
    */
   @Override
@@ -111,9 +109,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult readSync(EdgeMessage msg)
-   * @brief read node data synchronously
-   * @param [in] EdgeMessage msg
+   * read node data synchronously
+   * @param  msg message
    * @return result
    */
   @Override
@@ -161,21 +158,19 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readTitle(String title)
-   * @brief read title
-   * @param [in] String title
-   * @return Variant
+   * read title
+   * @param  title title of arayItemNode
+   * @return variant which has title
    */
   protected Variant readTitle(String title) throws InterruptedException, ExecutionException {
     return new Variant(title);
   }
 
   /**
-   * @fn CompletableFuture<String> readAsyncTitle(ArrayItemNode aNode, EdgeMessage msg)
-   * @brief read title asynchronously
-   * @param [in] ArrayItemNode aNode
-   * @param [in] EdgeMessage msg
-   * @return CompletableFuture<String>
+   * read title asynchronously
+   * @param  aNode arrayItemNode 
+   * @param  msg message
+   * @return variant which has title
    */
   protected CompletableFuture<String> readAsyncTitle(ArrayItemNode aNode, EdgeMessage msg) {
     return aNode.getTitle().thenApply(values -> {
@@ -191,10 +186,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn readAxisScaleType(Object axisScaleType)
-   * @brief read AxisScaleType
-   * @param [in] Object axisScaleType
-   * @return Variant
+   * read AxisScaleType
+   * @param  axisScaleType axisScaleType
+   * @return variant which has AxisScaleType
    */
   protected Variant readAxisScaleType(Object axisScaleType)
       throws InterruptedException, ExecutionException {
@@ -202,12 +196,10 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<PropertyNode> readAsyncAxisScaleType(ArrayItemNode aNode, EdgeMessage
-   *     msg)
-   * @brief read AxisScaleType
-   * @param [in] ArrayItemNode aNode
-   * @param [in] EdgeMessage msg
-   * @return CompletableFuture<PropertyNode>
+   * read AxisScaleType
+   * @param  aNode aNode
+   * @param  msg message
+   * @return variant which has AxisScaleType
    */
   protected CompletableFuture<PropertyNode> readAsyncAxisScaleType(ArrayItemNode aNode,
       EdgeMessage msg) {
@@ -224,10 +216,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readInstrumentRange(Object instrumentRange)
-   * @brief read instrument range
-   * @param [in] Object instrumentRange
-   * @return Variant
+   * read instrument range
+   * @param  instrumentRange instrumentRage 
+   * @return variant which has instrumentRange
    */
   protected Variant readInstrumentRange(Object instrumentRange)
       throws InterruptedException, ExecutionException {
@@ -235,10 +226,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readEngineeringUnits(Object engineeringUnit)
-   * @brief read engineering units
-   * @param [in] Object engineeringUnit
-   * @return Variant
+   * read engineering units
+   * @param  engineeringUnit engineeringUnit
+   * @return variant which has engineeringUnit
    */
   protected Variant readEngineeringUnits(Object engineeringUnit)
       throws InterruptedException, ExecutionException {
@@ -246,9 +236,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readEURange(Object euRange)
-   * @brief read EU range
-   * @param [in] Object euRange
+   * read EU range
+   * @param  Object euRange
    * @return Variant
    */
   protected Variant readEURange(Object euRange) throws InterruptedException, ExecutionException {
@@ -256,12 +245,10 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<PropertyNode> readAsyncInstrumentRange(ArrayItemNode aNode, EdgeMessage
-   *     msg)
-   * @brief read instrument range (Async)
-   * @param [in] ArrayItemNode aNode
-   * @param [in] EdgeMessage msg
-   * @return CompletableFuture<PropertyNode>
+   * read instrument range (Async)
+   * @param  aNode arrayItemNode
+   * @param  msg message
+   * @return instrumentRage
    */
   protected CompletableFuture<PropertyNode> readAsyncInstrumentRange(ArrayItemNode aNode,
       EdgeMessage msg) {
@@ -278,12 +265,10 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<PropertyNode> readAsyncEngineeringUnits(ArrayItemNode aNode, EdgeMessage
-   *     msg)
-   * @brief read engineering units (Async)
-   * @param [in] ArrayItemNode aNode
-   * @param [in] EdgeMessage msg
-   * @return CompletableFuture<PropertyNode>
+   * read engineering units (Async)
+   * @param  aNode arrayItemNode
+   * @param  msg message
+   * @return EngineeringUnits
    */
   protected CompletableFuture<PropertyNode> readAsyncEngineeringUnits(ArrayItemNode aNode,
       EdgeMessage msg) {
@@ -300,10 +285,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<PropertyNode> readAsyncEURange(ArrayItemNode aNode, EdgeMessage msg)
-   * @brief read EU range (Async)
-   * @param [in] ArrayItemNode aNode
-   * @param [in] EdgeMessage msg
+   * read EU range (Async)
+   * @param  ArrayItemNode aNode
+   * @param  EdgeMessage msg
    * @return CompletableFuture<PropertyNode>
    */
   protected CompletableFuture<PropertyNode> readAsyncEURange(ArrayItemNode aNode, EdgeMessage msg) {
@@ -320,12 +304,10 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<HashMap<String, String>> convertProperty(PropertyNode property,
-   *     EdgeNodeIdentifier id)
-   * @brief convert property of node
-   * @param [in] PropertyNode property
-   * @param [in] EdgeNodeIdentifier id
-   * @return CompletableFuture<HashMap<String, String>>
+   * convert property of node
+   * @param  property property
+   * @param  id NodeId
+   * @return HashMap of property
    */
   protected CompletableFuture<HashMap<String, String>> convertProperty(PropertyNode property,
       EdgeNodeIdentifier id) {
@@ -343,10 +325,9 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn HashMap<String, String> convertToRangeInfo(Object obj)
-   * @brief convert object to range information
-   * @param [in] Object obj
-   * @return HashMap<String, String>
+   * convert object to range information
+   * @param  obj obj
+   * @return HashMap of range information
    */
   protected HashMap<String, String> convertToRangeInfo(Object obj) {
     ExtensionObject extensionObj = (ExtensionObject) obj;
@@ -359,9 +340,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn HashMap<String, String> convertToEUInfo(Object opj)
-   * @brief convert object to EU information
-   * @param [in] Object obj
+   * convert object to EU information
+   * @param  Object obj
    * @return HashMap<String, String>
    */
   protected HashMap<String, String> convertToEUInfo(Object opj) {
@@ -375,9 +355,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeMessage msg)
-   * @brief read node data asynchronously
-   * @param [in] EdgeMessage msg
+   * read node data asynchronously
+   * @param  msg edge message
    * @return result
    */
   @Override
@@ -466,9 +445,8 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write edge message
-   * @param [in] EdgeMessage msg
+   * write edge message
+   * @param  msg edge message
    * @return result
    */
   @Override
@@ -491,8 +469,7 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get node type of array item
+   * get node type of array item
    * @return EdgeNodeIdentifier
    */
   @Override
@@ -501,9 +478,7 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn void setMapper()
-   * @brief set mapper
-   * @return void
+   * set mapper
    */
   @Override
   public void setMapper() throws Exception {
@@ -586,8 +561,7 @@ public class EdgeArrayItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn void getMapper()
-   * @brief get mapper
+   * get mapper
    * @return EdgeMapper
    */
   public EdgeMapper getMapper() {

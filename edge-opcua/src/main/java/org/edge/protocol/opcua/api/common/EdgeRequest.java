@@ -42,9 +42,8 @@ public class EdgeRequest {
     }
 
     /**
-     * @fn Builder setMessage(EdgeVersatility value)
-     * @brief set EdgeVersatility to write
-     * @param [in] value the parameter of EdgeVersatility type
+     * set EdgeVersatility to write
+     * @param  value the parameter of EdgeVersatility type
      * @return this
      */
     public Builder setMessage(EdgeVersatility value) {
@@ -53,9 +52,8 @@ public class EdgeRequest {
     }
 
     /**
-     * @fn Builder setSubReq(EdgeSubRequest req)
-     * @brief set EdgeSubRequest
-     * @param [in] req a request of subscription
+     * set EdgeSubRequest
+     * @param  req a request of subscription
      * @return this
      */
     public Builder setSubReq(EdgeSubRequest req) {
@@ -64,9 +62,8 @@ public class EdgeRequest {
     }
 
     /**
-     * @fn Builder setReturnDiagnostic(int diagnostic)
-     * @brief set ReturnDiagnostic
-     * @param [in] diagnostic ReturnDiagnostic
+     * set ReturnDiagnostic
+     * @param  diagnostic ReturnDiagnostic
      * @return this
      */
     public Builder setReturnDiagnostic(int diagnostic) {
@@ -75,8 +72,7 @@ public class EdgeRequest {
     }
 
     /**
-     * @fn EdgeRequest build()
-     * @brief create EdgeRequest instance (builder)
+     * create EdgeRequest instance (builder)
      * @return EdgeRequest instance
      */
     public EdgeRequest build() {
@@ -85,9 +81,8 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn EdgeRequest(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeRequest Builder
+   * constructor
+   * @param  builder EdgeRequest Builder
    */
   private EdgeRequest(Builder builder) {
     value = builder.value;
@@ -98,8 +93,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn EdgeVersatility getMessage()
-   * @brief get request message to write
+   * get request message to write
    * @return value
    */
   public EdgeVersatility getMessage() {
@@ -107,8 +101,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn EdgeEndpoint getEdgeNodeInfo()
-   * @brief get endpoint
+   * get endpoint
    * @return endpoint
    */
   public EdgeNodeInfo getEdgeNodeInfo() {
@@ -116,8 +109,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn EdgeSubRequest getSubRequest()
-   * @brief get subscription parameter
+   * get subscription parameter
    * @return subMsg
    */
   public EdgeSubRequest getSubRequest() {
@@ -125,8 +117,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn int getRequestId()
-   * @brief get request id
+   * get request id
    * @return requestId
    */
   public int getRequestId() {
@@ -134,8 +125,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn int getReturnDiagnostic()
-   * @brief get returnDiagnostic
+   * get returnDiagnostic
    * @return returnDiagnostic
    */
   public int getReturnDiagnostic() {
@@ -143,8 +133,7 @@ public class EdgeRequest {
   }
 
   /**
-   * @fn int getRandom()
-   * @brief get random integer value
+   * get random integer value
    * @return random value
    */
   private static int getRandom() {

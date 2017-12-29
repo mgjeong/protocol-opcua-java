@@ -68,8 +68,7 @@ public class EdgeDataItemService implements EdgeAttributeService {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn EdgeDataItemService()
-   * @brief constructor of EdgeDataItemService class
+   * constructor of EdgeDataItemService class
    */
   public EdgeDataItemService() {
     nameSpace = EdgeOpcUaCommon.DEFAULT_NAMESPACE_INDEX;
@@ -77,8 +76,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeDataItemService(int nameSpace, String endpointUri)
-   * @brief constructor of EdgeDataItemService class
+   * constructor of EdgeDataItemService class
+   * @param  nameSpace namespace of dataItem
+   * @param  endpointUri endpoint Uri of dataItem
    */
   public EdgeDataItemService(int nameSpace, String endpointUri) {
     this.nameSpace = nameSpace;
@@ -92,8 +92,7 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn DataItemNode getNodeInstance()
-   * @brief get node instance
+   * get node instance
    * @return DataItemNode
    */
   private DataItemNode getNodeInstance() {
@@ -107,9 +106,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
+   * @param  valueAilas service provider key
    * @return EdgeNodeInfo
    */
   @Override
@@ -120,9 +118,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readSync(EdgeMessage msg)
-   * @brief read node data synchronously
-   * @param [in] EdgeMessage msg
+   * read node data synchronously
+   * @param  EdgeMessage msg
    * @return result
    */
   @Override
@@ -165,11 +162,10 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn boolean checkInvalidTime(DateTime serverTime, DateTime sourceTime, int validMilliSec)
-   * @brief check validation of time
-   * @param [in] DateTime serverTime
-   * @param [in] DateTime sourceTime
-   * @param [in] int validMilliSec
+   * check validation of time
+   * @param  DateTime serverTime
+   * @param  DateTime sourceTime
+   * @param  int validMilliSec
    * @return boolean result
    */
   protected boolean checkInvalidTime(DateTime serverTime, DateTime sourceTime, int validMilliSec) {
@@ -190,9 +186,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn boolean checkNaNData(DataValue value)
-   * @brief check validation of NaNData
-   * @param [in] DataValue value
+   * check validation of NaNData
+   * @param  DataValue value
    * @return boolean result
    */
   protected boolean checkNaNData(DataValue value) {
@@ -209,10 +204,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn DataValue checkValidation(DataValue value, EdgeMessage msg)
-   * @brief check validation of value
-   * @param [in] DataValue value
-   * @param [in] EdgeMessage msg
+   * check validation of value
+   * @param  DataValue value
+   * @param  EdgeMessage msg
    * @return DataValue
    */
   protected DataValue checkValidation(DataValue value, EdgeMessage msg) {
@@ -252,10 +246,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn CompletableFuture<DataValue> readAsyncValue(DataItemNode dNode, EdgeMessage msg)
-   * @brief read values (Async)
-   * @param [in] DataItemNode dNode
-   * @param [in] EdgeMessage msg
+   * read values (Async)
+   * @param  DataItemNode dNode
+   * @param  EdgeMessage msg
    * @return CompletableFuture<DataValue>
    */
   protected CompletableFuture<DataValue> readAsyncValue(DataItemNode dNode, EdgeMessage msg) {
@@ -291,8 +284,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
 
   /**
    * @fn boolean checkStatusGood(StatusCode status)
-   * @brief check status
-   * @param [in] StatusCode status
+   * check status
+   * @param  StatusCode status
    * @return boolean result
    */
   private boolean checkStatusGood(StatusCode status) {
@@ -305,10 +298,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn CompletableFuture<StatusCode> writeAsyncValue(DataItemNode dNode, EdgeMessage msg)
-   * @brief write value (async)
-   * @param [in] DataItemNode dNode
-   * @param [in] EdgeMessage msg
+   * write value (async)
+   * @param  DataItemNode dNode
+   * @param  EdgeMessage msg
    * @return CompletableFuture<StatusCode>
    */
   protected CompletableFuture<StatusCode> writeAsyncValue(DataItemNode dNode, EdgeMessage msg) {
@@ -338,10 +330,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn CompletableFuture<String> readAsyncDefinition(DataItemNode dNode, EdgeMessage msg)
-   * @brief read definition (async)
-   * @param [in] DataItemNode dNode
-   * @param [in] EdgeMessage msg
+   * read definition (async)
+   * @param  DataItemNode dNode
+   * @param  EdgeMessage msg
    * @return CompletableFuture<String>
    */
   protected CompletableFuture<String> readAsyncDefinition(DataItemNode dNode, EdgeMessage msg) {
@@ -358,9 +349,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn CompletableFuture<LocalizedText> readAsyncDescription(DataItemNode dNode)
-   * @brief read description (sync)
-   * @param [in] DataItemNode dNode
+   * read description (sync)
+   * @param  DataItemNode dNode
    * @return CompletableFuture<LocalizedText>
    */
   protected CompletableFuture<LocalizedText> readAsyncDescription(DataItemNode dNode) {
@@ -372,10 +362,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn CompletableFuture<Double> readAsyncValuePrecision(DataItemNode dNode, EdgeMessage msg)
-   * @brief read value precision (sync)
-   * @param [in] DataItemNode dNode
-   * @param [in] EdgeMessage msg
+   * read value precision (sync)
+   * @param  DataItemNode dNode
+   * @param  EdgeMessage msg
    * @return CompletableFuture<Double>
    */
   protected CompletableFuture<Double> readAsyncValuePrecision(DataItemNode dNode, EdgeMessage msg)
@@ -393,9 +382,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn Variant readValue(Object value)
-   * @brief read value from object
-   * @param [in] Object value
+   * read value from object
+   * @param  Object value
    * @return Variant
    */
   protected Variant readValue(Object value) throws InterruptedException, ExecutionException {
@@ -403,9 +391,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn Variant readDefinition(String definition)
-   * @brief read definition
-   * @param [in] String definition
+   * read definition
+   * @param  String definition
    * @return Variant
    */
   protected Variant readDefinition(String definition)
@@ -414,9 +401,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn Variant readValuePrecision(Double varPrecision)
-   * @brief read value precision
-   * @param [in] Double varPrecision
+   * read value precision
+   * @param  Double varPrecision
    * @return Variant
    */
   protected Variant readValuePrecision(Double varPrecision)
@@ -425,9 +411,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult write2(EdgeMessage msg)
-   * @brief write edge message
-   * @param [in] EdgeMessage msg
+   * write edge message
+   * @param  EdgeMessage msg
    * @return result
    */
   public EdgeResult write2(EdgeMessage msg) throws Exception {
@@ -451,8 +436,7 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get node type
+   * get node type
    * @return EdgeNodeIdentifier
    */
   @Override
@@ -461,9 +445,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeMessage msg)
-   * @brief read edge message (async)
-   * @param [in] EdgeMessage msg
+   * read edge message (async)
+   * @param  EdgeMessage msg
    * @return result
    */
   @Override
@@ -516,9 +499,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write edge message (async)
-   * @param [in] EdgeMessage msg
+   * write edge message (async)
+   * @param  EdgeMessage msg
    * @return result
    */
   @Override
@@ -541,11 +523,9 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void putData(EdgeEndpoint ep, Variant data)
-   * @brief put variant data to edge endpoint
-   * @param [in] edgeEndpoint
-   * @param [in] data
-   * @return void
+   * put variant data to edge endpoint
+   * @param  edgeEndpoint
+   * @param  data
    */
   public static void putData(EdgeNodeInfo ep, Variant data, EdgeEndpointInfo epInfo) {
     EdgeMessage inputData =
@@ -558,9 +538,7 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void setMapper()
-   * @brief set mapper
-   * @return void
+   * set mapper
    */
   public void setMapper() throws Exception {
     mapper = new EdgeMapper();
@@ -610,8 +588,7 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void getMapper()
-   * @brief get mapper
+   * get mapper
    * @return EdgeMapper
    */
   public EdgeMapper getMapper() {
@@ -619,10 +596,8 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void setProperty(VariableNode v)
-   * @brief get property of node
-   * @param [in] variable node
-   * @return void
+   * get property of node
+   * @param  variable node
    */
   @Override
   public void setProperty(VariableNode v) throws Exception {
@@ -639,13 +614,11 @@ public class EdgeDataItemService implements EdgeAttributeService {
   }
 
   /**
-   * @fn NodeId getNodeId()
-   * @brief get node id
+   * get node id
    * @return NodeId
    */
   @Override
   public NodeId getNodeId() {
-    // TODO Auto-generated method stub
     return null;
   }
 }

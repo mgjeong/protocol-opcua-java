@@ -39,11 +39,9 @@ public class Method implements Command {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] future
-   * @prarm [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  future result of execution
+   * @param  msg message of method request
    */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -56,10 +54,9 @@ public class Method implements Command {
   }
 
   /**
-   * @fn EdgeResult method(EdgeMessage msg)
-   * @brief call method with EdgeMessage
-   * @prarm [in] msg
-   * @return EdgeResult
+   * call method with EdgeMessage
+   * @param  msg message
+   * @return EdgeResult result of method request 
    */
   private EdgeResult method(EdgeMessage msg) throws Exception {
     logger.info("method command");
@@ -74,7 +71,6 @@ public class Method implements Command {
       try {
         ret = methodService.runMethodAsync(msg.getRequest().getEdgeNodeInfo(), msg.getRequest().getMessage(), msg.getEdgeEndpointInfo());
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
         ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),

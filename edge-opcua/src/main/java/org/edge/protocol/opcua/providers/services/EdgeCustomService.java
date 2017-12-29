@@ -93,9 +93,8 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
+   * @param  valueAilas service provider key
    * @return EdgeNodeInfo
    */
   @Override
@@ -107,10 +106,9 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readSync(EdgeEndpoint ep)
-   * @brief read data from target Node in server (sync method) and response will be checked in
+   * read data from target Node in server (sync method) and response will be checked in
    *        onResonseMessage Callback.
-   * @prarm [in] msg edge message
+   * @param  msg edge message
    * @return result
    */
   @Override
@@ -199,10 +197,9 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write data to target Node in server (async method) and response will be checked in
+   * write data to target Node in server (async method) and response will be checked in
    *        onResonseMessage Callback.
-   * @prarm [in] msg write value
+   * @param  msg write value
    * @return result
    */
   @Override
@@ -231,8 +228,7 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get edge service type related attribute service. Node Type is including
+   * get edge service type related attribute service. Node Type is including
    *        Edge_Node_Class_Type, Edge_Node_ServerInfo_Type, Edge_Node_Custom_Type in
    *        EdgeNodeIdentifier
    * @return service node type (EdgeNodeIdentifier.Edge_Node_Custom_Type)
@@ -456,12 +452,11 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeEndpoint ep)
-   * @brief read data from target Node in server (async method) this function is worked on single
+   * read data from target Node in server (async method) this function is worked on single
    *        target node. multi access is supported on EdgeGroupService. and response will be checked
    *        in onResonseMessage Callback. and error message will be checked in onErrorMessage
    *        Callback.
-   * @prarm [in] msg edge message
+   * @param  msg edge message
    * @return result
    */
   @Override
@@ -498,8 +493,7 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn EdgeMapper getMapper()
-   * @brief get mapper instance this function is provided metadata such as access-level, data-type.
+   * get mapper instance this function is provided metadata such as access-level, data-type.
    * @return mapper instance
    */
   public EdgeMapper getMapper() {
@@ -524,9 +518,8 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   /**
-   * @fn void setProperty(VariableNode v)
-   * @brief set Property Data for Mapper
-   * @return void
+   * set Property Data for Mapper
+   * @param v a variable node which user want to set property
    */
   @Override
   public void setProperty(VariableNode v) throws Exception {
@@ -545,7 +538,6 @@ public class EdgeCustomService implements EdgeAttributeService {
 
   @Override
   public NodeId getNodeId() {
-    // TODO Auto-generated method stub
     return new NodeId(nameSpace, browseName);
   }
 }

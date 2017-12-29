@@ -25,8 +25,7 @@ public class TestCertificateManager implements CertificateManager {
   private final X509Certificate certificate;
 
   /**
-   * @fn TestCertificateManager(KeyPair keyPair, X509Certificate certificate)
-   * @brief Constructor of TestCertificateManager class
+   * Constructor of TestCertificateManager class
    */
   public TestCertificateManager(KeyPair keyPair, X509Certificate certificate) {
     this.keyPair = keyPair;
@@ -34,7 +33,7 @@ public class TestCertificateManager implements CertificateManager {
   }
   
   /**
-   * @brief overriding methods from CertificateManager
+   * overriding methods from CertificateManager
    */
   @Override
   public Optional<KeyPair> getKeyPair(ByteString thumbprint) {

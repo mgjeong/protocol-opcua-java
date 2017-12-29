@@ -50,8 +50,7 @@ public class EdgeDevice {
     }
 
     /**
-     * @fn EdgeDevice build()
-     * @brief create EdgeDevice instance (builder)
+     * create EdgeDevice instance (builder)
      * @return EdgeDevice instance
      */
     public EdgeDevice build() {
@@ -60,9 +59,8 @@ public class EdgeDevice {
   }
 
   /**
-   * @fn EdgeDevice(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeDevice Builder
+   * constructor
+   * @param  builder EdgeDevice Builder
    */
   private EdgeDevice(Builder builder) {
     address = builder.address;
@@ -72,8 +70,7 @@ public class EdgeDevice {
   }
 
   /**
-   * @fn String getAddress()
-   * @brief get address
+   * get address
    * @return address
    */
   public String getAddress() {
@@ -81,8 +78,7 @@ public class EdgeDevice {
   }
 
   /**
-   * @fn int getPort()
-   * @brief get port
+   * get port
    * @return port
    */
   public int getPort() {
@@ -90,8 +86,7 @@ public class EdgeDevice {
   }
 
   /**
-   * @fn ArrayList<EdgeEndpointInfo> getEndpoints()
-   * @brief get getEndpoint list
+   * get getEndpoint list
    * @return endpoints
    */
   public ArrayList<EdgeEndpointInfo> getEndpoints() {
@@ -99,8 +94,7 @@ public class EdgeDevice {
   }
 
   /**
-   * @fn String getServerName()
-   * @brief get Server Name
+   * get Server Name
    * @return serverName
    */
   public String getServerName() {

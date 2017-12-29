@@ -59,8 +59,9 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   private static Object lock = new Object();
 
   /**
-   * @fn EdgeAnalogItemService(int nameSpace, String endpointUri)
-   * @brief get EdgeBrowseService Instance
+   * get EdgeBrowseService Instance
+   * @param nameSpace value of namespace
+   * @param endpointUri uri of endpoint
    * @return EdgeBrowseService Instance
    */
   public EdgeAnalogItemService(int nameSpace, String endpointUri) {
@@ -75,9 +76,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn AnalogItemNode getNodeInstance()
-   * @brief get AnalogItemNode instance
-   * @return AnalogItemNode
+   * get AnalogItemNode instance
+   * @return AnalogItemNode instance
    */
   private AnalogItemNode getNodeInstance() {
     synchronized (lock) {
@@ -90,10 +90,9 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeNodeInfo getNodeInfo(String valueAilas)
-   * @brief get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(Milo).
-   * @prarm [in] valueAilas service provider key
-   * @return EdgeNodeInfo
+   * get EdgeNodeInfo with the parameter to make nodeId of OPCUA library(UA-Milo).
+   * @param  valueAilas service provider key
+   * @return node information
    */
   @Override
   public EdgeNodeInfo getNodeInfo(String valueAilas) {
@@ -103,9 +102,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult readSync(EdgeMessage msg)
-   * @brief overriding method for read sync
-   * @param [in] EdgeMessage msg
+   * overriding method for read sync
+   * @param  msg edgeMessage
    * @return EdgeResult
    */
   @Override
@@ -150,9 +148,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readInstrumentRange()
-   * @brief read instrument range
-   * @return Variant
+   * read instrument range
+   * @return Variant of instrument range
    */
   private Variant readInstrumentRange() throws InterruptedException, ExecutionException {
     ExtensionObject extensionObj =
@@ -166,9 +163,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readEngineeringUnits()
-   * @brief read engineering units
-   * @return Variant
+   * read engineering units
+   * @return Variant of engineering units
    */
   private Variant readEngineeringUnits() throws InterruptedException, ExecutionException {
     ExtensionObject extensionObj =
@@ -182,9 +178,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn Variant readEURange()
-   * @brief read EU range
-   * @return Variant
+   * read EU range
+   * @return Variant of EU range
    */
   private Variant readEURange() throws InterruptedException, ExecutionException {
     ExtensionObject extensionObj =
@@ -198,10 +193,9 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<PropertyNode> readAsyncData(EdgeNodeIdentifier id, EdgeMessage msg)
-   * @brief read data (async)
-   * @param [in] EdgeNodeIdentifier id
-   * @param [in] EdgeMessage msg
+   * read data (async)
+   * @param  id nodeId
+   * @param  msg edgeMessage
    * @return CompletableFuture<PropertyNode>
    */
   private CompletableFuture<PropertyNode> readAsyncData(EdgeNodeIdentifier id, EdgeMessage msg) {
@@ -245,11 +239,9 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn CompletableFuture<HashMap<String, String>> convertProperty(PropertyNode property,
-   *     EdgeNodeIdentifier id)
-   * @brief convert the property of edge node
-   * @param [in] PropertyNode property
-   * @param [in] EdgeNodeIdentifier id
+   * convert the property of edge node
+   * @param  PropertyNode property
+   * @param  EdgeNodeIdentifier id
    * @return CompletableFuture<HashMap<String, String>>
    */
   private CompletableFuture<HashMap<String, String>> convertProperty(PropertyNode property,
@@ -269,9 +261,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn HashMap<String, String> convertToRangeInfo(Object obj)
-   * @brief convert object to range information
-   * @param [in] Object obj
+   * convert object to range information
+   * @param  Object obj
    * @return HashMap<String, String>
    */
   private HashMap<String, String> convertToRangeInfo(Object obj) {
@@ -285,10 +276,9 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn HashMap<String, String> convertToEUInfo(Object opj)
-   * @brief convert object to EU information
-   * @param [in] Object obj
-   * @return HashMap<String, String>
+   * convert object to EU information
+   * @param  obj
+   * @return HashMap of EU information
    */
   private HashMap<String, String> convertToEUInfo(Object opj) {
     ExtensionObject extensionObj = (ExtensionObject) opj;
@@ -301,9 +291,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult write(EdgeMessage msg)
-   * @brief write edge message
-   * @param [in] EdgeMessage msg
+   * write edge message
+   * @param  msg edgeMessage
    * @return result
    */
   @Override
@@ -326,9 +315,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeNodeIdentifier getNodeType()
-   * @brief get note type with analog item type
-   * @param [in] EdgeMessage msg
+   * get note type with analog item type
+   * @param  EdgeMessage msg
    * @return EdgeNodeIdentifier with AnalogItemType
    */
   @Override
@@ -337,9 +325,8 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn EdgeResult readAsync(EdgeMessage msg)
-   * @brief read node data asynchronously
-   * @param [in] EdgeMessage msg
+   * read node data asynchronously
+   * @param  EdgeMessage msg
    * @return result
    */
   @Override
@@ -427,9 +414,7 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn void setMapper()
-   * @brief set edge mapper
-   * @return void
+   * set edge mapper
    */
   @Override
   public void setMapper() throws Exception {
@@ -504,8 +489,7 @@ public class EdgeAnalogItemService extends EdgeDataItemService {
   }
 
   /**
-   * @fn void getMapper()
-   * @brief get edge mapper
+   * get edge mapper
    * @return EdgeMapper
    */
   public EdgeMapper getMapper() {

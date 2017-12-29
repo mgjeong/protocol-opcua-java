@@ -41,16 +41,16 @@ public class CommandExecutor {
 
   /**
    * CTOR
+   * @param  command type of command
+   * @throws exception
    */
   public CommandExecutor(Command command) throws Exception {
     this.command = command;
   }
 
   /**
-   * @fn void run(EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  msg request message of execution service
    */
   public void run(EdgeMessage msg) {
     future.whenComplete((ret, ex) -> {

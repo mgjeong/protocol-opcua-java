@@ -70,8 +70,7 @@ public class EdgeProviderGenerator {
   private static List<NodeId> viewNodeList = new ArrayList<NodeId>();
 
   /**
-   * @fn EdgeProviderGenerator getInstance()
-   * @brief get provider generator instance
+   * get provider generator instance
    * @return providerGenerator instance
    */
   public synchronized static EdgeProviderGenerator getInstance() {
@@ -97,7 +96,6 @@ public class EdgeProviderGenerator {
       return v;
 
     } catch (InterruptedException | ExecutionException | NumberFormatException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return null;
@@ -328,14 +326,12 @@ public class EdgeProviderGenerator {
   }
 
   /**
-   * @fn EdgeResult initializeProvider(NodeId id, String browseName, NodeClass classType,
-   *     EdgeOpcUaClient client, final int uriStackTop)
-   * @brief initialize Provider through browsing node data from server.
-   * @prarm [in] id root nod protocolManager = null;e ID to browse
-   * @prarm [in] browseName browse name
-   * @prarm [in] classType available node class type (NodeClass.Variable)
-   * @prarm [in] client EdgeOpcUaClient instance to browse
-   * @prarm [in] viewEnabled the flag whether view type is set as the target node of initialize
+   * initialize Provider through browsing node data from server.
+   * @param  id root nod protocolManager = null;e ID to browse
+   * @param  browseName browse name
+   * @param  classType available node class type (NodeClass.Variable)
+   * @param  client EdgeOpcUaClient instance to browse
+   * @param  viewEnabled the flag whether view type is set as the target node of initialize
    *        provider.
    * @return result
    */

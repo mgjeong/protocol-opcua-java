@@ -51,8 +51,7 @@ public class EdgeMethodCaller {
   }
 
   /**
-   * @fn EdgeMethodCaller getInstance()
-   * @brief get EdgeMethodCaller Instance
+   * get EdgeMethodCaller Instance
    * @return EdgeMethodCaller Instance
    */
   public static EdgeMethodCaller getInstance() {
@@ -65,22 +64,20 @@ public class EdgeMethodCaller {
   }
 
   /**
-   * @fn void close()
-   * @brief close EdgeMethodCaller Instance
-   * @return void
+   * close EdgeMethodCaller Instance
    */
   public void close() {
     caller = null;
   }
 
   /**
-   * @fn EdgeResult executeAsync(EdgeEndpoint ep, EdgeVersatility param)
-   * @brief execute with parameter for endpoint (Async)
-   * @param [in] msg edge message
-   * @param [in] param parameter
-   * @param [in] objectId object Id
-   * @param [in] methodId method Id
+   * execute with parameter for endpoint (Async)
+   * @param  msg edge message
+   * @param  param parameter
+   * @param  objectId object Id
+   * @param  methodId method Id
    * @return result
+   * @throws exception
    */
   public EdgeResult executeAsync(EdgeMessage msg, EdgeVersatility param, NodeId objectId,
       NodeId methodId) throws Exception {
@@ -117,7 +114,6 @@ public class EdgeMethodCaller {
         future.complete(null);
       });
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
       isGood = false;
     }
@@ -126,13 +122,11 @@ public class EdgeMethodCaller {
   }
 
   /**
-   * @fn CompletableFuture<Double> callMethodAsync(EdgeOpcUaClient client, NodeId pNodeId, NodeId
-   *     mNodeId, Double input)
-   * @brief Call method (Async)
-   * @param [in] EdgeOpcUaClient client
-   * @param [in] NodeId pNodeId
-   * @param [in] NodeId mNodeId
-   * @param [in] EdgeVariant param
+   * Call method (Async)
+   * @param  EdgeOpcUaClient client
+   * @param  NodeId pNodeId
+   * @param  NodeId mNodeId
+   * @param  EdgeVariant parameter
    * @return CompletableFuture<Double>
    */
   private CompletableFuture<Double> callMethodAsync(EdgeOpcUaClient client, NodeId pNodeId,

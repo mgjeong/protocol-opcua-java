@@ -86,8 +86,7 @@ public class EdgeBrowseService {
   }
 
   /**
-   * @fn EdgeBrowseService getInstance()
-   * @brief get EdgeBrowseService Instance
+   * get EdgeBrowseService Instance
    * @return EdgeBrowseService Instance
    */
   public static EdgeBrowseService getInstance() {
@@ -114,10 +113,9 @@ public class EdgeBrowseService {
   }
 
   /**
-   * @fn void browse(String indent, EdgeEndpoint ep)
-   * @brief browse target parent node and its child node
-   * @param [in] indent empty space
-   * @param [in] msg edge message set
+   * browse target parent node and its child node
+   * @param  indent empty space
+   * @param  msg edge message set
    * @return void
    */
   public void browse(String indent, EdgeMessage msg) throws Exception {
@@ -153,10 +151,9 @@ public class EdgeBrowseService {
   }
 
   /**
-   * @fn void browseNext(String indent, EdgeEndpoint ep)
-   * @brief browse target parent node and its child node
-   * @param [in] indent empty space
-   * @param [in] msg edge message set
+   * browse target parent node and its child node
+   * @param  indent empty space
+   * @param  msg edge message set
    * @return void
    */
   public void browseNext(String indent, EdgeMessage msg) throws Exception {
@@ -463,7 +460,6 @@ public class EdgeBrowseService {
                   }
                 });
               } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
               }
             }

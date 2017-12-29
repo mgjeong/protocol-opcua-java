@@ -41,11 +41,9 @@ public class Read implements Command {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
-   * @fn void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg)
-   * @brief excute with EdgeMessage
-   * @prarm [in] future
-   * @prarm [in] msg
-   * @return void
+   * execute with EdgeMessage
+   * @param  future result of execution
+   * @param  msg message of read request
    */
   @Override
   public void execute(CompletableFuture<EdgeResult> future, EdgeMessage msg) throws Exception {
@@ -58,10 +56,9 @@ public class Read implements Command {
   }
 
   /**
-   * @fn EdgeResult read(EdgeMessage msg)
-   * @brief read with EdgeMessage
-   * @prarm [in] msg
-   * @return EdgeResult
+   * read with EdgeMessage
+   * @param  msg message
+   * @return EdgeResult result of read request 
    */
   private EdgeResult read(EdgeMessage msg) throws Exception {
     String serviceName = null;
@@ -85,7 +82,6 @@ public class Read implements Command {
       try {
         ret = service.readAsync(msg);
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
         ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),
@@ -95,7 +91,6 @@ public class Read implements Command {
       try {
         ret = service.readSync(msg);
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
         ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),

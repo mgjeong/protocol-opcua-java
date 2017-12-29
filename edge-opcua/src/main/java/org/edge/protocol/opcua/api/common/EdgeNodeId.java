@@ -61,8 +61,7 @@ public class EdgeNodeId {
     }
 
     /**
-     * @fn EdgeNodeId build()
-     * @brief EdgeNodeId instance creator
+     * EdgeNodeId instance creator
      * @return EdgeNodeId instance
      */
     public EdgeNodeId build() {
@@ -71,9 +70,8 @@ public class EdgeNodeId {
   }
 
   /**
-   * @fn EdgeNodeId(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeNodeId Builder
+   * constructor
+   * @param  builder EdgeNodeId Builder
    */
   private EdgeNodeId(Builder builder) {
     nameSpace = builder.nameSpace;
@@ -84,8 +82,7 @@ public class EdgeNodeId {
   }
 
   /**
-   * @fn int getNameSpace()
-   * @brief get nameSpace
+   * get nameSpace
    * @return nameSpace
    */
   public int getNameSpace() {
@@ -93,8 +90,7 @@ public class EdgeNodeId {
   }
 
   /**
-   * @fn String getEdgeNodeUri()
-   * @brief get edgeNode URI
+   * get edgeNode URI
    * @return nodeUri
    */
   public String getEdgeNodeUri() {
@@ -102,8 +98,7 @@ public class EdgeNodeId {
   }
 
   /**
-   * @fn Object getIdentifier()
-   * @brief get node identifier
+   * get node identifier
    * @return id object
    */
   public Object getIdentifier() {
@@ -123,8 +118,7 @@ public class EdgeNodeId {
   }
   
   /**
-   * @fn EdgeNodeIdentifier getEdgeNodeIdentifier()
-   * @brief get edgeNode ID
+   * get edgeNode ID
    * @return edgeNodeId
    */
   public EdgeNodeIdentifier getEdgeNodeIdentifier() {

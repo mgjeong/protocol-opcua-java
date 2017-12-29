@@ -82,8 +82,7 @@ public class EdgeMonitoredItemService {
   private EdgeMonitoredItemService() {}
 
   /**
-   * @fn EdgeMonitoredItemService getInstance()
-   * @brief get EdgeMonitoredItemService Instance
+   * get EdgeMonitoredItemService Instance
    * @return EdgeMonitoredItemService Instance
    */
   public static EdgeMonitoredItemService getInstance() {
@@ -96,11 +95,10 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void addSubscription(String endpointUri, UaSubscription sub, EdgeSubRequest req)
-   * @brief add subscribers to the list of subscription
-   * @prarm [in] endpoint
-   * @param [in] UaSubscription
-   * @param [in] EdgeSubRequest
+   * add subscribers to the list of subscription
+   * @param  endpoint
+   * @param  UaSubscription
+   * @param  EdgeSubRequest
    * @return void
    */
   private void addSubscription(String endpointUri, UaSubscription sub, EdgeSubRequest req) {
@@ -111,9 +109,8 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn UaSubscription getSubscription(String endpointUri)
-   * @brief Get a subscriber from the list of subscription
-   * @prarm [in] endpoint
+   * Get a subscriber from the list of subscription
+   * @param  endpoint
    * @return UaSubscription
    */
   private UaSubscription getSubscription(String endpointUri) {
@@ -121,9 +118,8 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn EdgeSubRequest getSubRequest(String endpointUri)
-   * @brief Get a subscription request from the list of subscription
-   * @prarm [in] endpoint
+   * Get a subscription request from the list of subscription
+   * @param  endpoint
    * @return EdgeSubRequest
    */
   private EdgeSubRequest getSubRequest(String endpointUri) {
@@ -131,14 +127,13 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn EdgeResult subscription(EdgeSubRequest req, EdgeEndpoint ep)
-   * @brief subscription according for sub-request to endpoint
-   * @param [in] req Subscription Request Parameters Subscription for opcua can be set such as
+   * subscription according for sub-request to endpoint
+   * @param request Subscription Request Parameters Subscription for opc-ua can be set such as
    *        samplingInterval, publishingInterval and etc. first monitored message will be sent to
    *        both onMonitoredMessage and onResponseMessage. and error message will be checked in
    *        onErrorMessage Callback.
-   * @param [in] nodeInfo target node information
-   * @param [in] epInfo target endpoint
+   * @param nodeInfo target node information
+   * @param epInfo target endpoint
    * @return result
    */
   public EdgeResult subscription(EdgeRequest request, EdgeNodeInfo nodeInfo,
@@ -354,12 +349,10 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void RunMonitoredItemService(EdgeRequest request, EdgeEndpoint ep, UaSubscription
-   *     subscription)
-   * @brief execute monitored item service
-   * @prarm [in] EdgeRequest request
-   * @prarm [in] EdgeEndpoint endpoint
-   * @prarm [in] UaSubscription subscription
+   * execute monitored item service
+   * @param  request request of monitored item
+   * @param  ep node information of  
+   * @param  subscription Uasubscription
    * @return void
    */
   private void RunMonitoredItemService(EdgeRequest request, EdgeNodeInfo ep,
@@ -457,10 +450,9 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void checkMonitoredItemErrorStatus(List<UaMonitoredItem> monitoredItems, EdgeRequest req)
-   * @brief verify execute monitored
-   * @prarm [in] List<UaMonitoredItem> monitoredItems
-   * @prarm [in] EdgeRequest request
+   * verify execute monitored
+   * @param  monitoredItems list of monitored item
+   * @param  request request of monitored Item
    * @return void
    */
   private void checkMonitoredItemErrorStatus(List<UaMonitoredItem> monitoredItems,
@@ -541,13 +533,11 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void setPublishMode(dgeEndpointInfo ep, EdgeNodeInfo nodeInfo, List<UInteger>
-   *     subscriptionIds, EdgeRequest req)
-   * @brief Set modes to publish
-   * @prarm [in] ep endpoint
-   * @prarm [in] nodeInfo node Information
-   * @prarm [in] list of subscription id
-   * @prarm [in] edgeRequest
+   * Set modes to publish
+   * @param ep endpoint
+   * @param nodeInfo node Information
+   * @param list of subscription id
+   * @param edgeRequest
    * @return void
    */
   private void setPublishMode(EdgeEndpointInfo ep, EdgeNodeInfo nodeInfo,
@@ -578,13 +568,11 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn CompletableFuture<UaSubscription> modifySubscription(EdgeEndpoint ep, UaSubscription sub,
-   *     EdgeRequest req)
-   * @brief provide api to change subscription
-   * @prarm [in] ep endpoint
-   * @prarm [in] nodeInfo node Information
-   * @prarm [in] uaSubscription
-   * @prarm [in] edgeRequest
+   * provide api to change subscription
+   * @param  ep endpoint
+   * @param  nodeInfo node Information
+   * @param  uaSubscription
+   * @param  edgeRequest
    * @return CompletableFuture<UaSubscription>
    */
   private CompletableFuture<UaSubscription> modifySubscription(EdgeEndpointInfo epInfo,
@@ -610,13 +598,11 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn CompletableFuture<EdgeResult> deleteSubscriptions(EdgeEndpoint ep, List<UInteger>
-   *     subscriptionIds, EdgeRequest req)
-   * @brief delete multiple subscriptions from the list of subscription
-   * @prarm [in] ep endpoint
-   * @prarm [in] nodeInfo node Information
-   * @prarm [in] list of subscription id
-   * @prarm [in] edgeRequest
+   * delete multiple subscriptions from the list of subscription
+   * @param  ep endpoint
+   * @param  nodeInfo node Information
+   * @param  list of subscription id
+   * @param  edgeRequest
    * @return CompletableFuture<EdgeResult>
    */
   private CompletableFuture<EdgeResult> deleteSubscriptions(EdgeEndpointInfo epInfo,
@@ -692,13 +678,11 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn CompletableFuture<EdgeResult> deleteSubscription(EdgeEndpoint ep, UInteger subscriptionId,
-   *     EdgeRequest req)
-   * @brief delete a subscription from the list of subscription
-   * @prarm [in] ep endpoint
-   * @prarm [in] nodeInfo node Information
-   * @prarm [in] list of subscription id
-   * @prarm [in] edgeRequest
+   * delete a subscription from the list of subscription
+   * @param  ep endpoint
+   * @param  nodeInfo node Information
+   * @param  list of subscription id
+   * @param  edgeRequest
    * @return CompletableFuture<EdgeResult>
    */
   private CompletableFuture<EdgeResult> deleteSubscription(EdgeEndpointInfo epInfo,
@@ -718,12 +702,11 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn checkNotificationMessage
-   * @brief delete a subscription from the list of subscription
-   * @prarm [in] ImmutableList<Tuple2<UaMonitoredItem, DataValue>> itemValues
-   * @prarm [in] UaSubscription sub
-   * @prarm [in] DateTime publishTime
-   * @prarm [in] epInfo EdgeEndpointInfo
+   * delete a subscription from the list of subscription
+   * @param  ImmutableList<Tuple2<UaMonitoredItem, DataValue>> itemValues
+   * @param  UaSubscription sub
+   * @param  DateTime publishTime
+   * @param  epInfo EdgeEndpointInfo
    * @return EdgeStatusCode
    */
   private EdgeStatusCode checkNotificationMessage(
@@ -752,11 +735,10 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code, String reason)
-   * @brief Call error message callback with error reason
-   * @prarm [in] EdgeRequest request
-   * @prarm [in] EdgeStatusCode code
-   * @prarm [in] String reason
+   * Call error message callback with error reason
+   * @param  EdgeRequest request
+   * @param  EdgeStatusCode code
+   * @param  String reason
    * @return void
    */
   private void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code, String reason) {
@@ -766,10 +748,9 @@ public class EdgeMonitoredItemService {
   }
 
   /**
-   * @fn void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code)
-   * @brief Call error message callback
-   * @prarm [in] EdgeRequest request
-   * @prarm [in] EdgeStatusCode code
+   * Call error message callback
+   * @param  EdgeRequest request
+   * @param  EdgeStatusCode code
    * @return void
    */
   private void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code) {

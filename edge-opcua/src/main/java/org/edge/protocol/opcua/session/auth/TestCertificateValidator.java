@@ -25,29 +25,35 @@ public class TestCertificateValidator implements CertificateValidator {
   private final Set<X509Certificate> trustedCertificates = Sets.newConcurrentHashSet();
 
   /**
-   * @fn TestCertificateValidator(X509Certificate certificate)
-   * @brief Constructor of TestCertificateManager class
+   * Constructor of TestCertificateManager class
+   * @param certificate X509 certificate file
    */
   public TestCertificateValidator(X509Certificate certificate) {
     trustedCertificates.add(certificate);
   }
 
   /**
-   * @fn TestCertificateValidator(X509Certificate... certificates)
-   * @brief Constructor of TestCertificateManager class
+   * Constructor of TestCertificateManager class
+   * @param certificates X509 certificate files
    */
   public TestCertificateValidator(X509Certificate... certificates) {
     Collections.addAll(trustedCertificates, certificates);
   }
 
   /**
-   * @brief overriding methods from CertificateManager
+   * overriding methods from CertificateManager
+   * @param certificate X509 certificate file
    */
   @Override
   public void validate(X509Certificate certificate) throws UaException {
     CertificateValidationUtil.validateCertificateValidity(certificate);
   }
 
+  /**
+   * overriding methods from CertificateManager
+   * @param certificate X509 certificate file
+   * @param chain certificate chain
+   */
   @Override
   public void verifyTrustChain(X509Certificate certificate, List<X509Certificate> chain)
       throws UaException {

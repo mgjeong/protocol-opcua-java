@@ -35,9 +35,8 @@ public class EdgeEndpointInfo {
     }
 
     /**
-     * @fn Builder setConfig(EdgeEndpointConfig config)
-     * @brief set EdgeEndpointConfig for server setting
-     * @param [in] config server configuration
+     * set EdgeEndpointConfig for server setting
+     * @param  config server configuration
      * @return this
      */
     public Builder setConfig(EdgeEndpointConfig config) {
@@ -46,9 +45,8 @@ public class EdgeEndpointInfo {
     }
 
     /**
-     * @fn Builder setFuture(CompletableFuture<String> future)
-     * @brief set future instance of CompletableFuture<String>
-     * @param [in] future CompletableFuture<String> future
+     * set future instance of CompletableFuture<String>
+     * @param  future future CompletableFuture<String>
      * @return this
      */
     public Builder setFuture(CompletableFuture<String> future) {
@@ -57,8 +55,7 @@ public class EdgeEndpointInfo {
     }
 
     /**
-     * @fn EdgeEndpoint build()
-     * @brief create EdgeEndpoint instance (builder)
+     * create EdgeEndpoint instance (builder)
      * @return EdgeEndpoint instance
      */
     public EdgeEndpointInfo build() {
@@ -67,9 +64,8 @@ public class EdgeEndpointInfo {
   }
 
   /**
-   * @fn EdgeEndpoint(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeEndpoint Builder
+   * constructor
+   * @param  builder EdgeEndpoint Builder
    */
   private EdgeEndpointInfo(Builder builder) {
     endpointUri = builder.endpointUri;
@@ -78,8 +74,7 @@ public class EdgeEndpointInfo {
   }
 
   /**
-   * @fn String getEndpointUri()
-   * @brief get endpoint uri
+   * get endpoint uri
    * @return endpointUri
    */
   public String getEndpointUri() {
@@ -87,8 +82,7 @@ public class EdgeEndpointInfo {
   }
 
   /**
-   * @fn EdgeEndpointConfig getConfig()
-   * @brief get configuration of server setting
+   * get configuration of server setting
    * @return config
    */
   public EdgeEndpointConfig getConfig() {
@@ -96,8 +90,7 @@ public class EdgeEndpointInfo {
   }
 
   /**
-   * @fn String CompletableFuture<String> getFuture()
-   * @brief get CompletableFuture
+   * get CompletableFuture
    * @return future
    */
   public CompletableFuture<String> getFuture() {

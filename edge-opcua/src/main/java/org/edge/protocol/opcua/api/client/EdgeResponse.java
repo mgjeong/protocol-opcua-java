@@ -44,9 +44,8 @@ public class EdgeResponse {
     }
 
     /**
-     * @fn Builder setMessage(EdgeVersatility value)
-     * @brief set EdgeVersatility
-     * @param [in] value the response value of the EdgeVersatility type
+     * set EdgeVersatility
+     * @param  value the response value of the EdgeVersatility type
      * @return this
      */
     public Builder setMessage(EdgeVersatility value) {
@@ -55,9 +54,8 @@ public class EdgeResponse {
     }
 
     /**
-     * @fn Builder setResult(EdgeResult result)
-     * @brief set EdgeResult
-     * @param [in] result result 
+     * set EdgeResult
+     * @param  result result
      * @return this
      */
     public Builder setResult(EdgeResult result) {
@@ -66,9 +64,8 @@ public class EdgeResponse {
     }
 
     /**
-     * @fn Builder setDiagnosticInfo(EdgeDiagnosticInfo info)
-     * @brief set EdgeDiagnosticInfo
-     * @param [in] info EdgeDiagnosticInfo 
+     * set EdgeDiagnosticInfo
+     * @param  info EdgeDiagnosticInfo
      * @return this
      */
     public Builder setDiagnosticInfo(EdgeDiagnosticInfo info) {
@@ -77,8 +74,7 @@ public class EdgeResponse {
     }
 
     /**
-     * @fn EdgeResponse build()
-     * @brief create EdgeResponse instance (builder)
+     * create EdgeResponse instance (builder)
      * @return EdgeResponse instance
      */
     public EdgeResponse build() {
@@ -87,9 +83,8 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn EdgeResponse(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeResponse Builder
+   * constructor
+   * @param  builder EdgeResponse Builder
    */
   private EdgeResponse(Builder builder) {
     value = builder.value;
@@ -100,8 +95,7 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn EdgeVersatility getMessage()
-   * @brief get message to respond
+   * get message to respond
    * @return value
    */
   public EdgeVersatility getMessage() {
@@ -109,8 +103,7 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn EdgeEndpoint getEdgeNodeInfo() 
-   * @brief get endpoint
+   * get endpoint
    * @return endpoint
    */
   public EdgeNodeInfo getEdgeNodeInfo() {
@@ -118,8 +111,7 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn EdgeResult getResult()
-   * @brief get result
+   * get result
    * @return result
    */
   public EdgeResult getResult() {
@@ -127,8 +119,7 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn int getRequestId()
-   * @brief get request Id
+   * get request Id
    * @return requestId
    */
   public int getRequestId() {
@@ -136,8 +127,7 @@ public class EdgeResponse {
   }
 
   /**
-   * @fn int getReturnDiagnostic()
-   * @brief get diagnostic Information
+   * get diagnostic Information
    * @return diagnosticInfo
    */
   public EdgeDiagnosticInfo getEdgeDiagnosticInfo() {

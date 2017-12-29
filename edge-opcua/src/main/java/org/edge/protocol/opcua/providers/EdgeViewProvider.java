@@ -30,11 +30,9 @@ public class EdgeViewProvider extends EdgeBaseProvider {
   private Map<String, EdgeViewService> viewServices;
 
   /**
-   * @fn EdgeViewProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse)
-   * @brief constructor
-   * @prarm [in] monitor EdgeMonitoredItemService instance
-   * @prarm [in] browse EdgeBrowseService instance
-   * @return void
+   * constructor
+   * @param  monitor EdgeMonitoredItemService instance
+   * @param  browse EdgeBrowseService instance
    */
   public EdgeViewProvider(EdgeMonitoredItemService monitor, EdgeBrowseService browse) {
     super(monitor, browse);
@@ -42,11 +40,9 @@ public class EdgeViewProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeViewProvider registerViewService(String name, EdgeViewService view)
-   * @brief register View Service
-   * @prarm [in] name provider key value
-   * @param [in] view EdgeViewService instance
-   * @return void
+   * register View Service
+   * @param  name provider key value
+   * @param  view EdgeViewService instance
    */
   public EdgeViewProvider registerViewService(String name, EdgeViewService view) {
     if (viewServices == null)
@@ -56,9 +52,8 @@ public class EdgeViewProvider extends EdgeBaseProvider {
   }
 
   /**
-   * @fn EdgeViewService getViewService(String name)
-   * @brief get EdgeViewService instance
-   * @prarm [in] name provider key value
+   * get EdgeViewService instance
+   * @param  name provider key value
    * @return EdgeViewService instance
    */
   public EdgeViewService getViewService(String name) {

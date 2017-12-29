@@ -76,7 +76,6 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
       try {
         connectWithActivityListener();
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
         ErrorHandler.getInstance().addErrorMessage(new EdgeNodeInfo.Builder().build(),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),
@@ -90,7 +89,6 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
       try {
         initEdgeProvider();
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
         ErrorHandler.getInstance().addErrorMessage(new EdgeNodeInfo.Builder().build(),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),
@@ -125,8 +123,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   };
 
   /**
-   * @fn String getEndpoint()
-   * @brief get endpoint uri information
+   * get endpoint uri information
    * @return endpoint uri
    */
   public String getEndpoint() {
@@ -134,8 +131,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn OpcUaClient getClientInstance()
-   * @brief get client instance related Milo lib
+   * get client instance related Milo lib
    * @return client instance
    */
   public OpcUaClient getClientInstance() {
@@ -211,9 +207,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn void initEdgeProvider()
-   * @brief initialize service provider generator
-   * @return void
+   * initialize service provider generator
    */
   public void initEdgeProvider() {
     logger.info("initEdgeProvider");
@@ -237,9 +231,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn void deinitEdgeProvider()
-   * @brief de-initialize service provider generator
-   * @return void
+   * de-initialize service provider generator
    */
   public void deinitEdgeProvider() {
     EdgeServices.removeMethodProvider();
@@ -247,10 +239,9 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn void connect(String endpoint) throws Exception
-   * @brief connect to endpoint
-   * @param [in] endpoint target endpoint
-   * @return void
+   * connect to endpoint
+   * @param  endpoint target endpoint
+   * @throws excepiton
    */
   public void connect(String endpoint, CompletableFuture<String> future) throws Exception {
     startFuture = future;
@@ -259,9 +250,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn void disconnect() throws Exception
-   * @brief connect to endpoint
-   * @return void
+   * connect to endpoint
+   * @throws excepiton
    */
   public void disconnect() throws Exception {
     try {
@@ -276,9 +266,8 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   }
 
   /**
-   * @fn void terminate() throws Exception
-   * @brief close opcua client
-   * @return void
+   * close opcua client
+   * @throws excepiton
    */
   public void terminate() throws Exception {
     EdgeMethodCaller.getInstance().close();

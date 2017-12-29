@@ -32,8 +32,7 @@ public class MessageDispatcher extends Thread {
   }
 
   /**
-   * @fn void terminate()
-   * @brief teminate queue
+   * terminate queue
    * @return void
    */
   public void terminate() {
@@ -41,9 +40,8 @@ public class MessageDispatcher extends Thread {
   }
 
   /**
-   * @fn boolean putQ(EdgeMessage data)
-   * @brief put data into queue
-   * @param [in] data EdgeMessage
+   * put data into queue
+   * @param  data EdgeMessage
    * @return success(true) or failure(false)
    */
   synchronized public boolean putQ(EdgeMessage data) {
@@ -64,8 +62,7 @@ public class MessageDispatcher extends Thread {
   }
 
   /**
-   * @fn void run()
-   * @brief runner for queuing thread
+   * runner for queuing thread
    * @return void
    */
   @Override
@@ -86,9 +83,8 @@ public class MessageDispatcher extends Thread {
   }
 
   /**
-   * @fn void handleMessage(EdgeMessage data)
-   * @brief dispatch the message classified by EdgeMessageType
-   * @prarm [in] EdgeMessage data
+   * dispatch the message classified by EdgeMessageType
+   * @param  EdgeMessage data
    * @return void
    */
   private void handleMessage(EdgeMessage data) {

@@ -35,10 +35,9 @@ public class EdgeMethodService {
     private final NodeId objectId;
 
     /**
-     * @fn Builder(NodeId objectId, NodeId methodId)
-     * @brief Constructor of Builder class
-     * @param [in] objectId object Id
-     * @param [in] methodId method Id
+     * Constructor of Builder class
+     * @param  objectId object Id
+     * @param  methodId method Id
      */
     public Builder(NodeId objectId, NodeId methodId) {
       this.objectId = objectId;
@@ -46,8 +45,7 @@ public class EdgeMethodService {
     }
 
     /**
-     * @fn EdgeMethodService build()
-     * @brief build edge method service
+     * build edge method service
      * @return instance of EdgeMethodService
      */
     public EdgeMethodService build() {
@@ -56,9 +54,8 @@ public class EdgeMethodService {
   }
 
   /**
-   * @fn EdgeMethodService(Builder builder)
-   * @brief Constructor of EdgeMethodService class
-   * @param [in] Builder builder
+   * Constructor of EdgeMethodService class
+   * @param  Builder builder
    */
   private EdgeMethodService(Builder builder) {
     objectId = builder.objectId;
@@ -66,8 +63,7 @@ public class EdgeMethodService {
   }
 
   /**
-   * @fn NodeId getMethodId()
-   * @brief get method name to make NodeId(MethodId)
+   * get method name to make NodeId(MethodId)
    * @return method ID
    */
   public NodeId getMethodId() {
@@ -75,8 +71,7 @@ public class EdgeMethodService {
   }
 
   /**
-   * @fn NodeId getObjectId()
-   * @brief get object node uri to make NodeId(ObjectId)
+   * get object node uri to make NodeId(ObjectId)
    * @return object node uri
    */
   public NodeId getObjectId() {
@@ -84,12 +79,12 @@ public class EdgeMethodService {
   }
 
   /**
-   * @fn EdgeResult runMethodAsync(EdgeVersatility param)
-   * @brief call method caller
-   * @param [in] ep endpoint
-   * @param [in] param parameter (other parameter type will be supported next version)
-   * @param [in] epInfo endpoint information
+   * call method caller
+   * @param  ep endpoint
+   * @param  param parameter (other parameter type will be supported next version)
+   * @param  epInfo endpoint information
    * @return result
+   * @throws exception
    */
   public EdgeResult runMethodAsync(EdgeNodeInfo ep, EdgeVersatility param, EdgeEndpointInfo epInfo)
       throws Exception {

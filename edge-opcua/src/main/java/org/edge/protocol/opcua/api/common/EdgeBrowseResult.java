@@ -29,9 +29,8 @@ public class EdgeBrowseResult {
     public Builder() {}
 
     /**
-     * @fn Builder setBrowseName(String browseName)
-     * @brief set browse name
-     * @param [in] browseName browse name
+     * set browse name
+     * @param  browseName browse name
      * @return this
      */
     public Builder setBrowseName(String browseName) {
@@ -40,8 +39,7 @@ public class EdgeBrowseResult {
     }
 
     /**
-     * @fn EdgeBrowseResult build()
-     * @brief create EdgeBrowseResult instance (builder)
+     * create EdgeBrowseResult instance (builder)
      * @return EdgeBrowseResult instance
      */
     public EdgeBrowseResult build() {
@@ -50,17 +48,15 @@ public class EdgeBrowseResult {
   }
 
   /**
-   * @fn EdgeBrowseResult(Builder builder)
-   * @brief constructor
-   * @param [in] builder EdgeBrowseResult Builder
+   * constructor
+   * @param  builder EdgeBrowseResult Builder
    */
   private EdgeBrowseResult(Builder builder) {
     browseName = builder.browseName;
   }
   
   /**
-   * @fn String getBrowseName()
-   * @brief get Browse Name
+   * get Browse Name
    * @return browseName
    */
   public String getBrowseName() {
