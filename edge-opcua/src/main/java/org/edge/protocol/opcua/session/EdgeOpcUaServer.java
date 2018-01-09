@@ -20,7 +20,6 @@ package org.edge.protocol.opcua.session;
 
 import static com.google.common.collect.Lists.newArrayList;
 import java.io.File;
-import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -29,7 +28,6 @@ import org.eclipse.milo.opcua.sdk.server.api.config.OpcUaServerConfig;
 import org.eclipse.milo.opcua.sdk.server.identity.CompositeValidator;
 import org.eclipse.milo.opcua.sdk.server.identity.UsernameIdentityValidator;
 import org.eclipse.milo.opcua.sdk.server.identity.X509IdentityValidator;
-import org.eclipse.milo.opcua.stack.core.Stack;
 import org.eclipse.milo.opcua.stack.core.application.DefaultCertificateValidator;
 import org.eclipse.milo.opcua.stack.core.security.SecurityPolicy;
 import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText;
@@ -64,6 +62,7 @@ public class EdgeOpcUaServer {
 
   /**
    * get opcua server instance
+   *
    * @return server instance
    */
   public static EdgeOpcUaServer getInstance() {
@@ -84,7 +83,8 @@ public class EdgeOpcUaServer {
 
   /**
    * start server with default configuration data
-   * @param  epInfo EdgeEndpointInfo
+   *
+   * @param epInfo EdgeEndpointInfo
    * @return result of start
    * @throws excepiton
    */
@@ -96,10 +96,8 @@ public class EdgeOpcUaServer {
       String user0 = "user1";
       String pass0 = "password";
 
-      char[] cs = new char[1000];
-      Arrays.fill(cs, 'a');
-      String user1 = new String(cs);
-      String pass1 = new String(cs);
+      String user1 = "user2";
+      String pass1 = "password2";
 
       boolean match0 =
           user0.equals(challenge.getUsername()) && pass0.equals(challenge.getPassword());
@@ -125,32 +123,35 @@ public class EdgeOpcUaServer {
         || config.getSecurityPolicyUri() == SecurityPolicy.None.getSecurityPolicyUri()) {
       certificateManager = new TestCertificateManager(null, null);
 
-      File securityDir = new File(System.getProperty("user.dir"));
+      File securityDir = new File("./security/");
 
       if (!securityDir.exists() && !securityDir.mkdirs()) {
         throw new Exception("unable to create security directory");
       }
 
       defaultValidator = new DefaultCertificateValidator(securityDir);
-    } else {
-      if (EdgeOpcUaCommon.BOTH_MODE == config.getMode()) {
-        loader = new KeyStoreLoader().load(EdgeOpcUaCommon.BOTH_MODE);
-        certificateValidator = new TestCertificateValidator(loader.getClientCertificate());
-      } else if (EdgeOpcUaCommon.SERVER_MODE == config.getMode()) {
-        loader = new KeyStoreLoader().load(EdgeOpcUaCommon.SERVER_MODE);
-
-        File securityDir = new File(System.getProperty("user.dir"));
-
-        if (!securityDir.exists() && !securityDir.mkdirs()) {
-          throw new Exception("unable to create security directory");
-        }
-
-        defaultValidator = new DefaultCertificateValidator(securityDir);
-      }
-
+    } else if (EdgeOpcUaCommon.BOTH_MODE == config.getMode()) {
+      loader = new KeyStoreLoader().load(EdgeOpcUaCommon.BOTH_MODE);
+      certificateValidator = new TestCertificateValidator(loader.getClientCertificate());
       certificateManager =
           new TestCertificateManager(loader.getServerKeyPair(), loader.getServerCertificate());
+    } else {
 
+      File securityDir = new File("./security/");
+
+      if (!securityDir.exists() && !securityDir.mkdirs()) {
+        throw new Exception("unable to create security directory");
+      }
+
+      defaultValidator = new DefaultCertificateValidator(securityDir);
+
+      if (SecurityPolicy.None.getSecurityPolicyUri().equals(config.getSecurityPolicyUri())) {
+        certificateManager = new TestCertificateManager(null, null);
+      } else {
+        loader = new KeyStoreLoader().load(EdgeOpcUaCommon.SERVER_MODE);
+        certificateManager =
+            new TestCertificateManager(loader.getServerKeyPair(), loader.getServerCertificate());
+      }
     }
 
     BuildInfo buildInfo = new BuildInfo("/edge", "samsung", "edgeSolution", "0.9", "0.1", null);
@@ -160,8 +161,8 @@ public class EdgeOpcUaServer {
         .setApplicationUri(config.getApplicationUri())
         .setBindAddresses(newArrayList(config.getBindAddress())).setBindPort(config.getBindPort())
         .setCertificateManager(certificateManager)
-        .setCertificateValidator(loader != null || EdgeOpcUaCommon.BOTH_MODE == config.getMode()
-            ? certificateValidator : defaultValidator)
+        .setCertificateValidator(
+            certificateValidator != null ? certificateValidator : defaultValidator)
         .setSecurityPolicies(EnumSet.of(SecurityPolicy.None, SecurityPolicy.Basic128Rsa15,
             SecurityPolicy.Basic256, SecurityPolicy.Basic256Sha256))
         .setProductUri(config.getProductUri()).setServerName(config.getServerName())
@@ -183,6 +184,7 @@ public class EdgeOpcUaServer {
 
   /**
    * stop server
+   *
    * @throws exception interruptedException, ExecutionExcepiton
    */
   public void stop() throws InterruptedException, ExecutionException {
@@ -192,10 +194,11 @@ public class EdgeOpcUaServer {
 
   /**
    * create Namespace in server side
-   * @param  namespaceUri namespace alias to use
-   * @param  rootNodeIdentifier path name in root node
-   * @param  rootNodeBrowseName browse name in root node
-   * @param  rootNodeDisplayName display name in root node
+   *
+   * @param namespaceUri namespace alias to use
+   * @param rootNodeIdentifier path name in root node
+   * @param rootNodeBrowseName browse name in root node
+   * @param rootNodeDisplayName display name in root node
    * @throws excepiton
    */
   public void createNamespace(String namespaceUri, String rootNodeIdentifier,
@@ -234,6 +237,7 @@ public class EdgeOpcUaServer {
 
   /**
    * close static classes in server side
+   *
    * @throws excepiton
    */
   public void terminate() throws Exception {
