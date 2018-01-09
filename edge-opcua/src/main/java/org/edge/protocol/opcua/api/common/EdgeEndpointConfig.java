@@ -139,7 +139,7 @@ public class EdgeEndpointConfig {
      * @return this
      */
     public Builder setMode(int mode) {
-      mode = this.mode;
+      this.mode = mode;
       return this;
     }
 
