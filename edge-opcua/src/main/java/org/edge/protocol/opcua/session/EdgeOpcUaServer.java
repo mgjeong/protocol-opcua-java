@@ -93,19 +93,7 @@ public class EdgeOpcUaServer {
 
     // allow anonymous access
     UsernameIdentityValidator usernameValidator = new UsernameIdentityValidator(true, challenge -> {
-      String user0 = "user1";
-      String pass0 = "password";
-
-      String user1 = "user2";
-      String pass1 = "password2";
-
-      boolean match0 =
-          user0.equals(challenge.getUsername()) && pass0.equals(challenge.getPassword());
-
-      boolean match1 =
-          user1.equals(challenge.getUsername()) && pass1.equals(challenge.getPassword());
-
-      return match0 || match1;
+      return true;
     });
 
     X509IdentityValidator x509IdentityValidator = new X509IdentityValidator(c -> true);
