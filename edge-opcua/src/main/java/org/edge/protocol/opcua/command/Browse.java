@@ -70,6 +70,10 @@ public class Browse implements Command {
     String valueVlias = null;
     if (msg.getMessageType() == EdgeMessageType.SEND_REQUEST) {
       valueVlias = msg.getRequest().getEdgeNodeInfo().getValueAlias();
+      if(valueVlias.isEmpty()) {
+        return new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build();
+      }
+
       if (valueVlias.equals(EdgeOpcUaCommon.WELL_KNOWN_DISCOVERY.getValue())) {
         requests.add(msg.getRequest());
       } else {
@@ -85,6 +89,9 @@ public class Browse implements Command {
           requests.add(req);
         } else {
           valueVlias = req.getEdgeNodeInfo().getValueAlias();
+          if (valueVlias.isEmpty()) {
+            return new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build();
+          }
           EdgeViewProvider viewProvider = EdgeServices.getViewProvider(valueVlias);
           EdgeViewService service = viewProvider.getViewService(valueVlias);
           requests.add(new EdgeRequest.Builder(

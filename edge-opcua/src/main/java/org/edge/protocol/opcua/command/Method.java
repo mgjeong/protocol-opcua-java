@@ -64,6 +64,9 @@ public class Method implements Command {
     EdgeResult ret = null;
    
     String methodName = msg.getRequest().getEdgeNodeInfo().getValueAlias();
+    if (methodName.isEmpty()) {
+      return new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build();
+    }
     EdgeMethodProvider methodProvider = EdgeServices.getMethodProvider(methodName);
     EdgeMethodService methodService = methodProvider.getMethodService(methodName);
     
