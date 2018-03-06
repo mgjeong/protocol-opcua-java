@@ -154,8 +154,6 @@ public class EdgeCustomService implements EdgeAttributeService {
   }
 
   protected CompletableFuture<Map<String, Object>> writeData(EdgeMessage msg) {
-    EdgeNodeInfo ep = msg.getRequest().getEdgeNodeInfo();
-
     WriteValue writeValue =
         new WriteValue(new NodeId(nameSpace, browseName), AttributeId.Value.uid(), null,
             new DataValue(new Variant(msg.getRequest().getMessage().getValue())));

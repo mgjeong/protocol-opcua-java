@@ -164,7 +164,7 @@ public class EdgeServerService implements EdgeAttributeService {
 
     if (nodeInfo == null) {
       EdgeResult ret = new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
-      ErrorHandler.getInstance().addErrorMessage(nodeInfo, ret, msg.getRequest().getRequestId());
+      ErrorHandler.getInstance().addErrorMessage(ret, msg.getRequest().getRequestId());
       return ret;
     }
 
