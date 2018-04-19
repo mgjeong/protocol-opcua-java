@@ -95,7 +95,7 @@ public class EdgeMethodCaller {
 
     try {
       callMethodAsync(client, objectId, methodId, param).exceptionally(ex -> {
-        logger.error("error invoking sqrt()", ex);
+        logger.error("error invoking method()", ex);
         return -1.0;
       }).thenAccept(v -> {
         logger.info("method result={}", v);
