@@ -41,7 +41,7 @@ public class EdgeSubRequest {
     private int maxKeepAliveCount = Math.max(1, (int) Math.ceil(10000.0 / publishingInterval));
     // Lifetime must be 3x (or greater) the keep-alive count.
     private int lifetimeCount = maxKeepAliveCount * 6;
-    private int maxNotificationsPerPublish = 1;
+    private int maxNotificationsPerPublish = 1000;
     private boolean publishingEnabled = true;
     private byte priority = 0;
     private int queueSize = 50;
