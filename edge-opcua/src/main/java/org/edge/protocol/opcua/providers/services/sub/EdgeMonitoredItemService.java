@@ -22,6 +22,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.ubyte;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -34,7 +35,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaMonitoredItem;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaSubscription;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaSubscriptionManager;
-import org.eclipse.milo.opcua.sdk.server.nodes.UaNode;
 import org.eclipse.milo.opcua.stack.core.AttributeId;
 import org.eclipse.milo.opcua.stack.core.StatusCodes;
 import org.eclipse.milo.opcua.stack.core.UaException;
@@ -83,6 +83,7 @@ public class EdgeMonitoredItemService {
 
   /**
    * get EdgeMonitoredItemService Instance
+   * 
    * @return EdgeMonitoredItemService Instance
    */
   public static EdgeMonitoredItemService getInstance() {
@@ -96,9 +97,10 @@ public class EdgeMonitoredItemService {
 
   /**
    * add subscribers to the list of subscription
-   * @param  endpoint
-   * @param  UaSubscription
-   * @param  EdgeSubRequest
+   * 
+   * @param endpoint
+   * @param UaSubscription
+   * @param EdgeSubRequest
    * @return void
    */
   private void addSubscription(String endpointUri, UaSubscription sub, EdgeSubRequest req) {
@@ -110,7 +112,8 @@ public class EdgeMonitoredItemService {
 
   /**
    * Get a subscriber from the list of subscription
-   * @param  endpoint
+   * 
+   * @param endpoint
    * @return UaSubscription
    */
   private UaSubscription getSubscription(String endpointUri) {
@@ -119,7 +122,8 @@ public class EdgeMonitoredItemService {
 
   /**
    * Get a subscription request from the list of subscription
-   * @param  endpoint
+   * 
+   * @param endpoint
    * @return EdgeSubRequest
    */
   private EdgeSubRequest getSubRequest(String endpointUri) {
@@ -128,6 +132,7 @@ public class EdgeMonitoredItemService {
 
   /**
    * subscription according for sub-request to endpoint
+   * 
    * @param request Subscription Request Parameters Subscription for opc-ua can be set such as
    *        samplingInterval, publishingInterval and etc. first monitored message will be sent to
    *        both onMonitoredMessage and onResponseMessage. and error message will be checked in
@@ -258,35 +263,33 @@ public class EdgeMonitoredItemService {
           for (Tuple2<UaMonitoredItem, DataValue> itemValue : itemValues) {
             UaMonitoredItem item = itemValue.v1();
             DataValue value = itemValue.v2();
-
-            logger.info("=======================notification message=============================");
-            Date now = new Date();
-            boolean isFuture = publishTime.getJavaDate().after(now);
+            logger.debug("=======================notification message=============================");
             Timestamp stamp = new Timestamp(System.currentTimeMillis());
-            logger.info(
-                "onNoti recvTime={}, now={}, publishTime={} FutureTime={}, value={}, ep={} item size={}",
-                stamp, now, publishTime, isFuture, value.getValue(), nodeInfo.getValueAlias(),
-                itemValues.size());
-            logger.info("----------------------------UaMonitoredItem data------------------------");
-            logger.info(
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss.SSS");
+            logger.debug(
+                "onNoti recvTime={}, publishTime={}, value={}, ep={}, URI = {}, item size={}",
+                stamp, dateFormat.format(publishTime.getJavaDate()), value.getValue(),
+                nodeInfo.getValueAlias(), epInfo.getEndpointUri(), itemValues.size());
+            logger.debug("----------------------------UaMonitoredItem data------------------------");
+            logger.debug(
                 "onNoti MonitoredItemId={}, MonitoringMode={} RequestedQueueSize={}, "
                     + "RequestedSamplingInterval={}, ",
                 item.getMonitoredItemId(), item.getMonitoringMode(), item.getRequestedQueueSize(),
                 item.getRequestedSamplingInterval());
-            logger.info(
+            logger.debug(
                 "onNoti RevisedQueueSize={}, RevisedSampling={} StatusCode={}, ReadValueId={}, ",
                 item.getRevisedQueueSize(), item.getRevisedSamplingInterval(), item.getStatusCode(),
                 item.getReadValueId());
-            logger.info("----------------------------UaSubscription data------------------------");
-            logger.info("onNoti SubscriptionId={}, MaxNotificationsPerPublish={}, Priority={} ",
+            logger.debug("----------------------------UaSubscription data------------------------");
+            logger.debug("onNoti SubscriptionId={}, MaxNotificationsPerPublish={}, Priority={} ",
                 subscription.getSubscriptionId(), subscription.getMaxNotificationsPerPublish(),
                 subscription.getPriority());
 
-            logger.info("onNoti RequestedPublishingInterval={}, getRevisedPublishingInterval={}",
+            logger.debug("onNoti RequestedPublishingInterval={}, getRevisedPublishingInterval={}",
                 subscription.getRequestedPublishingInterval(),
                 subscription.getRevisedPublishingInterval());
 
-            logger.info(
+            logger.debug(
                 "onNoti RequestedLifetimeCount={}, RevisedLifetimeCount={} / "
                     + "RequestedMaxKeepAliveCount={} RevisedMaxKeepAliveCount={}",
                 subscription.getRequestedLifetimeCount(), subscription.getRevisedLifetimeCount(),
@@ -294,19 +297,24 @@ public class EdgeMonitoredItemService {
                 subscription.getRevisedMaxKeepAliveCount());
 
             if (isFirstData) {
-              EdgeMessage inputData = new EdgeMessage.Builder(epInfo).setResponses(
-                  newArrayList(new EdgeResponse.Builder(nodeInfo, request.getRequestId())
-                      .setMessage(new EdgeVersatility.Builder(value.getValue().getValue()).build())
-                      .build()))
+              EdgeMessage inputData = new EdgeMessage.Builder(epInfo)
+                  .setResponses(
+                      newArrayList(new EdgeResponse.Builder(nodeInfo, request.getRequestId())
+                          .setMessage(
+                              new EdgeVersatility.Builder(value.getValue().getValue()).build())
+                          .build()))
                   .setMessageType(EdgeMessageType.GENERAL_RESPONSE).build();
               ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
               isFirstData = false;
             }
 
-            EdgeMessage inputData = new EdgeMessage.Builder(epInfo).setResponses(
-                newArrayList(new EdgeResponse.Builder(nodeInfo, request.getRequestId())
-                    .setMessage(new EdgeVersatility.Builder(value.getValue().getValue()).build())
-                    .build()))
+            EdgeMessage inputData = new EdgeMessage.Builder(epInfo)
+                .setResponses(
+                    newArrayList(new EdgeResponse.Builder(nodeInfo, request.getRequestId())
+                        .setDateTime(publishTime)
+                        .setMessage(
+                            new EdgeVersatility.Builder(value.getValue().getValue()).build())
+                        .build()))
                 .setMessageType(EdgeMessageType.REPORT).build();
             ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
           }
@@ -350,9 +358,10 @@ public class EdgeMonitoredItemService {
 
   /**
    * execute monitored item service
-   * @param  request request of monitored item
-   * @param  ep node information of  
-   * @param  subscription Uasubscription
+   * 
+   * @param request request of monitored item
+   * @param ep node information of
+   * @param subscription Uasubscription
    * @return void
    */
   private void RunMonitoredItemService(EdgeRequest request, EdgeNodeInfo ep,
@@ -399,8 +408,8 @@ public class EdgeMonitoredItemService {
             .modifyMonitoredItems(TimestampsToReturn.Both, newArrayList(monitoredItemRequest))
             .thenApply(monitoredItems -> {
               logger.info("MonitoredItemModifyRequest item size={}", monitoredItems.size());
-//            TODO UA-milo should be updated with List<UaMonitoredItem> return value.
-//              checkMonitoredItemErrorStatus(monitoredItems, request);
+              // TODO UA-milo should be updated with List<UaMonitoredItem> return value.
+              // checkMonitoredItemErrorStatus(monitoredItems, request);
               return monitoredItems;
             }).exceptionally(e -> {
               logger.info("error type : {}", e.getMessage());
@@ -451,8 +460,9 @@ public class EdgeMonitoredItemService {
 
   /**
    * verify execute monitored
-   * @param  monitoredItems list of monitored item
-   * @param  request request of monitored Item
+   * 
+   * @param monitoredItems list of monitored item
+   * @param request request of monitored Item
    * @return void
    */
   private void checkMonitoredItemErrorStatus(List<UaMonitoredItem> monitoredItems,
@@ -534,6 +544,7 @@ public class EdgeMonitoredItemService {
 
   /**
    * Set modes to publish
+   * 
    * @param ep endpoint
    * @param nodeInfo node Information
    * @param list of subscription id
@@ -569,10 +580,11 @@ public class EdgeMonitoredItemService {
 
   /**
    * provide api to change subscription
-   * @param  ep endpoint
-   * @param  nodeInfo node Information
-   * @param  uaSubscription
-   * @param  edgeRequest
+   * 
+   * @param ep endpoint
+   * @param nodeInfo node Information
+   * @param uaSubscription
+   * @param edgeRequest
    * @return CompletableFuture<UaSubscription>
    */
   private CompletableFuture<UaSubscription> modifySubscription(EdgeEndpointInfo epInfo,
@@ -599,10 +611,11 @@ public class EdgeMonitoredItemService {
 
   /**
    * delete multiple subscriptions from the list of subscription
-   * @param  ep endpoint
-   * @param  nodeInfo node Information
-   * @param  list of subscription id
-   * @param  edgeRequest
+   * 
+   * @param ep endpoint
+   * @param nodeInfo node Information
+   * @param list of subscription id
+   * @param edgeRequest
    * @return CompletableFuture<EdgeResult>
    */
   private CompletableFuture<EdgeResult> deleteSubscriptions(EdgeEndpointInfo epInfo,
@@ -679,10 +692,11 @@ public class EdgeMonitoredItemService {
 
   /**
    * delete a subscription from the list of subscription
-   * @param  ep endpoint
-   * @param  nodeInfo node Information
-   * @param  list of subscription id
-   * @param  edgeRequest
+   * 
+   * @param ep endpoint
+   * @param nodeInfo node Information
+   * @param list of subscription id
+   * @param edgeRequest
    * @return CompletableFuture<EdgeResult>
    */
   private CompletableFuture<EdgeResult> deleteSubscription(EdgeEndpointInfo epInfo,
@@ -703,10 +717,11 @@ public class EdgeMonitoredItemService {
 
   /**
    * delete a subscription from the list of subscription
-   * @param  ImmutableList<Tuple2<UaMonitoredItem, DataValue>> itemValues
-   * @param  UaSubscription sub
-   * @param  DateTime publishTime
-   * @param  epInfo EdgeEndpointInfo
+   * 
+   * @param ImmutableList<Tuple2<UaMonitoredItem, DataValue>> itemValues
+   * @param UaSubscription sub
+   * @param DateTime publishTime
+   * @param epInfo EdgeEndpointInfo
    * @return EdgeStatusCode
    */
   private EdgeStatusCode checkNotificationMessage(
@@ -736,9 +751,10 @@ public class EdgeMonitoredItemService {
 
   /**
    * Call error message callback with error reason
-   * @param  EdgeRequest request
-   * @param  EdgeStatusCode code
-   * @param  String reason
+   * 
+   * @param EdgeRequest request
+   * @param EdgeStatusCode code
+   * @param String reason
    * @return void
    */
   private void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code, String reason) {
@@ -749,8 +765,9 @@ public class EdgeMonitoredItemService {
 
   /**
    * Call error message callback
-   * @param  EdgeRequest request
-   * @param  EdgeStatusCode code
+   * 
+   * @param EdgeRequest request
+   * @param EdgeStatusCode code
    * @return void
    */
   private void callErrorMessageCB(EdgeRequest req, EdgeStatusCode code) {
