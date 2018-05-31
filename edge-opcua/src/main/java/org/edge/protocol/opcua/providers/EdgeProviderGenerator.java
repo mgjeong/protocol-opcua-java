@@ -65,8 +65,8 @@ public class EdgeProviderGenerator {
   private static EdgeProviderGenerator providerGenerator = null;
   private static final int maxStackSize = 100;
   private static String uriStack[] = new String[maxStackSize];
-  private static HashSet<NodeId> visitedNode = new HashSet<NodeId>();
-  private static HashSet<NodeId> visitedViewNode = new HashSet<NodeId>();
+  private static HashSet<String> visitedNode = new HashSet<String>();
+  private static HashSet<String> visitedViewNode = new HashSet<String>();
   private static List<NodeId> viewNodeList = new ArrayList<NodeId>();
 
   /**
@@ -209,7 +209,10 @@ public class EdgeProviderGenerator {
         return;
       }
 
-      uri = generateUri(uriStackTop);
+      String userEndpointURI = client.getEndpoint();
+      String modifiedURI = userEndpointURI + generateUri(uriStackTop);
+      uri = modifiedURI.substring(10);
+
       logger.info("Custom(String type) Node : " + browseName);
       service = generateCustomService(id, client);
     } else {
@@ -257,7 +260,7 @@ public class EdgeProviderGenerator {
   private static EdgeResult generateProviderAll(NodeId id, String browseName, NodeClass classType,
       EdgeOpcUaClient client, final int uriStackTop) {
     boolean ret = true;
-    visitedNode.add(id);
+    visitedNode.add(id.toString() + "/" + client.getEndpoint());
 
     if (classType == NodeClass.Variable) {
       generateAttributeProvider(id, browseName, client, uriStackTop);
@@ -272,7 +275,7 @@ public class EdgeProviderGenerator {
       List<ReferenceDescription> references = toList(browseResult.getReferences());
       for (ReferenceDescription rd : references) {
         rd.getNodeId().local().ifPresent(nodeId -> {
-          if (visitedNode.contains(nodeId) == false) {
+          if (visitedNode.contains(nodeId.toString() + "/" + client.getEndpoint()) == false) {
             NodeClass nextNodeClass = rd.getNodeClass();
             String nextBrowseName = rd.getBrowseName().getName();
             uriStack[uriStackTop] = nextBrowseName;
@@ -299,7 +302,7 @@ public class EdgeProviderGenerator {
   }
 
   private static void getViewNodeList(NodeId id, EdgeOpcUaClient client) {
-    visitedViewNode.add(id);
+    visitedViewNode.add(id.toString() + "/" + client.getEndpoint());
 
     BrowseDescription browse = new BrowseDescription(id, BrowseDirection.Forward,
         Identifiers.References, true, uint(NodeClass.Object.getValue() | NodeClass.View.getValue()),
@@ -309,7 +312,7 @@ public class EdgeProviderGenerator {
       List<ReferenceDescription> references = toList(browseResult.getReferences());
       for (ReferenceDescription rd : references) {
         rd.getNodeId().local().ifPresent(nodeId -> {
-          if (visitedViewNode.contains(nodeId) == false) {
+          if (visitedViewNode.contains(nodeId.toString() + "/" + client.getEndpoint()) == false) {
             NodeClass nodeClass = rd.getNodeClass();
 
             if (nodeClass == NodeClass.View) {
