@@ -267,8 +267,7 @@ public class ProtocolManager implements MessageInterface {
   @Override
   public void onMonitoredMessage(EdgeMessage msg) throws Exception {
     for (EdgeResponse res : msg.getResponses()) {
-      Timestamp stamp = new Timestamp(System.currentTimeMillis());
-      logger.info("onMonitored time = {}, value={}, valueName={}, requestId={}, msg type={}", stamp,
+      logger.debug("value={}, valueName={}, requestId={}, msg type={}",
           res.getMessage().getValue(), res.getEdgeNodeInfo().getValueAlias(), res.getRequestId(),
           msg.getMessageType());
       if (recvCallback != null) {
