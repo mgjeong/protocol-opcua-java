@@ -119,7 +119,7 @@ public class EdgeBrowseService {
    * @return void
    */
   public void browse(String indent, EdgeMessage msg) throws Exception {
-    logger.info("Browse request size={}, msg type={}", msg.getRequests().size(),
+    logger.debug("Browse request size={}, msg type={}", msg.getRequests().size(),
         msg.getMessageType());
     EdgeOpcUaClient client =
         EdgeSessionManager.getInstance().getSession(msg.getEdgeEndpointInfo().getEndpointUri());
@@ -131,7 +131,7 @@ public class EdgeBrowseService {
       msgIdxList.add(Integer.valueOf(0));
     } else if (msg.getMessageType() == EdgeMessageType.SEND_REQUESTS) {
       if (msg.getRequests().size() > EdgeOpcUaCommon.MAX_BROWSEREQUEST_SIZE) {
-        logger.info("error type : {}", EdgeStatusCode.STATUS_VIEW_BROWSEREQUEST_SIZEOVER);
+        logger.debug("error type : {}", EdgeStatusCode.STATUS_VIEW_BROWSEREQUEST_SIZEOVER);
         ErrorHandler.getInstance().addErrorMessage(getEndpoint(msg, 0),
             new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
             new EdgeVersatility.Builder(
@@ -146,7 +146,7 @@ public class EdgeBrowseService {
         msgIdxList.add(Integer.valueOf(msgIdx++));
       }
     }
-    logger.info("browseNodeIdList : {}", nodeIdList);
+    logger.debug("browseNodeIdList : {}", nodeIdList);
     browse(nodeIdList, msgIdxList, client, msg);
   }
 
@@ -173,10 +173,10 @@ public class EdgeBrowseService {
       List<BrowseDescription> browseList, EdgeMessage msg) {
     client.browse(browseList);
     return client.browse(browseList).thenApply(browseResult -> {
-      logger.info("browse result: {}", browseResult);
+      logger.debug("browse result: {}", browseResult);
       return browseResult;
     }).exceptionally(e -> {
-      logger.info("error types : {}", e.getMessage());
+      logger.debug("error types : {}", e.getMessage());
       ErrorHandler.getInstance().addErrorMessage(getEndpoint(msg, 0),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(e.getMessage()).build(), getRequestId(msg, 0));
@@ -199,13 +199,13 @@ public class EdgeBrowseService {
       // new EdgeVersatility.Builder(EdgeStatusCode.CONTINUATIONPOINT_NULL).build(), reqId);
       // ret = false;
     } else if (continuationPoint.length() == 0) {
-      logger.info("checkContinuationPoint error type : {}", EdgeStatusCode.CONTINUATIONPOINT_EMPTY);
+      logger.debug("checkContinuationPoint error type : {}", EdgeStatusCode.CONTINUATIONPOINT_EMPTY);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.CONTINUATIONPOINT_EMPTY).build(), reqId);
       ret = false;
     } else if (continuationPoint.length() >= 1000) {
-      logger.info("checkContinuationPoint error type : {}", EdgeStatusCode.CONTINUATIONPOINT_LONG);
+      logger.debug("checkContinuationPoint error type : {}", EdgeStatusCode.CONTINUATIONPOINT_LONG);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.CONTINUATIONPOINT_LONG).build(), reqId);
@@ -218,19 +218,19 @@ public class EdgeBrowseService {
   private boolean checkBrowseName(String browseName, EdgeNodeInfo ep, int reqId) {
     boolean ret = true;
     if (browseName == null) {
-      logger.info("error type : {}", EdgeStatusCode.BROWSENAME_NULL);
+      logger.debug("error type : {}", EdgeStatusCode.BROWSENAME_NULL);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.BROWSENAME_NULL).build(), reqId);
       ret = false;
     } else if (browseName.isEmpty() == true) {
-      logger.info("error type : {}", EdgeStatusCode.BROWSENAME_EMPTY);
+      logger.debug("error type : {}", EdgeStatusCode.BROWSENAME_EMPTY);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.BROWSENAME_EMPTY).build(), reqId);
       ret = false;
     } else if (browseName.length() >= 1000) {
-      logger.info("error type : {}", EdgeStatusCode.BROWSENAME_LONG);
+      logger.debug("error type : {}", EdgeStatusCode.BROWSENAME_LONG);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.BROWSENAME_LONG).build(), reqId);
@@ -243,19 +243,19 @@ public class EdgeBrowseService {
   private boolean checkDisplayName(String displayName, EdgeNodeInfo ep, int reqId) {
     boolean ret = true;
     if (displayName == null) {
-      logger.info("error type : {}", EdgeStatusCode.DISPLAYNAME_NULL);
+      logger.debug("error type : {}", EdgeStatusCode.DISPLAYNAME_NULL);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.DISPLAYNAME_NULL).build(), reqId);
       ret = false;
     } else if (displayName.isEmpty() == true) {
-      logger.info("error type : {}", EdgeStatusCode.DISPLAYNAME_EMPTY);
+      logger.debug("error type : {}", EdgeStatusCode.DISPLAYNAME_EMPTY);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.DISPLAYNAME_EMPTY).build(), reqId);
       ret = false;
     } else if (displayName.length() >= 1000) {
-      logger.info("error type : {}", EdgeStatusCode.DISPLAYNAME_LONG);
+      logger.debug("error type : {}", EdgeStatusCode.DISPLAYNAME_LONG);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.DISPLAYNAME_LONG).build(), reqId);
@@ -268,20 +268,20 @@ public class EdgeBrowseService {
   private boolean checkNodeClass(NodeClass nodeClass, EdgeNodeInfo ep, int reqId) {
     boolean ret = true;
     if (nodeClass == null) {
-      logger.info("error type : {}", EdgeStatusCode.NODECLASS_NULL);
+      logger.debug("error type : {}", EdgeStatusCode.NODECLASS_NULL);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.NODECLASS_NULL).build(), reqId);
       ret = false;
     } else if (NodeClass.from(nodeClass.getValue()) == null) {
-      logger.info("error type : {}", EdgeStatusCode.NODECLASS_INVALID);
+      logger.debug("error type : {}", EdgeStatusCode.NODECLASS_INVALID);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.NODECLASS_INVALID).build(), reqId);
       ret = false;
     } else if ((nodeClass.getValue() & BROWSE_DESCRIPTION_NODECLASS_MASK) == 0) {
       String errorMsg = EdgeStatusCode.STATUS_VIEW_NOTINCLUDE_NODECLASS.getDescription();
-      logger.info("error type : {}", errorMsg);
+      logger.debug("error type : {}", errorMsg);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(errorMsg).build(), reqId);
@@ -293,13 +293,13 @@ public class EdgeBrowseService {
   private boolean checkNodeId(ExpandedNodeId nodeId, EdgeNodeInfo ep, int reqId) {
     boolean ret = true;
     if (nodeId.isNull()) {
-      logger.info("error type : {}", EdgeStatusCode.NODEID_NULL);
+      logger.debug("error type : {}", EdgeStatusCode.NODEID_NULL);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.NODEID_NULL).build(), reqId);
       ret = false;
     } else if (nodeId.getServerIndex() != 0) {
-      logger.info("error type : {}", EdgeStatusCode.NODEID_SERVERINDEX);
+      logger.debug("error type : {}", EdgeStatusCode.NODEID_SERVERINDEX);
       ErrorHandler.getInstance().addErrorMessage(ep,
           new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.NODEID_SERVERINDEX).build(), reqId);
@@ -483,7 +483,7 @@ public class EdgeBrowseService {
         .thenApply(browseResult -> {
           return browseResult;
         }).exceptionally(e -> {
-          logger.info("error type : {}", e.getMessage());
+          logger.debug("error type : {}", e.getMessage());
           ErrorHandler.getInstance().addErrorMessage(getEndpoint(msg, 0),
               new EdgeResult.Builder(EdgeStatusCode.STATUS_SERVICE_RESULT_BAD).build(),
               new EdgeVersatility.Builder(EdgeStatusCode.STATUS_SERVICE_RESULT_BAD).build(),
@@ -498,7 +498,7 @@ public class EdgeBrowseService {
     return client.browseNext(false, continuationPoint).thenApply(browseNextResponse -> {
       return browseNextResponse;
     }).exceptionally(e -> {
-      logger.info("error type : {}", e.getMessage());
+      logger.debug("error type : {}", e.getMessage());
       ErrorHandler.getInstance().addErrorMessage(getEndpoint(msg, 0),
           new EdgeResult.Builder(EdgeStatusCode.STATUS_SERVICE_RESULT_BAD).build(),
           new EdgeVersatility.Builder(EdgeStatusCode.STATUS_SERVICE_RESULT_BAD).build(),
@@ -557,7 +557,7 @@ public class EdgeBrowseService {
     EdgeStatusCode code = EdgeStatusCode.STATUS_OK;
     int retIdx = 0;
     for (BrowseResult ret : response.getResults()) {
-      logger.info("browseNext ret = {} ", ret.getStatusCode());
+      logger.debug("browseNext ret = {} ", ret.getStatusCode());
       if (visitedCP.contains(ret.getContinuationPoint())) {
         code = EdgeStatusCode.STATUS_VIEW_CONTINUATION_POINT_REUSED;
         callErrorMessageCB(msg, code, retIdx);
@@ -576,7 +576,7 @@ public class EdgeBrowseService {
       int referIdx = 0;
       int direct = getDirection(msg);
       for (ReferenceDescription reference : ret.getReferences()) {
-        logger.info("direction = {}, cur_direct = {}", direct, reference.getIsForward());
+        logger.debug("direction = {}, cur_direct = {}", direct, reference.getIsForward());
         if ((direct == EdgeBrowseParameter.DIRECTION_FORWARD && reference.getIsForward() == false)
             || (direct == EdgeBrowseParameter.DIRECTION_INVERSE
                 && reference.getIsForward() == true)) {
