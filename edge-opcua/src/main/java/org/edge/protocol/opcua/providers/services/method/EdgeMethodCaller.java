@@ -19,6 +19,7 @@
 package org.edge.protocol.opcua.providers.services.method;
 
 import static org.eclipse.milo.opcua.stack.core.util.ConversionUtil.l;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.eclipse.milo.opcua.stack.core.UaException;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
@@ -52,6 +53,7 @@ public class EdgeMethodCaller {
 
   /**
    * get EdgeMethodCaller Instance
+   * 
    * @return EdgeMethodCaller Instance
    */
   public static EdgeMethodCaller getInstance() {
@@ -72,10 +74,11 @@ public class EdgeMethodCaller {
 
   /**
    * execute with parameter for endpoint (Async)
-   * @param  msg edge message
-   * @param  param parameter
-   * @param  objectId object Id
-   * @param  methodId method Id
+   * 
+   * @param msg edge message
+   * @param param parameter
+   * @param objectId object Id
+   * @param methodId method Id
    * @return result
    * @throws exception
    */
@@ -87,7 +90,7 @@ public class EdgeMethodCaller {
       new EdgeResult.Builder(EdgeStatusCode.STATUS_PARAM_INVALID).build();
     }
 
-    logger.info("runMethod method={}", ep.getMethodName());
+    logger.debug("runMethod method={}", ep.getMethodName());
     EdgeOpcUaClient client =
         EdgeSessionManager.getInstance().getSession(msg.getEdgeEndpointInfo().getEndpointUri());
     CompletableFuture<Void> future = new CompletableFuture<>();
@@ -98,18 +101,21 @@ public class EdgeMethodCaller {
         logger.error("error invoking method()", ex);
         return -1.0;
       }).thenAccept(v -> {
-        logger.info("method result={}", v);
+        if (Optional.ofNullable(v).isPresent()) {
+          logger.debug("method result={}", v);
 
-        EdgeEndpointInfo epInfo =
-            new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
-            .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
-        EdgeMessage inputData =
-            new EdgeMessage.Builder(epInfo).setMessageType(EdgeMessageType.GENERAL_RESPONSE)
-                .setResponses(
-                    newArrayList(new EdgeResponse.Builder(ep, msg.getRequest().getRequestId())
-                        .setMessage(new EdgeVersatility.Builder(v).build()).build()))
-                .build();
-        ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
+          EdgeEndpointInfo epInfo =
+              new EdgeEndpointInfo.Builder(msg.getEdgeEndpointInfo().getEndpointUri())
+                  .setFuture(msg.getEdgeEndpointInfo().getFuture()).build();
+          EdgeMessage inputData =
+              new EdgeMessage.Builder(epInfo).setMessageType(EdgeMessageType.GENERAL_RESPONSE)
+                  .setResponses(
+                      newArrayList(new EdgeResponse.Builder(ep, msg.getRequest().getRequestId())
+                          .setMessage(new EdgeVersatility.Builder(v).build()).build()))
+                  .build();
+          ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
+
+        }
 
         future.complete(null);
       });
@@ -123,15 +129,16 @@ public class EdgeMethodCaller {
 
   /**
    * Call method (Async)
-   * @param  EdgeOpcUaClient client
-   * @param  NodeId pNodeId
-   * @param  NodeId mNodeId
-   * @param  EdgeVariant parameter
-   * @return CompletableFuture<Double>
+   * 
+   * @param EdgeOpcUaClient client
+   * @param NodeId pNodeId
+   * @param NodeId mNodeId
+   * @param EdgeVariant parameter
+   * @return CompletableFuture<Object>
    */
-  private CompletableFuture<Double> callMethodAsync(EdgeOpcUaClient client, NodeId pNodeId,
+  private CompletableFuture<Object> callMethodAsync(EdgeOpcUaClient client, NodeId pNodeId,
       NodeId mNodeId, EdgeVersatility param) throws Exception {
-    logger.info("callMethodAsync");
+    logger.debug("callMethodAsync");
     CallMethodRequest request =
         new CallMethodRequest(pNodeId, mNodeId, new Variant[] {new Variant(param.getValue())});
 
@@ -139,10 +146,14 @@ public class EdgeMethodCaller {
       StatusCode statusCode = result.getStatusCode();
 
       if (statusCode.isGood()) {
-        Double value = (Double) l(result.getOutputArguments()).get(0).getValue();
-        return CompletableFuture.completedFuture(value);
+        if (Optional.ofNullable(result.getOutputArguments()).isPresent()) {
+          Double value = (Double) l(result.getOutputArguments()).get(0).getValue();
+          return CompletableFuture.completedFuture(value);
+        } else {
+          return CompletableFuture.completedFuture(null);
+        }
       } else {
-        CompletableFuture<Double> f = new CompletableFuture<>();
+        CompletableFuture<Object> f = new CompletableFuture<>();
         f.completeExceptionally(new UaException(statusCode));
         return f;
       }
