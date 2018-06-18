@@ -351,7 +351,7 @@ public class EdgeBrowseService {
   private EdgeResult browse(List<NodeId> nodeIdList, List<Integer> msgIdxList,
       EdgeOpcUaClient client, EdgeMessage msg) {
     List<BrowseDescription> browseList = getBrowseDescriptions(nodeIdList, msgIdxList, msg);
-    logger.info("browseList: {}", browseList);
+    logger.debug("browseList: {}", browseList);
     if (isMaxReferenceValue(msg)) {
       logger.info("requestBrowseWithMaxReference");
       requestBrowseWithMaxReference(client.getClientInstance(), browseList, msg)
@@ -370,7 +370,7 @@ public class EdgeBrowseService {
             return browseResponse;
           });
     } else {
-      logger.info("requestBrowse");
+      logger.debug("requestBrowse");
       requestBrowse(client.getClientInstance(), browseList, msg).thenAccept(browseResults -> {
         if (Optional.ofNullable(browseResults).isPresent()) {
           if (browseResults.isEmpty() == true) {

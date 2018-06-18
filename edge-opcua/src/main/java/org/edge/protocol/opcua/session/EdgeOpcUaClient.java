@@ -100,7 +100,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
   SessionActivityListener listener = new SessionActivityListener() {
     @Override
     public void onSessionActive(UaSession session) {
-      logger.info("onSessionActive session={}, {}", session.getSessionId(),
+      logger.debug("onSessionActive session={}, {}", session.getSessionId(),
           session.getSessionName());
 
       providerThread.start();
@@ -112,7 +112,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
 
     @Override
     public void onSessionInactive(UaSession session) {
-      logger.info("onSessionInactive session={}, {}", session.getSessionId(),
+      logger.debug("onSessionInactive session={}, {}", session.getSessionId(),
           session.getSessionName());
       deinitEdgeProvider();
 
@@ -142,15 +142,15 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
     EndpointDescription[] endpoints = UaTcpStackClient.getEndpoints(ep.getEndpointUri()).get();
 
     for (int i = 0; i < endpoints.length; i++) {
-      logger.info("endpoint={}, {}, {}", endpoints[i].getEndpointUrl(),
+      logger.debug("endpoint={}, {}, {}", endpoints[i].getEndpointUrl(),
           endpoints[i].getSecurityLevel(), endpoints[i].getSecurityPolicyUri());
     }
     if (ep.getConfig() == null || ep.getConfig().getSecurityPolicyUri() == null) {
       securityUri = SecurityPolicy.None.getSecurityPolicyUri();
-      logger.info("set default security policy -> {}", securityUri);
+      logger.debug("set default security policy -> {}", securityUri);
     } else {
       securityUri = ep.getConfig().getSecurityPolicyUri();
-      logger.info("set security policy -> {}", securityUri);
+      logger.debug("set security policy -> {}", securityUri);
     }
 
     EndpointDescription endpoint =
@@ -210,7 +210,7 @@ public class EdgeOpcUaClient implements EdgeBaseClient {
    * initialize service provider generator
    */
   public void initEdgeProvider() {
-    logger.info("initEdgeProvider");
+    logger.debug("initEdgeProvider");
 
     registerCommonEdgeProvider();
 

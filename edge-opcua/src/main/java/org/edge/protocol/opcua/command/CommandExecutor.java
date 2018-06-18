@@ -54,7 +54,7 @@ public class CommandExecutor {
    */
   public void run(EdgeMessage msg) {
     future.whenComplete((ret, ex) -> {
-      logger.info("operation has called");
+      logger.debug("operation has called");
     });
 
     try {

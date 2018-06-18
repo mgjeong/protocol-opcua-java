@@ -66,7 +66,7 @@ public class Subscription implements Command {
     EdgeAttributeService service = attributeProvider.getAttributeService(serviceName);
     EdgeMonitoredItemService sub = attributeProvider.getMonitoredItemService();
 
-    logger.info("command - request id = {}", msg.getRequest().getRequestId());
+    logger.debug("command - request id = {}", msg.getRequest().getRequestId());
     EdgeResult ret = sub.subscription(msg.getRequest(),
         service.getNodeInfo(msg.getRequest().getEdgeNodeInfo().getValueAlias()),
         msg.getEdgeEndpointInfo());
