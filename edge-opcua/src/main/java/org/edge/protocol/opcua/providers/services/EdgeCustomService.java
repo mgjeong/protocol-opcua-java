@@ -99,7 +99,7 @@ public class EdgeCustomService implements EdgeAttributeService {
    */
   @Override
   public EdgeNodeInfo getNodeInfo(String valueAilas) {
-    logger.info("getEndpoint : nameSpace={}, browseName", nameSpace, browseName);
+    logger.debug("getEndpoint : nameSpace={}, browseName", nameSpace, browseName);
     return new EdgeNodeInfo.Builder()
         .setEdgeNodeId(new EdgeNodeId.Builder(nameSpace, browseName).build())
         .setValueAlias(valueAilas).build();
@@ -113,7 +113,7 @@ public class EdgeCustomService implements EdgeAttributeService {
    */
   @Override
   public EdgeResult readSync(EdgeMessage msg) throws Exception {
-    logger.info("readSync - browseName={}", browseName);
+    logger.debug("readSync - browseName={}", browseName);
     EdgeNodeInfo ep = msg.getRequest().getEdgeNodeInfo();
     NodeId nodeId = new NodeId(nameSpace, browseName);
     VariableNode vNode = null;
@@ -137,7 +137,7 @@ public class EdgeCustomService implements EdgeAttributeService {
       ProtocolManager.getProtocolManagerInstance().getRecvDispatcher().putQ(inputData);
 
     } catch (Exception ex) {
-      logger.info("exception throw={}", ex.getMessage());
+      logger.error("exception throw={}", ex.getMessage());
       isGood = false;
     }
     return new EdgeResult.Builder(isGood ? EdgeStatusCode.STATUS_OK : EdgeStatusCode.STATUS_ERROR)
@@ -172,7 +172,7 @@ public class EdgeCustomService implements EdgeAttributeService {
             if (statusCodes.isPresent() == true) {
               errorStatusCode = statusCodes.get()[0];
             }
-            logger.info("error type : {}", errorStatusCode);
+            logger.error("error type : {}", errorStatusCode);
             ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(errorStatusCode).build(),
@@ -186,7 +186,7 @@ public class EdgeCustomService implements EdgeAttributeService {
           data.put(EdgeNodeIdentifier.StatusCode.name(), value.getResults()[0]);
           return data;
         }).exceptionally(e -> {
-          logger.info("error type : {}", e.getMessage());
+          logger.error("error type : {}", e.getMessage());
           ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
               new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
               new EdgeVersatility.Builder(e.getMessage()).build(), msg.getRequest().getRequestId());
@@ -202,7 +202,7 @@ public class EdgeCustomService implements EdgeAttributeService {
    */
   @Override
   public EdgeResult write(EdgeMessage msg) throws Exception {
-    logger.info("write - data={}", msg.getRequest().getMessage().getValue());
+    logger.debug("write - data={}", msg.getRequest().getMessage().getValue());
     writeData(msg).thenAccept(values -> {
       Optional.ofNullable(values).ifPresent(value -> {
         EdgeEndpointInfo epInfo =
@@ -415,7 +415,7 @@ public class EdgeCustomService implements EdgeAttributeService {
               data.put(EdgeNodeIdentifier.DataValue.name(), values.getResults()[0]);
               return data;
             }).exceptionally(e -> {
-              logger.info("error type : {}", e.getMessage());
+              logger.error("error type : {}", e.getMessage());
               ErrorHandler.getInstance().addErrorMessage(ep,
                   new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                   new EdgeVersatility.Builder(e.getMessage()).build(),
@@ -459,7 +459,7 @@ public class EdgeCustomService implements EdgeAttributeService {
    */
   @Override
   public EdgeResult readAsync(EdgeMessage msg) {
-    logger.info("readAsync - browseName={}", browseName);
+    logger.debug("readAsync - browseName={}", browseName);
     EdgeNodeInfo ep = msg.getRequest().getEdgeNodeInfo();
     boolean isGood = true;
     try {
@@ -485,7 +485,7 @@ public class EdgeCustomService implements EdgeAttributeService {
       isGood = false;
       e.printStackTrace();
     }
-    logger.info("readAsyc is called");
+    logger.debug("readAsyc is called");
     return new EdgeResult.Builder(isGood ? EdgeStatusCode.STATUS_OK : EdgeStatusCode.STATUS_ERROR)
         .build();
   }

@@ -144,7 +144,7 @@ public class EdgeMonitoredItemService {
   public EdgeResult subscription(EdgeRequest request, EdgeNodeInfo nodeInfo,
       EdgeEndpointInfo epInfo) throws Exception {
     EdgeSubRequest req = request.getSubRequest();
-    logger.info("subscribeDataChangeNotification : pub interval={}, sampling interver={}",
+    logger.debug("subscribeDataChangeNotification : pub interval={}, sampling interver={}",
         req.getPublishingInterval(), req.getSamplingInterval());
 
     UaSubscription subscription = null;
@@ -160,7 +160,7 @@ public class EdgeMonitoredItemService {
               return obj;
             }).exceptionally(e -> {
               Optional.ofNullable(nodeInfo).ifPresent(endpoint -> {
-                logger.info("error message={}", e.getMessage());
+                logger.error("error message={}", e.getMessage());
                 ErrorHandler.getInstance().addErrorMessage(nodeInfo,
                     new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                     new EdgeVersatility.Builder(e.getMessage()).build(), request.getRequestId());
@@ -181,7 +181,7 @@ public class EdgeMonitoredItemService {
               return obj;
             }).exceptionally(e -> {
               Optional.ofNullable(nodeInfo).ifPresent(endpoint -> {
-                logger.info("error message={}", e.getMessage());
+                logger.error("error message={}", e.getMessage());
                 ErrorHandler.getInstance().addErrorMessage(nodeInfo,
                     new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                     new EdgeVersatility.Builder(e.getMessage()).build(), request.getRequestId());
@@ -195,17 +195,17 @@ public class EdgeMonitoredItemService {
           .addSubscriptionListener(new UaSubscriptionManager.SubscriptionListener() {
             @Override
             public void onKeepAlive(UaSubscription subscription, DateTime publishTime) {
-              logger.info("onKeepAlive");
+              logger.debug("onKeepAlive");
             }
 
             @Override
             public void onStatusChanged(UaSubscription subscription, StatusCode status) {
-              logger.info("onStatusChanged status={}", status);
+              logger.debug("onStatusChanged status={}", status);
             }
 
             @Override
             public void onPublishFailure(UaException exception) {
-              logger.info("onPublishFailure status={}", exception.getMessage());
+              logger.debug("onPublishFailure status={}", exception.getMessage());
               ErrorHandler.getInstance().addErrorMessage(nodeInfo,
                   new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                   new EdgeVersatility.Builder(exception.getMessage()).build(),
@@ -214,7 +214,7 @@ public class EdgeMonitoredItemService {
 
             @Override
             public void onNotificationDataLost(UaSubscription subscription) {
-              logger.info("onNotificationDataLost");
+              logger.debug("onNotificationDataLost");
               ErrorHandler.getInstance().addErrorMessage(nodeInfo,
                   new EdgeResult.Builder(EdgeStatusCode.STATUS_SUB_DATA_LOSS).build(),
                   request.getRequestId());
@@ -223,7 +223,7 @@ public class EdgeMonitoredItemService {
             @Override
             public void onSubscriptionTransferFailed(UaSubscription subscription,
                 StatusCode statusCode) {
-              logger.info("onSubscriptionTransferFailed status={}", statusCode);
+              logger.debug("onSubscriptionTransferFailed status={}", statusCode);
             }
           });
       subscription = sub.get();
@@ -231,17 +231,17 @@ public class EdgeMonitoredItemService {
         boolean isFirstData = true;
 
         public void onNotificationError(UaSubscription subscription, String reason) {
-          logger.info("onNotificationError = {}", reason);
+          logger.debug("onNotificationError = {}", reason);
         }
 
         @Override
         public void onKeepAliveNotification(UaSubscription subscription, DateTime publishTime) {
-          logger.info("onKeepAliveNotification = {}", publishTime);
+          logger.debug("onKeepAliveNotification = {}", publishTime);
         }
 
         @Override
         public void onStatusChangedNotification(UaSubscription subscription, StatusCode status) {
-          logger.info("onStatusChangedNotification status={}", status);
+          logger.debug("onStatusChangedNotification status={}", status);
         }
 
         @Override
@@ -366,7 +366,7 @@ public class EdgeMonitoredItemService {
    */
   private void RunMonitoredItemService(EdgeRequest request, EdgeNodeInfo ep,
       UaSubscription subscription) throws Exception {
-    logger.info("MonitoredItemService is ran");
+    logger.debug("MonitoredItemService is ran");
 
     if (ep.getEdgeNodeID() == null) {
       logger.error("EdgeNodeId is empty");
@@ -382,7 +382,7 @@ public class EdgeMonitoredItemService {
     } else {
       id = new NodeId(ep.getEdgeNodeID().getNameSpace(), ep.getEdgeNodeID().getEdgeNodeUri());
     }
-    logger.info("Create NodeId={}", id);
+    logger.debug("Create NodeId={}", id);
 
     ReadValueId readValueId =
         new ReadValueId(id, AttributeId.Value.uid(), null, QualifiedName.NULL_VALUE);
@@ -396,23 +396,23 @@ public class EdgeMonitoredItemService {
 
     if (req.getSubType() == EdgeNodeIdentifier.Edge_Modify_Sub) {
 
-      logger.info("MonitoredItemModifyRequest={}", req.getSamplingInterval());
+      logger.debug("MonitoredItemModifyRequest={}", req.getSamplingInterval());
       ImmutableList<UaMonitoredItem> itemValues = subscription.getMonitoredItems().asList();
 
       for (UaMonitoredItem itemValue : itemValues) {
-        logger.info("item values size = {}", itemValues.size());
+        logger.debug("item values size = {}", itemValues.size());
         MonitoredItemModifyRequest monitoredItemRequest =
             new MonitoredItemModifyRequest(itemValue.getMonitoredItemId(), parameters);
 
         subscription
             .modifyMonitoredItems(TimestampsToReturn.Both, newArrayList(monitoredItemRequest))
             .thenApply(monitoredItems -> {
-              logger.info("MonitoredItemModifyRequest item size={}", monitoredItems.size());
+              logger.debug("MonitoredItemModifyRequest item size={}", monitoredItems.size());
               // TODO UA-milo should be updated with List<UaMonitoredItem> return value.
               // checkMonitoredItemErrorStatus(monitoredItems, request);
               return monitoredItems;
             }).exceptionally(e -> {
-              logger.info("error type : {}", e.getMessage());
+              logger.error("error type : {}", e.getMessage());
               callErrorMessageCB(request, EdgeStatusCode.STATUS_ERROR);
               return null;
             });
@@ -420,23 +420,23 @@ public class EdgeMonitoredItemService {
       }
     } else if (req.getSubType() == EdgeNodeIdentifier.Edge_Create_Sub) {
 
-      logger.info("MonitoredItemCreateRequest : sampling interval={}", req.getSamplingInterval());
+      logger.debug("MonitoredItemCreateRequest : sampling interval={}", req.getSamplingInterval());
       MonitoredItemCreateRequest monitoredItemRequest =
           new MonitoredItemCreateRequest(readValueId, MonitoringMode.Reporting, parameters);
 
       subscription.createMonitoredItems(TimestampsToReturn.Both, newArrayList(monitoredItemRequest))
           .thenApply(monitoredItems -> {
-            logger.info("MonitoredItemCreateRequest item size={}", monitoredItems.size());
+            logger.debug("MonitoredItemCreateRequest item size={}", monitoredItems.size());
             checkMonitoredItemErrorStatus(monitoredItems, request);
             return monitoredItems;
           }).exceptionally(e -> {
-            logger.info("error type : {}", e.getMessage());
+            logger.error("error type : {}", e.getMessage());
             callErrorMessageCB(request, EdgeStatusCode.STATUS_ERROR);
             return null;
           });
     } else if (req.getSubType() == EdgeNodeIdentifier.Edge_Delete_Sub) {
 
-      logger.info("deleteMonitoredItems");
+      logger.debug("deleteMonitoredItems");
       ImmutableList<UaMonitoredItem> itemValues = subscription.getMonitoredItems().asList();
       List<UaMonitoredItem> items = new ArrayList<UaMonitoredItem>();
 
@@ -445,16 +445,16 @@ public class EdgeMonitoredItemService {
       }
 
       subscription.deleteMonitoredItems(items).thenApply(statusCodes -> {
-        logger.info("deleteMonitoredItems size={}", statusCodes.size());
+        logger.debug("deleteMonitoredItems size={}", statusCodes.size());
         return statusCodes;
       }).exceptionally(e -> {
-        logger.info("error type : {}", e.getMessage());
+        logger.debug("error type : {}", e.getMessage());
         callErrorMessageCB(request, EdgeStatusCode.STATUS_ERROR);
         return null;
       });
 
     } else {
-      logger.info("MonitoredItem type = {}", req.getSubType());
+      logger.debug("MonitoredItem type = {}", req.getSubType());
     }
   }
 
@@ -468,7 +468,7 @@ public class EdgeMonitoredItemService {
   private void checkMonitoredItemErrorStatus(List<UaMonitoredItem> monitoredItems,
       EdgeRequest req) {
     if (monitoredItems.size() == 0) {
-      logger.info("MonitoredItem size = {}", monitoredItems.size());
+      logger.debug("MonitoredItem size = {}", monitoredItems.size());
     }
     int idx = 0;
     boolean isVisited = false;
@@ -478,10 +478,10 @@ public class EdgeMonitoredItemService {
     HashSet<UInteger> visitedId = new HashSet<UInteger>();
 
     for (UaMonitoredItem item : monitoredItems) {
-      logger.info("MonitoredItem id = {}", item.getMonitoredItemId());
-      logger.info("MonitoredItem queue size = {} -> {}", item.getRequestedQueueSize(),
+      logger.debug("MonitoredItem id = {}", item.getMonitoredItemId());
+      logger.debug("MonitoredItem queue size = {} -> {}", item.getRequestedQueueSize(),
           item.getRevisedQueueSize());
-      logger.info("MonitoredItem sampling = {} -> {}", item.getRequestedSamplingInterval(),
+      logger.debug("MonitoredItem sampling = {} -> {}", item.getRequestedSamplingInterval(),
           item.getRevisedSamplingInterval());
 
       if (item.getStatusCode().isGood() != true) {
@@ -496,7 +496,7 @@ public class EdgeMonitoredItemService {
         if (errorCode.getValue() == item.getStatusCode().getValue()) {
           errStatusCodeCnt++;
         }
-        logger.info("MonitoredItem code = {}", item.getStatusCode());
+        logger.debug("MonitoredItem code = {}", item.getStatusCode());
 
       } else {
         // check sampling interval
@@ -556,7 +556,7 @@ public class EdgeMonitoredItemService {
     EdgeSessionManager.getInstance().getSession(ep.getEndpointUri()).getClientInstance()
         .setPublishingMode(req.getSubRequest().getPublishingFlag(), subscriptionIds)
         .thenApply(response -> {
-          logger.info("setPublishingMode Service Result={}",
+          logger.debug("setPublishingMode Service Result={}",
               response.getResponseHeader().getServiceResult());
 
           if (response.getResults().length == 0) {
@@ -569,11 +569,11 @@ public class EdgeMonitoredItemService {
           }
 
           for (StatusCode code : response.getResults()) {
-            logger.info("setPublishingMode item result={}", code);
+            logger.debug("setPublishingMode item result={}", code);
           }
           return response;
         }).exceptionally(e -> {
-          logger.info("setPublishingMode error message={}", e.getMessage());
+          logger.error("setPublishingMode error message={}", e.getMessage());
           return null;
         });
   }
@@ -600,7 +600,7 @@ public class EdgeMonitoredItemService {
           return obj;
         }).exceptionally(e -> {
           Optional.ofNullable(epInfo).ifPresent(endpoint -> {
-            logger.info("modifySub error message={}", e.getMessage());
+            logger.error("modifySub error message={}", e.getMessage());
             ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(e.getMessage()).build(), req.getRequestId());
@@ -626,7 +626,7 @@ public class EdgeMonitoredItemService {
           logger.info("delete sub message={}", serviceResult);
 
           if (response.getResults().length < subscriptionIds.size() && serviceResult.isGood()) {
-            logger.info("delete sub result : result is decreased than requests");
+            logger.debug("delete sub result : result is decreased than requests");
             ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(
@@ -635,7 +635,7 @@ public class EdgeMonitoredItemService {
 
           } else if (response.getResults().length > subscriptionIds.size()
               && serviceResult.isGood()) {
-            logger.info("delete sub result : result is increased than requests");
+            logger.debug("delete sub result : result is increased than requests");
             ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(
@@ -644,7 +644,7 @@ public class EdgeMonitoredItemService {
 
           } else {
             for (StatusCode code : response.getResults()) {
-              logger.info("delete sub result={}", code);
+              logger.debug("delete sub result={}", code);
               if (code.isGood() != true) {
                 EdgeStatusCode statusCode = convertStatusCode(code.getValue());
                 ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
@@ -657,7 +657,7 @@ public class EdgeMonitoredItemService {
           return new EdgeResult.Builder(EdgeStatusCode.STATUS_OK).build();
         }).exceptionally(e -> {
           Optional.ofNullable(epInfo).ifPresent(endpoint -> {
-            logger.info("delete sub error message={}", e.getMessage());
+            logger.debug("delete sub error message={}", e.getMessage());
             ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(e.getMessage()).build(), req.getRequestId());
@@ -706,7 +706,7 @@ public class EdgeMonitoredItemService {
           return new EdgeResult.Builder(EdgeStatusCode.STATUS_OK).build();
         }).exceptionally(e -> {
           Optional.ofNullable(epInfo).ifPresent(endpoint -> {
-            logger.info("delete sub error message={}", e.getMessage());
+            logger.error("delete sub error message={}", e.getMessage());
             ErrorHandler.getInstance().addErrorMessage(epInfo, nodeInfo,
                 new EdgeResult.Builder(EdgeStatusCode.STATUS_ERROR).build(),
                 new EdgeVersatility.Builder(e.getMessage()).build(), req.getRequestId());

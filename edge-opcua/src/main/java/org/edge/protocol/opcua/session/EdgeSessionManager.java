@@ -121,9 +121,9 @@ public class EdgeSessionManager {
     EndpointDescription[] endpoints = UaTcpStackClient.getEndpoints(endpointUri).get();
     ArrayList<EdgeEndpointInfo> endpointList = new ArrayList<EdgeEndpointInfo>();
     for (int i = 0; i < endpoints.length; i++) {
-      logger.info("endpoint={}, {}, {}", endpoints[i].getEndpointUrl(),
+      logger.debug("endpoint={}, {}, {}", endpoints[i].getEndpointUrl(),
           endpoints[i].getSecurityLevel(), endpoints[i].getSecurityPolicyUri());
-      logger.info("    > {}, {}, {}", endpoints[i].getSecurityMode(),
+      logger.debug("    > {}, {}, {}", endpoints[i].getSecurityMode(),
           endpoints[i].getTransportProfileUri(), endpoints[i].getTypeId());
       endpointList.add(new EdgeEndpointInfo.Builder(endpoints[i].getEndpointUrl())
           .setConfig(new EdgeEndpointConfig.Builder()
