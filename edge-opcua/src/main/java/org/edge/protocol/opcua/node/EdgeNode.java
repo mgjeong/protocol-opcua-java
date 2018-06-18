@@ -134,7 +134,7 @@ public class EdgeNode {
         for (Object[] obj : item.getVariableItemSet()) {
           try {
             addVariableNode(item, obj);
-            logger.info("add variable node = {}\n", obj[0]);
+            logger.info("add variable node = {}", obj[0]);
           } catch (Exception e) {
             e.printStackTrace();
           }
@@ -149,7 +149,7 @@ public class EdgeNode {
         for (Object[] obj : item.getVariableItemSet()) {
           try {
             addArrayNode(item, obj);
-            logger.info("add array node = {}\n", obj[0]);
+            logger.info("add array node = {}", obj[0]);
           } catch (Exception e) {
             e.printStackTrace();
           }
@@ -162,7 +162,7 @@ public class EdgeNode {
         for (Object[] obj : item.getVariableItemSet()) {
           try {
             addVariableTypeNode(item, obj);
-            logger.info("add variable type node = {}\n", obj[0]);
+            logger.info("add variable type node = {}", obj[0]);
           } catch (Exception e) {
             e.printStackTrace();
           }

@@ -459,7 +459,7 @@ public class ProtocolManager implements MessageInterface {
       String rootDisplayName) throws Exception {
     EdgeOpcUaServer server = EdgeOpcUaServer.getInstance();
     if (server != null) {
-      logger.info("namespace = {}", name);
+      logger.debug("namespace = {}", name);
       try {
         server.createNamespace(name, rootNodeId, rootBrowseName, rootDisplayName);
       } catch (Exception e) {
