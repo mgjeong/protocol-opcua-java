@@ -76,7 +76,6 @@ public class MessageDispatcher extends Thread {
         handleMessage(data);
 
       } catch (InterruptedException e) {
-        e.printStackTrace();
         Thread.currentThread().interrupt();
       }
     }
