@@ -454,7 +454,7 @@ public class EdgeNode {
       viewNode.addReference(new Reference(viewNode.getNodeId(), Identifiers.Organizes,
           pNode.getNodeId().expanded(), pNode.getNodeClass(), false));
 
-      logger.info("add view node = {}\n", item.getBrowseName());
+      logger.info("add view node = {}", item.getBrowseName());
     } else {
       viewNode = (UaViewNode) nodeManager.get(new NodeId(namespaceIndex, item.getBrowseName()));
     }
