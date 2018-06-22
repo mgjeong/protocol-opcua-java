@@ -40,13 +40,15 @@ public class EdgeSubscriptionTestCase {
   private final String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
   private EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
   
+  private String prefixURI = "localhost:12686/edge-opc-server";
+  
   public void testCreateSub() throws Exception {
     EdgeSubRequest sub = new EdgeSubRequest.Builder(EdgeNodeIdentifier.Edge_Create_Sub)
         .setSamplingInterval(1000.0).build();
     assertNotNull(sub);
 
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
@@ -103,7 +105,7 @@ public class EdgeSubscriptionTestCase {
     assertNotNull(sub);
 
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg =
@@ -124,7 +126,7 @@ public class EdgeSubscriptionTestCase {
     assertNotNull(sub);
 
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
@@ -141,7 +143,7 @@ public class EdgeSubscriptionTestCase {
 
   public void testCreateSubWithoutSubReq() throws Exception {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
@@ -170,7 +172,7 @@ public class EdgeSubscriptionTestCase {
     assertNotNull(sub);
 
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
@@ -189,7 +191,7 @@ public class EdgeSubscriptionTestCase {
     assertNotNull(sub);
 
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)

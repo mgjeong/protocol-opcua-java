@@ -38,10 +38,12 @@ public class EdgeMethodTestCase {
   private final Logger logger = LoggerFactory.getLogger(getClass());
   private final String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
   private EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+  
+  private String prefixURI = "localhost:12686/edge-opc-server";
 
   public void testRunMethodService(Double param) {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo)
@@ -86,7 +88,7 @@ public class EdgeMethodTestCase {
 
   public void testRunMethodServiceWithoutCommand(Double param) {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(null).setRequest(
@@ -148,7 +150,7 @@ public class EdgeMethodTestCase {
 
   public void testRunMethodServiceWithoutParam() {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_METHOD_SQRT.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg =
