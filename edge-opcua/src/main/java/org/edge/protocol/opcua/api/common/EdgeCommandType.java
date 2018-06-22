@@ -30,7 +30,9 @@ public enum EdgeCommandType {
   CMD_STOP_CLIENT(6, "stop_client", "stop client and disconnect"),
   CMD_GET_ENDPOINTS(7, "endpoint_discovery", "get endpoints from server"),
   CMD_BROWSE(8, "browse", "browse nodes from server"),
-  CMD_METHOD(9, "method", "call method nodes from server");
+  CMD_METHOD(9, "method", "call method nodes from server"),
+  CMD_READ_SYNC(10, "read_sync", "read sync");
+  
 
   private int code;
   private String value;
