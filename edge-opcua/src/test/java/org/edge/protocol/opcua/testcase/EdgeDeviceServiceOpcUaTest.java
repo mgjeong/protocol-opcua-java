@@ -21,6 +21,9 @@ package org.edge.protocol.opcua.testcase;
 import java.util.HashMap;
 import java.util.List;
 import org.eclipse.milo.opcua.sdk.core.WriteMask;
+import org.eclipse.milo.opcua.stack.client.UaTcpStackClient;
+import org.eclipse.milo.opcua.stack.core.security.SecurityPolicy;
+import org.eclipse.milo.opcua.stack.core.types.structured.ApplicationDescription;
 import org.edge.protocol.opcua.api.ProtocolManager;
 import org.edge.protocol.opcua.api.ProtocolManager.DiscoveryCallback;
 import org.edge.protocol.opcua.api.ProtocolManager.ReceivedMessageCallback;
@@ -45,6 +48,7 @@ import org.edge.protocol.opcua.api.server.EdgeNodeType;
 import org.edge.protocol.opcua.api.server.EdgeReference;
 import org.edge.protocol.opcua.example.EdgeSampleCommon;
 import org.edge.protocol.opcua.example.EdgeTestMethod;
+import org.edge.protocol.opcua.providers.EdgeProviderGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -298,16 +302,31 @@ public class EdgeDeviceServiceOpcUaTest {
   }
 
   public void startClient() throws Exception {
+    ApplicationDescription[] applicationDescriptions =
+        UaTcpStackClient.findServers(endpointUri).get();
+
+    for (ApplicationDescription applicationDescription : applicationDescriptions) {
+      logger.info("applicationDescription : {}", applicationDescription);
+    }
+
     EdgeEndpointConfig endpointConfig = new EdgeEndpointConfig.Builder()
-        .setApplicationName(EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
-        .setApplicationUri(EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue()).build();
-    EdgeNodeInfo nodeInfo = new EdgeNodeInfo.Builder().build();
+        .setApplicationName(applicationDescriptions[0].getApplicationName().getText() != null
+            ? applicationDescriptions[0].getApplicationName().getText()
+            : EdgeOpcUaCommon.DEFAULT_SERVER_APP_NAME.getValue())
+        .setApplicationUri(applicationDescriptions[0].getApplicationUri() != null
+            ? applicationDescriptions[0].getApplicationUri()
+            : EdgeOpcUaCommon.DEFAULT_SERVER_APP_URI.getValue())
+        .setbindAddress("127.0.0.1").setbindPort(12686)
+        .setSecurityPolicyUri(SecurityPolicy.None.getSecurityPolicyUri()).setViewNodeFlag(false)
+        .build();
+
+    EdgeEndpointInfo ep =
+        new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
+    EdgeNodeInfo endpoint = new EdgeNodeInfo.Builder().build();
 
     // start Client
-    EdgeEndpointInfo epInfo =
-        new EdgeEndpointInfo.Builder(endpointUri).setConfig(endpointConfig).build();
-    EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_START_CLIENT)
-        .setRequest(new EdgeRequest.Builder(nodeInfo).build()).build();
+    EdgeMessage msg = new EdgeMessage.Builder(ep).setCommand(EdgeCommandType.CMD_START_CLIENT)
+        .setRequest(new EdgeRequest.Builder(endpoint).build()).build();
     ProtocolManager.getProtocolManagerInstance().send(msg);
   }
 
@@ -339,9 +358,8 @@ public class EdgeDeviceServiceOpcUaTest {
     logger.info("[TEST] testBrowse");
     Thread.sleep(5000);
     EdgeBrowseTestCase browse = new EdgeBrowseTestCase();
-//  TODO : check error case
-//    browse.testBrowseRootSync();
-//    browse.testBrowseServerSync();
+    browse.testBrowseRootSync();
+    browse.testBrowseServerSync();
     browse.testBrowseRootSyncWithoutValueAilas();
     browse.testBrowseRootSyncWithoutEndpoint();
     browse.testBrowseRootSyncWithoutCommand();
@@ -377,8 +395,7 @@ public class EdgeDeviceServiceOpcUaTest {
     tc.testCreateSub();
     tc.testModifySub();
     Thread.sleep(1000);
-//    TODO : check delete subscription logic in UA-milo
-//    tc.testDeleteSub();
+    tc.testDeleteSub();
     Thread.sleep(5000);
   }
 
@@ -497,6 +514,9 @@ public class EdgeDeviceServiceOpcUaTest {
           // TODO Auto-generated catch block
           e.printStackTrace();
         }
+      }
+      if (status == EdgeStatusCode.STATUS_CLIENT_STARTED) {
+        // client.initEdgeProvider
       }
     }
 
