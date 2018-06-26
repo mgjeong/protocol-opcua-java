@@ -42,6 +42,8 @@ public class EdgeCustomNodeTestCase {
   private final Logger logger = LoggerFactory.getLogger(getClass());
   private final String endpointUri = EdgeOpcUaCommon.DEFAULT_ENDPOINT.getValue();
   private EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+  
+  private String prefixURI = "localhost:12686/edge-opc-server";
 
   public void testInitCustomNode(EdgeOpcUaServer server) throws Exception {
     server.createNamespace(EdgeOpcUaCommon.DEFAULT_NAMESPACE.getValue(),
@@ -74,9 +76,9 @@ public class EdgeCustomNodeTestCase {
 
   public void testRead() throws Exception {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
-
+    
     EdgeMessage msg =
         new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_READ)
             .setRequest(new EdgeRequest.Builder(ep).build()).build();
@@ -104,7 +106,7 @@ public class EdgeCustomNodeTestCase {
 
   public void testReadWithoutCommand() throws Exception {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(null)
@@ -145,7 +147,7 @@ public class EdgeCustomNodeTestCase {
 
   public void testWrite() throws Exception {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo)
@@ -196,7 +198,7 @@ public class EdgeCustomNodeTestCase {
 
   public void testWriteWithoutCommand() throws Exception {
     EdgeNodeInfo ep = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(prefixURI + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     assertNotNull(ep);
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(null).setRequest(

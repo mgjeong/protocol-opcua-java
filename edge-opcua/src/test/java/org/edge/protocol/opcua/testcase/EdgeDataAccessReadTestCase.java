@@ -56,6 +56,8 @@ public class EdgeDataAccessReadTestCase {
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_SERVER_URI.getValue()
       + EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();
   private EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+  
+  private String prefixURI = "localhost:12686/edge-opc-server";
 
   private void registerProvider(String uri, EdgeNodeIdentifier idx) {
     EdgeAttributeProvider provider = null;
@@ -109,7 +111,7 @@ public class EdgeDataAccessReadTestCase {
     CompletableFuture<EdgeResult> future;
 
     registerProvider(uri, EdgeNodeIdentifier.DataItemType);
-
+    
     assertEquals(EdgeStatusCode.STATUS_OK,
         getValue(uri, EdgeNodeIdentifier.ReadValueId).getStatusCode());
     assertEquals(EdgeStatusCode.STATUS_OK,
@@ -526,7 +528,7 @@ public class EdgeDataAccessReadTestCase {
   private EdgeResult getValue(String uri, EdgeNodeIdentifier nId) throws Exception {
     ep = getEndpoint(uri, nId);
     assertNotNull(ep);
-    EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_READ)
+    EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_READ_SYNC)
         .setRequest(new EdgeRequest.Builder(ep).build()).build();
     logger.info("[RUN] : testReadDataItemNode - requestID : " + msg.getRequest().getRequestId());
 

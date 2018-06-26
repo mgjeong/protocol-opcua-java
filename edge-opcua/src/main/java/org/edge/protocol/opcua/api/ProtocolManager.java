@@ -55,6 +55,7 @@ import org.edge.protocol.opcua.queue.MessageInterface;
 import org.edge.protocol.opcua.session.EdgeOpcUaClient;
 import org.edge.protocol.opcua.session.EdgeOpcUaServer;
 import org.edge.protocol.opcua.session.EdgeSessionManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,6 +73,7 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * get protocol manager instance
+   * 
    * @return ProtocolManager instance
    */
   public synchronized static ProtocolManager getProtocolManagerInstance() {
@@ -84,7 +86,8 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * initialize configuration such as callback
-   * @param  configure edge configure to set
+   * 
+   * @param configure edge configure to set
    */
   public void configure(EdgeConfigure configure) {
     registerRecvCallback(configure.getRecvCallback());
@@ -106,6 +109,7 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * get message dispatcher instance
+   * 
    * @return MessageDispatcher instance
    */
   public MessageDispatcher getRecvDispatcher() {
@@ -121,7 +125,8 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * add request data into send queue
-   * @param  msg message
+   * 
+   * @param msg message
    * @return result
    */
   public EdgeResult send(EdgeMessage msg) throws Exception {
@@ -138,13 +143,13 @@ public class ProtocolManager implements MessageInterface {
 
     return new EdgeResult.Builder(
         ProtocolManager.getProtocolManagerInstance().getSendDispatcher().putQ(msg)
-            ? EdgeStatusCode.STATUS_OK
-            : EdgeStatusCode.STATUS_ENQUEUE_ERROR).build();
+            ? EdgeStatusCode.STATUS_OK : EdgeStatusCode.STATUS_ENQUEUE_ERROR).build();
   }
 
   /**
    * add request data into send queue
-   * @param  msg message
+   * 
+   * @param msg message
    * @return result
    */
   private EdgeResult checkParameterValid(EdgeMessage msg) throws Exception {
@@ -236,8 +241,9 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * callback related response message. The callback called onResponseMessages in
-   *        ReceivedMessageCallback will be called inside.
-   * @param  msg response message as EdgeMessage
+   * ReceivedMessageCallback will be called inside.
+   * 
+   * @param msg response message as EdgeMessage
    */
   @Override
   public void onResponseMessage(EdgeMessage msg) throws Exception {
@@ -261,15 +267,15 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * callback related monitoring message. The callback called onMonitoredMessage in
-   *        ReceivedMessageCallback will be called inside.
-   * @param  msg monitoring message as EdgeMessage
+   * ReceivedMessageCallback will be called inside.
+   * 
+   * @param msg monitoring message as EdgeMessage
    */
   @Override
   public void onMonitoredMessage(EdgeMessage msg) throws Exception {
     for (EdgeResponse res : msg.getResponses()) {
-      logger.debug("value={}, valueName={}, requestId={}, msg type={}",
-          res.getMessage().getValue(), res.getEdgeNodeInfo().getValueAlias(), res.getRequestId(),
-          msg.getMessageType());
+      logger.debug("value={}, valueName={}, requestId={}, msg type={}", res.getMessage().getValue(),
+          res.getEdgeNodeInfo().getValueAlias(), res.getRequestId(), msg.getMessageType());
       if (recvCallback != null) {
         recvCallback.onMonitoredMessage(msg);
       }
@@ -277,9 +283,10 @@ public class ProtocolManager implements MessageInterface {
   }
 
   /**
-   * callback related error message. The callback called onErrorMessage in
-   *        ReceivedMessageCallback will be called inside.
-   * @param  msg error message as EdgeMessage
+   * callback related error message. The callback called onErrorMessage in ReceivedMessageCallback
+   * will be called inside.
+   * 
+   * @param msg error message as EdgeMessage
    */
   @Override
   public void onErrorCallback(EdgeMessage msg) throws Exception {
@@ -305,11 +312,23 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * process send request message from send queue
-   * @param  msg send message as EdgeMessage
+   * 
+   * @param msg send message as EdgeMessage
    */
   @Override
   public void onSendMessage(EdgeMessage msg) {
     if (msg.getCommand() == EdgeCommandType.CMD_READ) {
+      Read read = new Read();
+      try {
+        new CommandExecutor(read).run(msg);
+        logger.info("read message has called");
+      } catch (Exception e) {
+        e.printStackTrace();
+        ErrorHandler.getInstance().addErrorMessage(msg.getRequest().getEdgeNodeInfo(),
+            new EdgeResult.Builder(EdgeStatusCode.STATUS_INTERNAL_ERROR).build(),
+            msg.getRequest().getRequestId());
+      }
+    } else if (msg.getCommand() == EdgeCommandType.CMD_READ_SYNC) {
       Read read = new Read();
       try {
         new CommandExecutor(read).run(msg);
@@ -449,10 +468,11 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * create Namespace depend on OPC-UA on server side
-   * @param  name namespace alias to use
-   * @param  rootNodeId path name in root node
-   * @param  rootBrowseName browse name in root node
-   * @param  rootDisplayName display name in root node
+   * 
+   * @param name namespace alias to use
+   * @param rootNodeId path name in root node
+   * @param rootBrowseName browse name in root node
+   * @param rootDisplayName display name in root node
    * @return result
    */
   public EdgeResult createNamespace(String name, String rootNodeId, String rootBrowseName,
@@ -474,6 +494,7 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * get nodes from node manager
+   * 
    * @return list of nodeId
    */
   public List<EdgeNodeId> getNodes() {
@@ -482,7 +503,8 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * get nodes from node manager
-   * @param  browseName browse name
+   * 
+   * @param browseName browse name
    * @return list of nodeId
    */
   public List<EdgeNodeId> getNodes(String BrowseName) {
@@ -491,9 +513,10 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * create node depend on OPC-UA on server side (createNamespace should be called before)
-   * @param  namespaceUri namespace URI to create
-   * @param  item node item
-   * @param  type node type (method node or data access node or variable node)
+   * 
+   * @param namespaceUri namespace URI to create
+   * @param item node item
+   * @param type node type (method node or data access node or variable node)
    * @return result
    */
   public EdgeResult createNode(String namespaceUri, EdgeNodeItem item, EdgeNodeType type)
@@ -523,11 +546,12 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * create node depend on OPC-UA on server side (createNamespace should be called before)
-   * @param  namespace namespace alias to create
-   * @param  item node item
-   * @param  type node type (method node or data access node or variable node)
-   * @param  methodObj method class
-   * @param  type the argument type of the method
+   * 
+   * @param namespace namespace alias to create
+   * @param item node item
+   * @param type node type (method node or data access node or variable node)
+   * @param methodObj method class
+   * @param type the argument type of the method
    * @return result
    */
   public EdgeResult createNode(String namespace, EdgeNodeItem item, EdgeNodeType type,
@@ -549,7 +573,8 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * add reference with node
-   * @param  reference
+   * 
+   * @param reference
    * @return result
    */
   public EdgeResult addReference(EdgeReference reference) {
@@ -566,9 +591,10 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * modify value of target variable node on server side
-   * @param  npName namespace alias
-   * @param  nodeUri node uri related variable node
-   * @param  value modified value
+   * 
+   * @param npName namespace alias
+   * @param nodeUri node uri related variable node
+   * @param value modified value
    * @return result
    */
   public EdgeResult modifyVariableNodeValue(String npName, String nodeUri, EdgeVersatility value)
@@ -586,9 +612,10 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * modify value of target data access node on server side
-   * @param  npName namespace alias
-   * @param  id data access node id
-   * @param  value modified value
+   * 
+   * @param npName namespace alias
+   * @param id data access node id
+   * @param value modified value
    * @return result
    */
   public EdgeResult modifyDataAccessNodeValue(String npName, EdgeNodeIdentifier id,
@@ -640,9 +667,10 @@ public class ProtocolManager implements MessageInterface {
 
   /**
    * callback related status. The callback called onInit, onDeinit, onNetworkStatus in
-   *        ReceivedMessageCallback.
-   * @param  ep endpoint
-   * @param  status status
+   * ReceivedMessageCallback.
+   * 
+   * @param ep endpoint
+   * @param status status
    */
   public void onStatusCallback(EdgeEndpointInfo ep, EdgeStatusCode status) {
     logger.info("onStatusCallback...");

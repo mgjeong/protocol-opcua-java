@@ -57,6 +57,8 @@ public class EdgeDataAccessWriteTestCase {
   private static String endpointUri = EdgeOpcUaCommon.DEFAULT_SERVER_URI.getValue()
       + EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue();
   private EdgeEndpointInfo epInfo = new EdgeEndpointInfo.Builder(endpointUri).build();
+  
+  private String prefixURI = "localhost:12686/edge-opc-server";
 
   public void testCreateDiscoveryProvider() {
     EdgeAttributeProvider commonProvider =
