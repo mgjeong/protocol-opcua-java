@@ -210,19 +210,28 @@ public class EdgeClient {
     }
   }
 
-  public static void testSubModification(String provider) throws Exception {
+  public static void testSubModification() throws Exception {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("[select sensor] : ");
+    String sensor = scanner.next();
+
     EdgeSubRequest sub = new EdgeSubRequest.Builder(EdgeNodeIdentifier.Edge_Modify_Sub)
         .setSamplingInterval(3000.0).build();
-    EdgeNodeInfo ep = new EdgeNodeInfo.Builder().setValueAlias(provider).build();
+    EdgeNodeInfo ep = new EdgeNodeInfo.Builder().setValueAlias(sensor).build();
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
         .setRequest(new EdgeRequest.Builder(ep).setSubReq(sub).build()).build();
     ProtocolManager.getProtocolManagerInstance().send(msg);
   }
 
-  public static void testSubDelete(String provider) throws Exception {
+  public static void testSubDelete() throws Exception {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("[select sensor] : ");
+    String sensor = scanner.next();
+
+    String uri = endpointUri.substring(10);
     EdgeSubRequest sub = new EdgeSubRequest.Builder(EdgeNodeIdentifier.Edge_Delete_Sub).build();
-    EdgeNodeInfo ep = new EdgeNodeInfo.Builder().setValueAlias(provider).build();
+    EdgeNodeInfo ep = new EdgeNodeInfo.Builder().setValueAlias(sensor).build();
 
     EdgeMessage msg = new EdgeMessage.Builder(epInfo).setCommand(EdgeCommandType.CMD_SUB)
         .setRequest(new EdgeRequest.Builder(ep).setSubReq(sub).build()).build();
@@ -254,13 +263,15 @@ public class EdgeClient {
     }
   }
 
+
   public static void testReadGroup() throws Exception {
+    String uri = endpointUri.substring(10);
     EdgeNodeInfo ep1 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     EdgeNodeInfo ep2 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_TEMPORATURE.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_TEMPORATURE.getValue()).build();
     EdgeNodeInfo ep3 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC100.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_CNC100.getValue()).build();
 
     List<EdgeRequest> requests = newArrayList(new EdgeRequest.Builder(ep1).build(),
         new EdgeRequest.Builder(ep2).build(), new EdgeRequest.Builder(ep3).build());
@@ -270,12 +281,13 @@ public class EdgeClient {
   }
 
   public static void testWriteGroup() throws Exception {
+    String uri = endpointUri.substring(10);
     EdgeNodeInfo ep1 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue()).build();
     EdgeNodeInfo ep2 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_TEMPORATURE.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_TEMPORATURE.getValue()).build();
     EdgeNodeInfo ep3 = new EdgeNodeInfo.Builder()
-        .setValueAlias(EdgeSampleCommon.KEY_URI_LINE_CNC100.getValue()).build();
+        .setValueAlias(uri + EdgeSampleCommon.KEY_URI_LINE_CNC100.getValue()).build();
 
     List<EdgeRequest> requests = newArrayList(
         new EdgeRequest.Builder(ep1).setMessage(new EdgeVersatility.Builder("OFF").build()).build(),
@@ -368,12 +380,13 @@ public class EdgeClient {
       } else if (operator.equals("browse_m")) {
         testBrowses();
       } else if (operator.equals("sub_modify")) {
-        testSubModification("/defaultRootNode/Line/1/cnc100");
+        testSubModification();
       } else if (operator.equals("sub_delete")) {
-        testSubDelete("/defaultRootNode/Line/1/cnc100");
-      } else if (operator.equals("read_d")) {
-        testRead(EdgeSampleCommon.KEY_URI_DA_TEMPORATURE1.getValue(),
-            EdgeNodeIdentifier.Edge_Node_Class_Type);
+        testSubDelete();
+      // There is not Data Access Item in sample server.
+      // } else if (operator.equals("read_d")) {
+      //   testRead(EdgeSampleCommon.KEY_URI_DA_TEMPORATURE1.getValue(),
+      //       EdgeNodeIdentifier.Edge_Node_Class_Type);
       } else if (operator.equals("sub_d")) {
         testSub(EdgeNodeIdentifier.Edge_Node_Class_Type);
       } else if (operator.equals("method")) {
@@ -517,12 +530,15 @@ public class EdgeClient {
       if (autoFlag == true) {
         try {
           testRead(EdgeOpcUaCommon.DEFAULT_SERVER_NAME.getValue(),
-              EdgeNodeIdentifier.Edge_Node_ServerInfo_Type);
-          testRead(EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue(),
+          EdgeNodeIdentifier.Edge_Node_ServerInfo_Type);
+
+          String uri = endpointUri.substring(10);
+          testRead(uri + EdgeSampleCommon.KEY_URI_LINE_CNC14.getValue(),
               EdgeNodeIdentifier.Edge_Node_Custom_Type);
 
-          testRead(EdgeSampleCommon.KEY_URI_DA_TEMPORATURE1.getValue(),
-              EdgeNodeIdentifier.Edge_Node_Class_Type);
+          // There is not Data Access Item in sample server.
+          // testRead(uri + EdgeSampleCommon.KEY_URI_DA_TEMPORATURE1.getValue(),
+          //     EdgeNodeIdentifier.Edge_Node_Class_Type);
 
           testSub(EdgeNodeIdentifier.Edge_Node_Class_Type);
           testSub(EdgeNodeIdentifier.Edge_Node_Custom_Type);
