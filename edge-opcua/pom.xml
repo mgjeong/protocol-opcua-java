@@ -1,7 +1,7 @@
 <!--
- 
+
    Copyright 2017 Samsung Electronics All Rights Reserved.
-      
+
 
 
    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -21,7 +21,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.edge.protocol</groupId>
 	<artifactId>opcua-adapter</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-Release</version>
 	<description>this is for test maven app</description>
 	<build>
 		<plugins>
